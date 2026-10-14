@@ -1,0 +1,27 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "json": {
+          "selectedClip": {
+            "id": "553",
+            "path": "t10[5|1]"
+          },
+          "selectedScene": {
+            "id": "21",
+            "path": "s7"
+          },
+          "selectedTrack": {
+            "id": "529",
+            "path": "t10",
+            "type": "midi"
+          },
+          "view": "arrangement"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-select"
+}

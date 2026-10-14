@@ -1,0 +1,33 @@
+{
+  "arguments": {
+    "path": "t10,t11"
+  },
+  "response": {
+    "content": [
+      {
+        "json": [
+          {
+            "arrangementClipCount": 0,
+            "deviceCount": 0,
+            "id": "529",
+            "name": "CAPTURE 24 A",
+            "path": "t10",
+            "sessionClipCount": 0,
+            "type": "midi"
+          },
+          {
+            "arrangementClipCount": 0,
+            "deviceCount": 0,
+            "id": "530",
+            "name": "CAPTURE 24 B",
+            "path": "t11",
+            "sessionClipCount": 0,
+            "type": "midi"
+          }
+        ]
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

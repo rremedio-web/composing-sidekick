@@ -1,0 +1,12 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "text": "{name:\"NOCTURNEv2\",tempo:90,timeSignature:\"4/4\",sceneCount:21,regularTrackCount:32,returnTrackCount:2,scale:\"C Major\",scalePitches:\"C,D,E,F,G,A,B\"}"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

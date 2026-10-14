@@ -1,0 +1,56 @@
+{
+  "arguments": {
+    "include": [
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 0,
+    "trackType": "return"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "devices": [
+            {
+              "id": "302",
+              "path": "rt0/d0",
+              "type": "audio-effect: ValhallaFutureVerb"
+            }
+          ],
+          "gainDb": 0,
+          "id": "25",
+          "inputRoutingChannel": null,
+          "inputRoutingType": null,
+          "name": "A-ValhallaFutureVerb",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0,
+          "returnTrackIndex": 0,
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 0,
+          "type": "return"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

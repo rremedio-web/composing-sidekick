@@ -1,0 +1,74 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 16
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "devices": [
+            {
+              "id": "185",
+              "name": "Bass Mono",
+              "path": "t16/d0",
+              "type": "audio-effect: Utility"
+            },
+            {
+              "id": "1024",
+              "path": "t16/d1",
+              "type": "audio-effect: EQ Eight"
+            }
+          ],
+          "gainDb": -6,
+          "groupId": "13",
+          "id": "18",
+          "inputRoutingChannel": {
+            "inputId": "9",
+            "name": ""
+          },
+          "inputRoutingType": {
+            "inputId": "8",
+            "name": "Ext. In"
+          },
+          "isGroupMember": true,
+          "monitoringState": "in",
+          "name": "Synth A",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "7"
+          },
+          "outputRoutingType": {
+            "name": "Digital In",
+            "outputId": "6"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 0,
+          "trackIndex": 16,
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

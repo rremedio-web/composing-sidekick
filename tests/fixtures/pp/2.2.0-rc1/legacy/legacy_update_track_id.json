@@ -1,0 +1,17 @@
+{
+  "arguments": {
+    "id": "369",
+    "name": "LEGACY ID"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "369"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

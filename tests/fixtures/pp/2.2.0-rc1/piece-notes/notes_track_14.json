@@ -1,0 +1,27 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 14
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "deviceCount": 0,
+          "groupId": "13",
+          "id": "16",
+          "isGroupMember": true,
+          "name": "Ext Edge",
+          "sessionClipCount": 0,
+          "trackIndex": 14,
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

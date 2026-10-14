@@ -1,0 +1,27 @@
+{
+  "arguments": {
+    "include": [
+      "devices",
+      "mixer"
+    ],
+    "path": "mt"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "devices": [],
+          "gainDb": -0.31,
+          "id": "105",
+          "name": "Main",
+          "pan": 0,
+          "path": "mt",
+          "sessionClipCount": 0
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

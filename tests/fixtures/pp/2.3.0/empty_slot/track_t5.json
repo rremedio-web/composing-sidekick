@@ -1,0 +1,27 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips"
+    ],
+    "path": "t5"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 0,
+          "groupId": "5",
+          "id": "8",
+          "isGroupMember": true,
+          "name": "Ext Edge",
+          "path": "t5",
+          "sessionClips": [],
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

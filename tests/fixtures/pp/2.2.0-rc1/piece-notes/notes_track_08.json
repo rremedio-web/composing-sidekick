@@ -1,0 +1,69 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 8
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "45|1",
+              "id": "544",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "49|1",
+              "id": "1103",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "53|1",
+              "id": "1179",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "57|1",
+              "id": "1180",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "61|1",
+              "id": "545",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1181",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "77|1",
+              "id": "1366",
+              "name": "Block D"
+            },
+            {
+              "arrangementStart": "81|1",
+              "id": "1375",
+              "name": "Block D"
+            }
+          ],
+          "deviceCount": 1,
+          "groupId": "7",
+          "id": "10",
+          "instrument": "Drum Rack",
+          "isGroupMember": true,
+          "name": "9-Glitch Kit",
+          "sessionClipCount": 13,
+          "trackIndex": 8,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

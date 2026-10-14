@@ -1,0 +1,31 @@
+{
+  "arguments": {
+    "id": "470",
+    "include": [
+      "timing",
+      "notes"
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementLength": "2bar",
+          "end": "3|1",
+          "id": "470",
+          "length": "2bar",
+          "looping": true,
+          "name": "M",
+          "notes": "[{p:60,t:0,d:1,v:100},{p:64,t:2,d:1,v:100}]",
+          "path": "t10[1|1]",
+          "start": "1|1",
+          "timeSignature": "4/4",
+          "type": "midi",
+          "view": "arrangement"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-clip"
+}

@@ -1,0 +1,12 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "text": "{name:\"SCRATCH-capture\",tempo:120,timeSignature:\"4/4\",sceneCount:8,regularTrackCount:10,returnTrackCount:2,scale:\"C Major\",scalePitches:\"C,D,E,F,G,A,B\"}"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

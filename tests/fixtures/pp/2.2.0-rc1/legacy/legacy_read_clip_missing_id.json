@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "id": "999999"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error executing tool 'ppal-read-clip': readClip failed: id \"999999\" does not exist"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-clip"
+}

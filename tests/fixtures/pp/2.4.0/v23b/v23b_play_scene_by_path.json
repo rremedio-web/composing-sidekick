@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "action": "play-scene",
+    "path": "s8"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "playing": true,
+          "scene": {
+            "id": "462",
+            "path": "s8"
+          }
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-playback"
+}

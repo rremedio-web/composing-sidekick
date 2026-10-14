@@ -1,0 +1,24 @@
+{
+  "arguments": {
+    "include": [
+      "notes"
+    ],
+    "path": "t10/s0"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "550",
+          "name": "S0 again",
+          "notes": "[{p:67,t:0,d:0.5,v:90}]",
+          "path": "t10/s0",
+          "type": "midi",
+          "view": "session"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-clip"
+}

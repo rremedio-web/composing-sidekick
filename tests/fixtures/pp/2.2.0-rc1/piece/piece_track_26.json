@@ -1,0 +1,231 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 26
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "45|1",
+              "end": "5|1",
+              "id": "804",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:12.25,d:1.75,v:121},{p:29,t:25.25,d:1,v:44},{p:30,t:26.5,d:0.5,v:54},{p:31,t:12.5,d:1.5,v:88},{p:32,t:10.25,d:1.25,v:75},{p:34,t:12,d:0.75,v:42},{p:35,t:21,d:2,v:71},{p:36,t:3,d:0.75,v:50},{p:36,t:5,d:1,v:97},{p:36,t:6.25,d:0.75,v:77},{p:36,t:28,d:1.875,v:113},{p:37,t:5.25,d:1,v:104},{p:37,t:17.25,d:1.5,v:42},{p:37,t:22.5,d:1,v:101},{p:39,t:17.5,d:0.5,v:75}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "49|1",
+              "end": "5|1",
+              "id": "1097",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:13.25,d:0.75,v:96},{p:29,t:25.25,d:1,v:50},{p:30,t:26.5,d:0.5,v:85},{p:31,t:14.5,d:1,v:49},{p:32,t:9.5,d:2,v:90},{p:34,t:13,d:0.75,v:95},{p:35,t:20.25,d:2.75,v:112},{p:36,t:2.25,d:1.5,v:100},{p:36,t:4.5,d:1.5,v:99},{p:36,t:7.75,d:0.25,v:67},{p:36,t:28,d:1.875,v:66},{p:37,t:6.75,d:0.25,v:50},{p:37,t:17,d:1.5,v:48},{p:37,t:22.25,d:1,v:70},{p:39,t:16.75,d:1.25,v:55}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "53|1",
+              "end": "5|1",
+              "id": "1107",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:12.75,d:1.25,v:109},{p:29,t:27.5,d:0.5,v:76},{p:30,t:25.5,d:1.5,v:56},{p:31,t:14.75,d:0.75,v:45},{p:32,t:9.25,d:2.25,v:124},{p:34,t:14.75,d:0.75,v:117},{p:35,t:20.25,d:2.75,v:40},{p:36,t:1.25,d:2.5,v:103},{p:36,t:4.5,d:1.5,v:90},{p:36,t:6.5,d:0.5,v:97},{p:36,t:28,d:1.875,v:47},{p:37,t:6.75,d:1,v:104},{p:37,t:16.5,d:1.5,v:76},{p:37,t:21.25,d:1,v:83},{p:39,t:16.75,d:1.25,v:82}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "57|1",
+              "end": "5|1",
+              "id": "1196",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:12.75,d:1.25,v:62},{p:29,t:26.25,d:1,v:124},{p:30,t:26.75,d:0.25,v:114},{p:31,t:12.25,d:1.5,v:54},{p:32,t:10.75,d:0.75,v:93},{p:34,t:12,d:0.75,v:67},{p:35,t:21,d:2,v:87},{p:36,t:0.25,d:3.5,v:89},{p:36,t:5,d:1,v:119},{p:36,t:6.5,d:1,v:43},{p:36,t:28,d:1.875,v:95},{p:37,t:4.25,d:1,v:60},{p:37,t:18.5,d:1,v:125},{p:37,t:20.75,d:1,v:63},{p:39,t:17,d:1,v:61}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "61|1",
+              "end": "5|1",
+              "id": "1098",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:12.75,d:1.25,v:85},{p:29,t:26,d:1,v:112},{p:30,t:26.75,d:0.25,v:55},{p:31,t:13.75,d:1.5,v:45},{p:32,t:8.75,d:2.75,v:51},{p:34,t:15,d:0.75,v:118},{p:35,t:21.5,d:1.5,v:73},{p:36,t:0.75,d:3,v:81},{p:36,t:4,d:1,v:117},{p:36,t:4.25,d:1.75,v:98},{p:36,t:28,d:1.875,v:108},{p:37,t:6.25,d:0.75,v:127},{p:37,t:17.5,d:1.5,v:53},{p:37,t:21.5,d:1,v:47},{p:39,t:17,d:1,v:88}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "65|1",
+              "end": "5|1",
+              "id": "1197",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:13.25,d:0.75,v:67},{p:29,t:24.5,d:1,v:102},{p:30,t:24.75,d:2.25,v:79},{p:31,t:14.5,d:1,v:119},{p:32,t:9.25,d:2.25,v:65},{p:34,t:12.25,d:0.75,v:58},{p:35,t:21,d:2,v:96},{p:36,t:0.25,d:3.5,v:65},{p:36,t:5,d:1,v:49},{p:36,t:6.5,d:0.5,v:125},{p:36,t:28,d:1.875,v:48},{p:37,t:4.75,d:1,v:61},{p:37,t:16,d:1.5,v:86},{p:37,t:22.25,d:1,v:96},{p:39,t:17,d:1,v:109}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "69|1",
+              "end": "5|1",
+              "id": "1322",
+              "length": "4bar",
+              "looping": true,
+              "name": "Block B",
+              "notes": "[{p:29,t:8.25,d:0.75,v:89},{p:30,t:9.5,d:0.25,v:93},{p:30,t:10,d:1,v:77},{p:32,t:6.25,d:0.25,v:101},{p:36,t:0.5,d:1,v:102},{p:36,t:1,d:0.25,v:123},{p:36,t:2.25,d:0.25,v:72},{p:36,t:2.75,d:0.25,v:118},{p:36,t:12,d:0.25,v:93},{p:36,t:13.25,d:0.25,v:126},{p:37,t:5.5,d:0.25,v:58},{p:41,t:8,d:0.25,v:87},{p:41,t:8.5,d:0.5,v:89},{p:41,t:10,d:0.25,v:69},{p:41,t:11.5,d:0.25,v:60},{p:48,t:0.5,d:0.25,v:76},{p:48,t:0.75,d:0.25,v:82},{p:48,t:2,d:0.25,v:69},{p:48,t:12.75,d:1.25,v:111},{p:48,t:13.25,d:0.25,v:77},{p:51,t:14.25,d:0.25,v:50}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "73|1",
+              "end": "5|1",
+              "id": "1325",
+              "length": "4bar",
+              "looping": true,
+              "name": "Block B",
+              "notes": "[{p:29,t:8.25,d:0.75,v:111},{p:30,t:9.5,d:1.25,v:108},{p:36,t:0.5,d:1,v:106},{p:36,t:1,d:0.25,v:46},{p:36,t:2.75,d:0.25,v:71},{p:36,t:13,d:0.25,v:69},{p:36,t:14.25,d:0.25,v:95},{p:39,t:14.5,d:0.25,v:121},{p:41,t:8,d:0.25,v:59},{p:41,t:9,d:0.25,v:121},{p:41,t:9.25,d:0.25,v:90},{p:41,t:11.5,d:0.25,v:94},{p:42,t:9.75,d:0.25,v:92},{p:44,t:4.5,d:2,v:101},{p:48,t:0,d:0.25,v:82},{p:48,t:0.75,d:0.25,v:48},{p:48,t:1.75,d:0.25,v:113},{p:48,t:2.75,d:0.25,v:63},{p:48,t:13.5,d:0.5,v:40},{p:48,t:14.75,d:0.25,v:57},{p:49,t:5.5,d:0.25,v:83}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "77|1",
+              "end": "5|1",
+              "id": "1355",
+              "length": "4bar",
+              "looping": true,
+              "name": "Block A",
+              "notes": "[{p:29,t:4,d:1.75,v:119},{p:32,t:5,d:1,v:127},{p:32,t:12,d:3.6562,v:90},{p:34,t:11.75,d:0.25,v:79},{p:36,t:1.25,d:2.25,v:114}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "2bar",
+              "arrangementStart": "81|1",
+              "end": "21|1",
+              "id": "1383",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:25,t:13.25,d:1.8159,v:84},{p:25,t:44,d:3.0139,v:115},{p:25,t:56,d:7.6899,v:58},{p:31,t:25,d:2.0808,v:112},{p:33,t:21.75,d:2.2001,v:71},{p:35,t:19,d:1.2554,v:58},{p:37,t:41.5,d:1.911,v:92},{p:37,t:49.5,d:6.6774,v:91},{p:40,t:3.5,d:8.9688,v:102},{p:40,t:30,d:2.5978,v:86},{p:40,t:37.25,d:3.2122,v:100}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "2bar",
+              "arrangementStart": "83|1",
+              "end": "21|1",
+              "id": "1384",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:25,t:43.25,d:0.5852,v:101},{p:25,t:44,d:3.0139,v:124},{p:25,t:56,d:7.6899,v:58},{p:28,t:30,d:2.5978,v:115},{p:28,t:38,d:3.2122,v:43},{p:31,t:25.5,d:1.5808,v:88},{p:33,t:21.25,d:2.7001,v:100},{p:35,t:17.5,d:2.7554,v:105},{p:37,t:12.5,d:2.0339,v:63},{p:37,t:50.75,d:5.4274,v:91},{p:40,t:3.75,d:8.7188,v:49}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "8bar",
+              "arrangementStart": "93|1",
+              "end": "21|1",
+              "id": "1198",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:31,t:25,d:2.0808,v:67},{p:33,t:22.25,d:1.7001,v:60},{p:35,t:19.25,d:1.0054,v:91},{p:37,t:13.75,d:1.3159,v:52},{p:37,t:43.25,d:0.5852,v:95},{p:37,t:44,d:2.8255,v:55},{p:37,t:56,d:7.6899,v:90},{p:40,t:3.75,d:8.7188,v:105},{p:40,t:29.75,d:2.8478,v:126},{p:40,t:37.75,d:3.2122,v:118},{p:40,t:48.5,d:7.6774,v:96}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "8bar",
+              "arrangementStart": "101|1",
+              "end": "21|1",
+              "id": "1199",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:31,t:26,d:1.0808,v:83},{p:33,t:22.5,d:1.4501,v:82},{p:35,t:19,d:1.2554,v:83},{p:37,t:13.25,d:1.8159,v:105},{p:37,t:40.25,d:1.911,v:92},{p:37,t:44,d:2.8255,v:83},{p:37,t:56,d:7.6899,v:90},{p:40,t:3.75,d:8.7188,v:89},{p:40,t:29,d:3.3356,v:87},{p:40,t:36,d:3.2122,v:59},{p:40,t:48.5,d:7.6774,v:43}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "devices": [
+            {
+              "id": "243",
+              "name": "Tape Strings",
+              "path": "t26/d0",
+              "type": "instrument-rack"
+            },
+            {
+              "id": "244",
+              "path": "t26/d1",
+              "type": "audio-effect: Moonn-Death"
+            },
+            {
+              "id": "245",
+              "path": "t26/d2",
+              "type": "audio-effect: Moonn Model M"
+            }
+          ],
+          "gainDb": -21,
+          "id": "24",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "instrument": "Instrument Rack",
+          "monitoringState": "auto",
+          "name": "27-Tape Strings",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 1,
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 3,
+          "trackIndex": 26,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

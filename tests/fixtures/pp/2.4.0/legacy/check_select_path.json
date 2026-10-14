@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "path": "t10/s0",
+    "view": "session"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "selectedClip": {
+            "id": "396",
+            "path": "t10/s0"
+          },
+          "view": "session"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-select"
+}

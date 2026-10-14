@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "id": "372",
+    "view": "arrangement"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "selectedClip": {
+            "id": "372",
+            "path": "t10[1|1]"
+          },
+          "view": "arrangement"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-select"
+}

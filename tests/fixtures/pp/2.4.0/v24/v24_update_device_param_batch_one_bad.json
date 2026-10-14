@@ -1,0 +1,24 @@
+{
+  "arguments": {
+    "id": "567",
+    "params": [
+      {
+        "name": "Gain",
+        "value": -3
+      },
+      {
+        "name": "NoSuchParam",
+        "value": 1
+      }
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: no param landed \u2014 \"Gain\": not found on t10/d0 (id 567); \"NoSuchParam\": not found on t10/d0 (id 567)"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-update-device"
+}

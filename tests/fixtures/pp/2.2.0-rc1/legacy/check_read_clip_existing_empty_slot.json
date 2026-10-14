@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "path": "t10/s5"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": null,
+          "name": null,
+          "path": "t10/s5",
+          "type": null
+        }
+      },
+      {
+        "text": "WARNING: no clip at t10/s5"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-clip"
+}

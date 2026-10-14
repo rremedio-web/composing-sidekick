@@ -1,0 +1,18 @@
+{
+  "arguments": {
+    "device": "Utility",
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "567",
+          "path": "t10/d0"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-device"
+}

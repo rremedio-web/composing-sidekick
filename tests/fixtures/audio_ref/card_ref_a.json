@@ -1,0 +1,142 @@
+{
+ "contract_version": "audio-ref-card-v2",
+ "identity": "Brisk synth-pop instrumental at 128 BPM: a plucked bass ostinato under a two-bar lead hook, one hollow bridge, then the hook returns an octave up.",
+ "tempo": {
+  "grid_bpm": 128.0,
+  "feel_bpm": 128.0,
+  "confidence": "high"
+ },
+ "meter": {
+  "beats_per_bar": 4,
+  "half_time": false
+ },
+ "swing": {
+  "pct": 0,
+  "confidence": "high"
+ },
+ "density": "medium",
+ "register": {
+  "band": "mid",
+  "pitch_span": "E1-B5"
+ },
+ "harmony": {
+  "modal_center": "E",
+  "pitch_classes": [
+   "E",
+   "F#",
+   "G",
+   "A",
+   "B",
+   "D"
+  ],
+  "interval_content": [
+   "M2",
+   "m3",
+   "P4",
+   "P5"
+  ],
+  "harmonic_rhythm_bars": 4,
+  "confidence": "high"
+ },
+ "melody": {
+  "phrase_length_bars": 4,
+  "contour": "arch",
+  "call_response": "call_and_response",
+  "motif_note_count": 4,
+  "repetition": "varied"
+ },
+ "drums": {
+  "grid": [
+   {
+    "instrument": "kick",
+    "steps": [
+     0,
+     4,
+     8,
+     12
+    ]
+   },
+   {
+    "instrument": "clap",
+    "steps": [
+     4,
+     12
+    ]
+   },
+   {
+    "instrument": "hat",
+    "steps": [
+     2,
+     6,
+     10,
+     14
+    ]
+   }
+  ],
+  "confidence": "high"
+ },
+ "sections": [
+  {
+   "t": "00:00",
+   "label": "Plucked bass ostinato alone with a filtered pad",
+   "event": "enter",
+   "density": "sparse",
+   "register": "low",
+   "harmony": "E"
+  },
+  {
+   "t": "00:30",
+   "label": "Kick and clap enter with the two-bar lead hook",
+   "event": "drop",
+   "density": "medium",
+   "register": "mid",
+   "harmony": "E"
+  },
+  {
+   "t": "01:00",
+   "label": "Hollow bridge: hook drops out, pad and hats carry",
+   "event": "breakdown",
+   "density": "sparse",
+   "register": "mid",
+   "harmony": "E"
+  },
+  {
+   "t": "01:13",
+   "label": "Hook returns with a counter-line in sixths",
+   "event": "drop",
+   "density": "medium",
+   "register": "mid",
+   "harmony": "E"
+  },
+  {
+   "t": "02:00",
+   "label": "Hook an octave up over doubled bass",
+   "event": "build",
+   "density": "dense",
+   "register": "high",
+   "harmony": "E"
+  },
+  {
+   "t": "03:00",
+   "label": "Pad and bass only, hats fade",
+   "event": "exit",
+   "density": "sparse",
+   "register": "low",
+   "harmony": "E"
+  }
+ ],
+ "imitation": {
+  "do": [
+   "Hold the bass ostinato for the whole track; vary only the hook above it.",
+   "Make the bridge a subtraction of the hook, not a new part.",
+   "Bring the hook back an octave up for the last section."
+  ],
+  "dont": [
+   "Do not add a second chord progression.",
+   "Do not swing the hats."
+  ]
+ },
+ "uncertain": [
+  "Whether the counter-line at 01:13 is a second synth or a delayed copy of the hook."
+ ]
+}

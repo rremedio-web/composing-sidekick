@@ -1,0 +1,94 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 6
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "33|1",
+              "id": "511",
+              "name": "Tom Pattern"
+            },
+            {
+              "arrangementStart": "37|1",
+              "id": "512",
+              "name": "Tom Pattern"
+            },
+            {
+              "arrangementStart": "41|1",
+              "id": "513",
+              "name": "Tom Pattern"
+            },
+            {
+              "arrangementStart": "45|1",
+              "id": "514",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "49|1",
+              "id": "1101",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "53|1",
+              "id": "1112",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "57|1",
+              "id": "1174",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "61|1",
+              "id": "988",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1175",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "69|1",
+              "id": "1315",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "73|1",
+              "id": "1326",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "77|1",
+              "id": "1369",
+              "name": "Block D"
+            },
+            {
+              "arrangementStart": "81|1",
+              "id": "1374",
+              "name": "Block D"
+            }
+          ],
+          "deviceCount": 2,
+          "groupId": "7",
+          "id": "8",
+          "instrument": "Kontakt 8",
+          "isGroupMember": true,
+          "name": "Drum Map",
+          "sessionClipCount": 10,
+          "trackIndex": 6,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "id": "999999",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "deleted": false,
+          "id": "999999",
+          "type": "clip"
+        }
+      },
+      {
+        "text": "WARNING: id \"999999\" does not exist"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

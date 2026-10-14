@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "length": "1bar",
+    "name": "S0 again",
+    "notes": "[{\"p\": 67, \"t\": 0, \"d\": 0.5, \"v\": 90}]",
+    "path": "t10/s0"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "detail": "overwrote the existing clip at t10/s0",
+          "id": "550",
+          "noteCount": 1,
+          "path": "t10/s0"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

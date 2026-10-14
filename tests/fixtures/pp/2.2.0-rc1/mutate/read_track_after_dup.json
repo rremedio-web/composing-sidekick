@@ -1,0 +1,34 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes"
+    ],
+    "trackIndex": 10
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "5|1",
+              "id": "402",
+              "name": "10-Omnisphere 2",
+              "notes": "[{p:60,t:10.5585,d:3.3764,v:100},{p:62,t:0.7363,d:3.2325,v:100},{p:64,t:3.932,d:3.2607,v:100},{p:65,t:7.3349,d:213/64,v:100}]"
+            }
+          ],
+          "deviceCount": 1,
+          "id": "391",
+          "instrument": "Omnisphere",
+          "name": "SIDEKICK TRY capture",
+          "sessionClipCount": 0,
+          "trackIndex": 10,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

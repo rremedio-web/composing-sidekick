@@ -1,0 +1,18 @@
+{
+  "arguments": {
+    "count": 1,
+    "name": "SIDEKICK TRY legacy"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "469",
+          "path": "t10"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-track"
+}

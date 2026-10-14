@@ -1,0 +1,18 @@
+{
+  "arguments": {
+    "action": "update-arrangement",
+    "loop": false
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "currentTime": "5|1",
+          "playing": false
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-playback"
+}

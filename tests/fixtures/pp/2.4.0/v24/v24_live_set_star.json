@@ -1,0 +1,620 @@
+{
+  "arguments": {
+    "include": [
+      "*"
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "locators": [
+            {
+              "id": "352",
+              "name": "INTRO",
+              "position": "loc:INTRO",
+              "time": "1|1"
+            },
+            {
+              "id": "353",
+              "name": "MAIN 1",
+              "position": "loc:MAIN 1",
+              "time": "5|1"
+            },
+            {
+              "id": "354",
+              "name": "BREATHE",
+              "position": "loc:BREATHE",
+              "time": "21|1"
+            },
+            {
+              "id": "355",
+              "name": "DROP",
+              "position": "loc:DROP",
+              "time": "29|1"
+            },
+            {
+              "id": "356",
+              "name": "OUT",
+              "position": "loc:OUT",
+              "time": "37|1"
+            },
+            {
+              "id": "357",
+              "name": "END",
+              "position": "loc:END",
+              "time": "53|1"
+            }
+          ],
+          "mainTrack": {
+            "arrangementClipCount": 0,
+            "color": "#E553A0",
+            "deviceCount": 0,
+            "gainDb": -0.31,
+            "id": "105",
+            "inputRoutingChannel": null,
+            "inputRoutingType": null,
+            "name": "Main",
+            "outputRoutingChannel": null,
+            "outputRoutingType": null,
+            "pan": 0,
+            "path": "mt",
+            "sessionClipCount": 0
+          },
+          "name": "SCRATCH-capture",
+          "returnTracks": [
+            {
+              "arrangementClipCount": 0,
+              "color": "#D86CE4",
+              "deviceCount": 1,
+              "gainDb": 0,
+              "id": "12",
+              "inputRoutingChannel": null,
+              "inputRoutingType": null,
+              "name": "A-Reverb",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "path": "rt0",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#B677C6",
+              "deviceCount": 1,
+              "gainDb": 0,
+              "id": "13",
+              "inputRoutingChannel": null,
+              "inputRoutingType": null,
+              "name": "B-Delay",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "path": "rt1",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0
+            }
+          ],
+          "scale": "C Major",
+          "scalePitches": "C,D,E,F,G,A,B",
+          "scenes": [
+            {
+              "clipCount": 1,
+              "color": "#000000",
+              "id": "14",
+              "name": "1",
+              "path": "s0"
+            },
+            {
+              "clipCount": 0,
+              "color": "#000000",
+              "id": "15",
+              "name": "2",
+              "path": "s1"
+            },
+            {
+              "clipCount": 0,
+              "color": "#000000",
+              "id": "16",
+              "name": "3",
+              "path": "s2"
+            },
+            {
+              "clipCount": 0,
+              "color": "#000000",
+              "id": "17",
+              "name": "4",
+              "path": "s3"
+            },
+            {
+              "clipCount": 0,
+              "color": "#000000",
+              "id": "18",
+              "name": "5",
+              "path": "s4"
+            },
+            {
+              "clipCount": 0,
+              "color": "#000000",
+              "id": "19",
+              "name": "6",
+              "path": "s5"
+            },
+            {
+              "clipCount": 0,
+              "color": "#000000",
+              "id": "20",
+              "name": "7",
+              "path": "s6"
+            },
+            {
+              "clipCount": 0,
+              "color": "#000000",
+              "id": "21",
+              "name": "8",
+              "path": "s7"
+            }
+          ],
+          "tempo": 120,
+          "timeSignature": "4/4",
+          "tracks": [
+            {
+              "arrangementClipCount": 0,
+              "color": "#FF94A6",
+              "deviceCount": 1,
+              "gainDb": 0,
+              "hasProducerPalDevice": true,
+              "id": "2",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "monitoringState": "auto",
+              "name": "Producer",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "3"
+              },
+              "outputRoutingType": {
+                "name": "No Output",
+                "outputId": "2"
+              },
+              "pan": 0,
+              "path": "t0",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#CC9927",
+              "deviceCount": 0,
+              "gainDb": 0,
+              "id": "4",
+              "inputRoutingChannel": {
+                "inputId": "5",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "4",
+                "name": "Ext. In"
+              },
+              "monitoringState": "off",
+              "name": "Interface",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "path": "t1",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#99724B",
+              "deviceCount": 0,
+              "gainDb": 0,
+              "id": "5",
+              "isGroup": true,
+              "name": "Digital In",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "path": "t2",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#99724B",
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "5",
+              "id": "6",
+              "inputRoutingChannel": {
+                "inputId": "5",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "4",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "off",
+              "name": "Sampler 1-2",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "9"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "8"
+              },
+              "pan": 0,
+              "path": "t3",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#F7F47C",
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "5",
+              "id": "7",
+              "inputRoutingChannel": {
+                "inputId": "5",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "4",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "off",
+              "name": "Synth C 1-2",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "9"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "8"
+              },
+              "pan": 0,
+              "path": "t4",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#19E9FF",
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "5",
+              "id": "8",
+              "inputRoutingChannel": {
+                "inputId": "5",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "4",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "off",
+              "name": "Ext Edge",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "9"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "8"
+              },
+              "pan": 0,
+              "path": "t5",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#5CFFE8",
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "5",
+              "id": "9",
+              "inputRoutingChannel": {
+                "inputId": "5",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "4",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "off",
+              "name": "Synth B",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "9"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "8"
+              },
+              "pan": 0,
+              "path": "t6",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#10A4EE",
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "5",
+              "id": "10",
+              "inputRoutingChannel": {
+                "inputId": "5",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "4",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "in",
+              "name": "Synth A",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "9"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "8"
+              },
+              "pan": 0,
+              "path": "t7",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#8BC5FF",
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "5",
+              "id": "11",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": ""
+              },
+              "isGroupMember": true,
+              "monitoringState": "in",
+              "name": "Synth A",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "11"
+              },
+              "outputRoutingType": {
+                "name": "",
+                "outputId": "10"
+              },
+              "pan": 0,
+              "path": "t8",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "color": "#B677C6",
+              "deviceCount": 1,
+              "gainDb": 0,
+              "id": "358",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Omnisphere",
+              "isArmed": true,
+              "monitoringState": "auto",
+              "name": "10-Omnisphere",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "path": "t9",
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-Reverb",
+                  "returnId": "12"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay",
+                  "returnId": "13"
+                }
+              ],
+              "sessionClipCount": 1,
+              "type": "midi"
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

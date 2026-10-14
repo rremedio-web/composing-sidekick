@@ -1,0 +1,35 @@
+{
+  "arguments": {
+    "id": "584",
+    "include": [
+      "params",
+      "param-values"
+    ],
+    "paramSearch": "sidechain"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "abCompare": "a",
+          "id": "584",
+          "name": "CAP24 sidechain",
+          "parameters": [
+            {
+              "name": "sidechainSourceTrackId",
+              "value": "531"
+            },
+            {
+              "name": "sidechainChannel",
+              "value": "Post FX"
+            }
+          ],
+          "path": "t10/d1",
+          "type": "audio-effect: Compressor"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-device"
+}

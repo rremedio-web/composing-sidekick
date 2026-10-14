@@ -1,0 +1,17 @@
+{
+  "arguments": {
+    "include": [
+      "sends"
+    ],
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "MCP error -32602: Input validation error: Invalid arguments for tool ppal-read-track: Invalid option: expected one of \"session-clips\"|\"arrangement-clips\"|\"notes\"|\"timing\"|\"sample\"|\"warp\"|\"devices\"|\"drum-map\"|\"routings\"|\"available-routings\"|\"mixer\"|\"color\"|\"*\" at include[0]"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-track"
+}

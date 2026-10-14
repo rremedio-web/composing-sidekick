@@ -1,0 +1,31 @@
+{
+  "arguments": {
+    "operations": [
+      {
+        "property": "name",
+        "type": "getProperty"
+      }
+    ],
+    "path": "id 999999"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "0",
+          "path": "",
+          "results": [
+            {
+              "operation": {
+                "property": "name",
+                "type": "getProperty"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-live-api"
+}

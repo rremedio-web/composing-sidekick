@@ -1,0 +1,27 @@
+{
+  "piece_id": "example",
+  "name": "EXAMPLE",
+  "notes_path": "docs/pieces/EXAMPLE.md",
+  "set_dir": "~/Music/Example Project",
+  "set_pattern": "EXAMPLEv%d.als",
+  "default_versions": [1, 2, 3],
+  "owner_statements": [
+    {"quote": "the cello patch carries the low line", "topic": "roles"},
+    {"quote": "the second piano is a sketch, ignore it", "topic": "instruments"},
+    {"quote": "the chorus starts at bar 33", "topic": "form"}
+  ],
+  "model_statements": [
+    {"quote": "the shaker is barely audible under the pads", "source": "model_heard",
+     "topic": "drums", "dated": "2024-01-10", "version": 2,
+     "bound_to": {"bounce": "example-mix_20240110-120000", "listen": "example listen"},
+     "note": "a model listen, not an owner fact"},
+    {"quote": "chorus is 3 dB louder than the verse", "source": "measured",
+     "topic": "loudness", "dated": "2024-01-12", "version": 3,
+     "bound_to": {"bounce": "example-mix_20240112-090000", "measure": "DSP on the bounce"},
+     "evidence": {"loudness_db": {"verse": -20.0, "chorus": -17.0}}}
+  ],
+  "reactions": [
+    {"words": "more space before the chorus", "scope": "piece", "scope_detail": "form"},
+    {"words": "keep the cello dry", "scope": "global"}
+  ]
+}

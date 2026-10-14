@@ -1,0 +1,770 @@
+{
+  "path": "sanitized fixture path: solo-id.als",
+  "tempo": 120.0,
+  "track_count": 16,
+  "midi_track_names": [
+    "Drums 1",
+    "Drums 2",
+    "Synth 1",
+    "Synth 2",
+    "Synth 3",
+    "Synth 4",
+    "Synth 5"
+  ],
+  "audio_track_names": [
+    "Audio 1",
+    "Audio 2",
+    "Audio 3",
+    "Audio 4",
+    "Audio 5",
+    "Audio 6",
+    "Audio 7"
+  ],
+  "clip_count": 21,
+  "total_notes": 73,
+  "audio_clip_count": 21,
+  "clips": [
+    {
+      "name": "(unnamed clip)",
+      "track": "Drums 1",
+      "start": 144.0,
+      "end": 304.0,
+      "note_count": 13,
+      "is_drum": true,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 36,
+          "start": 12.0,
+          "duration": 0.25,
+          "velocity": 79,
+          "enabled": true
+        },
+        {
+          "pitch": 47,
+          "start": 14.0,
+          "duration": 1.0,
+          "velocity": 64,
+          "enabled": true
+        },
+        {
+          "pitch": 37,
+          "start": 23.75,
+          "duration": 0.25,
+          "velocity": 99,
+          "enabled": true
+        },
+        {
+          "pitch": 43,
+          "start": 29.0,
+          "duration": 0.25,
+          "velocity": 95,
+          "enabled": true
+        },
+        {
+          "pitch": 41,
+          "start": 30.5,
+          "duration": 0.25,
+          "velocity": 72,
+          "enabled": true
+        },
+        {
+          "pitch": 41,
+          "start": 46.5,
+          "duration": 1.0,
+          "velocity": 88,
+          "enabled": true
+        },
+        {
+          "pitch": 45,
+          "start": 63.0,
+          "duration": 2.0,
+          "velocity": 69,
+          "enabled": true
+        },
+        {
+          "pitch": 39,
+          "start": 83.5,
+          "duration": 0.25,
+          "velocity": 61,
+          "enabled": true
+        },
+        {
+          "pitch": 40,
+          "start": 84.5,
+          "duration": 2.0,
+          "velocity": 79,
+          "enabled": true
+        },
+        {
+          "pitch": 36,
+          "start": 93.5,
+          "duration": 2.0,
+          "velocity": 79,
+          "enabled": true
+        },
+        {
+          "pitch": 42,
+          "start": 103.25,
+          "duration": 2.0,
+          "velocity": 118,
+          "enabled": true
+        },
+        {
+          "pitch": 42,
+          "start": 113.75,
+          "duration": 0.25,
+          "velocity": 93,
+          "enabled": true
+        },
+        {
+          "pitch": 45,
+          "start": 114.75,
+          "duration": 0.25,
+          "velocity": 60,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "(unnamed clip)",
+      "track": "Drums 1",
+      "start": 0.0,
+      "end": 8.0,
+      "note_count": 13,
+      "is_drum": true,
+      "clip_source": "session",
+      "notes": [
+        {
+          "pitch": 41,
+          "start": 0.75,
+          "duration": 1.0,
+          "velocity": 64,
+          "enabled": true
+        },
+        {
+          "pitch": 48,
+          "start": 0.75,
+          "duration": 2.0,
+          "velocity": 104,
+          "enabled": true
+        },
+        {
+          "pitch": 44,
+          "start": 1.5,
+          "duration": 2.0,
+          "velocity": 117,
+          "enabled": true
+        },
+        {
+          "pitch": 40,
+          "start": 1.75,
+          "duration": 1.0,
+          "velocity": 115,
+          "enabled": true
+        },
+        {
+          "pitch": 40,
+          "start": 2.0,
+          "duration": 0.5,
+          "velocity": 118,
+          "enabled": true
+        },
+        {
+          "pitch": 41,
+          "start": 3.5,
+          "duration": 2.0,
+          "velocity": 98,
+          "enabled": true
+        },
+        {
+          "pitch": 45,
+          "start": 3.75,
+          "duration": 2.0,
+          "velocity": 98,
+          "enabled": true
+        },
+        {
+          "pitch": 48,
+          "start": 3.75,
+          "duration": 0.25,
+          "velocity": 117,
+          "enabled": true
+        },
+        {
+          "pitch": 49,
+          "start": 3.75,
+          "duration": 1.0,
+          "velocity": 103,
+          "enabled": true
+        },
+        {
+          "pitch": 50,
+          "start": 4.25,
+          "duration": 2.0,
+          "velocity": 67,
+          "enabled": true
+        },
+        {
+          "pitch": 46,
+          "start": 5.25,
+          "duration": 0.25,
+          "velocity": 65,
+          "enabled": true
+        },
+        {
+          "pitch": 45,
+          "start": 6.25,
+          "duration": 0.25,
+          "velocity": 112,
+          "enabled": true
+        },
+        {
+          "pitch": 43,
+          "start": 6.75,
+          "duration": 0.5,
+          "velocity": 67,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Drums 1",
+      "start": 0.0,
+      "end": 4.0,
+      "note_count": 2,
+      "is_drum": true,
+      "clip_source": "session",
+      "notes": [
+        {
+          "pitch": 50,
+          "start": 0.75,
+          "duration": 2.0,
+          "velocity": 82,
+          "enabled": true
+        },
+        {
+          "pitch": 49,
+          "start": 1.0,
+          "duration": 2.0,
+          "velocity": 78,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Drums 2",
+      "start": 186.52431006493507,
+      "end": 306.5,
+      "note_count": 2,
+      "is_drum": true,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 46,
+          "start": 81.5,
+          "duration": 1.0,
+          "velocity": 88,
+          "enabled": true
+        },
+        {
+          "pitch": 41,
+          "start": 106.75,
+          "duration": 2.0,
+          "velocity": 117,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Drums 2",
+      "start": 0.0,
+      "end": 4.0,
+      "note_count": 2,
+      "is_drum": true,
+      "clip_source": "session",
+      "notes": [
+        {
+          "pitch": 37,
+          "start": 1.5,
+          "duration": 1.0,
+          "velocity": 114,
+          "enabled": true
+        },
+        {
+          "pitch": 36,
+          "start": 2.75,
+          "duration": 2.0,
+          "velocity": 73,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 1",
+      "start": 168.5,
+      "end": 180.0,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 49,
+          "start": 2.75,
+          "duration": 0.5,
+          "velocity": 64,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 1",
+      "start": 200.0,
+      "end": 203.5,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 68,
+          "start": 3.0,
+          "duration": 0.25,
+          "velocity": 89,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 1",
+      "start": 264.0,
+      "end": 275.5,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 65,
+          "start": 1.75,
+          "duration": 1.0,
+          "velocity": 102,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 1",
+      "start": 0.0,
+      "end": 4.0,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "session",
+      "notes": [
+        {
+          "pitch": 62,
+          "start": 0.0,
+          "duration": 1.0,
+          "velocity": 116,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 1",
+      "start": 168.5,
+      "end": 192.8948944284882,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "take_lane",
+      "notes": [
+        {
+          "pitch": 57,
+          "start": 12.75,
+          "duration": 1.0,
+          "velocity": 117,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 2",
+      "start": 182.25,
+      "end": 189.4495444659507,
+      "note_count": 2,
+      "is_drum": false,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 50,
+          "start": 1.75,
+          "duration": 1.0,
+          "velocity": 76,
+          "enabled": true
+        },
+        {
+          "pitch": 67,
+          "start": 4.5,
+          "duration": 1.0,
+          "velocity": 78,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 2",
+      "start": 0.0,
+      "end": 4.0,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "session",
+      "notes": [
+        {
+          "pitch": 64,
+          "start": 0.5,
+          "duration": 2.0,
+          "velocity": 77,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 2",
+      "start": 168.5,
+      "end": 192.8948944284882,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "take_lane",
+      "notes": [
+        {
+          "pitch": 62,
+          "start": 15.75,
+          "duration": 0.25,
+          "velocity": 115,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 2",
+      "start": 182.25,
+      "end": 205.4495444659507,
+      "note_count": 2,
+      "is_drum": false,
+      "clip_source": "take_lane",
+      "notes": [
+        {
+          "pitch": 61,
+          "start": 3.0,
+          "duration": 0.25,
+          "velocity": 101,
+          "enabled": true
+        },
+        {
+          "pitch": 58,
+          "start": 4.75,
+          "duration": 2.0,
+          "velocity": 103,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 3",
+      "start": 216.0,
+      "end": 223.1995444659507,
+      "note_count": 2,
+      "is_drum": false,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 53,
+          "start": 1.5,
+          "duration": 2.0,
+          "velocity": 85,
+          "enabled": true
+        },
+        {
+          "pitch": 64,
+          "start": 4.0,
+          "duration": 1.0,
+          "velocity": 65,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 3",
+      "start": 256.0,
+      "end": 263.19954446595074,
+      "note_count": 2,
+      "is_drum": false,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 58,
+          "start": 3.75,
+          "duration": 2.0,
+          "velocity": 84,
+          "enabled": true
+        },
+        {
+          "pitch": 54,
+          "start": 4.75,
+          "duration": 2.0,
+          "velocity": 112,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 3",
+      "start": 0.0,
+      "end": 4.0,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "session",
+      "notes": [
+        {
+          "pitch": 50,
+          "start": 2.25,
+          "duration": 2.0,
+          "velocity": 61,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 3",
+      "start": 168.5,
+      "end": 192.8948944284882,
+      "note_count": 1,
+      "is_drum": false,
+      "clip_source": "take_lane",
+      "notes": [
+        {
+          "pitch": 71,
+          "start": 15.0,
+          "duration": 1.0,
+          "velocity": 65,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 3",
+      "start": 182.25,
+      "end": 205.4495444659507,
+      "note_count": 2,
+      "is_drum": false,
+      "clip_source": "take_lane",
+      "notes": [
+        {
+          "pitch": 57,
+          "start": 8.5,
+          "duration": 0.25,
+          "velocity": 111,
+          "enabled": true
+        },
+        {
+          "pitch": 65,
+          "start": 9.5,
+          "duration": 0.25,
+          "velocity": 108,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "(unnamed clip)",
+      "track": "Synth 4",
+      "start": 240.0,
+      "end": 324.0,
+      "note_count": 13,
+      "is_drum": false,
+      "clip_source": "arrangement",
+      "notes": [
+        {
+          "pitch": 55,
+          "start": 16.0,
+          "duration": 1.0,
+          "velocity": 60,
+          "enabled": true
+        },
+        {
+          "pitch": 66,
+          "start": 17.0,
+          "duration": 1.0,
+          "velocity": 96,
+          "enabled": true
+        },
+        {
+          "pitch": 67,
+          "start": 24.5,
+          "duration": 2.0,
+          "velocity": 66,
+          "enabled": true
+        },
+        {
+          "pitch": 60,
+          "start": 32.25,
+          "duration": 0.25,
+          "velocity": 111,
+          "enabled": true
+        },
+        {
+          "pitch": 55,
+          "start": 36.0,
+          "duration": 2.0,
+          "velocity": 82,
+          "enabled": true
+        },
+        {
+          "pitch": 62,
+          "start": 38.75,
+          "duration": 2.0,
+          "velocity": 114,
+          "enabled": true
+        },
+        {
+          "pitch": 52,
+          "start": 40.0,
+          "duration": 0.5,
+          "velocity": 114,
+          "enabled": true
+        },
+        {
+          "pitch": 66,
+          "start": 40.75,
+          "duration": 2.0,
+          "velocity": 94,
+          "enabled": true
+        },
+        {
+          "pitch": 72,
+          "start": 41.75,
+          "duration": 2.0,
+          "velocity": 116,
+          "enabled": true
+        },
+        {
+          "pitch": 53,
+          "start": 44.25,
+          "duration": 0.25,
+          "velocity": 65,
+          "enabled": true
+        },
+        {
+          "pitch": 66,
+          "start": 44.5,
+          "duration": 2.0,
+          "velocity": 110,
+          "enabled": true
+        },
+        {
+          "pitch": 54,
+          "start": 49.25,
+          "duration": 2.0,
+          "velocity": 108,
+          "enabled": true
+        },
+        {
+          "pitch": 51,
+          "start": 57.5,
+          "duration": 0.5,
+          "velocity": 99,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "Clip",
+      "track": "Synth 5",
+      "start": 0.0,
+      "end": 8.0,
+      "note_count": 9,
+      "is_drum": false,
+      "clip_source": "session",
+      "notes": [
+        {
+          "pitch": 52,
+          "start": 0.25,
+          "duration": 2.0,
+          "velocity": 88,
+          "enabled": true
+        },
+        {
+          "pitch": 55,
+          "start": 1.75,
+          "duration": 1.0,
+          "velocity": 62,
+          "enabled": true
+        },
+        {
+          "pitch": 59,
+          "start": 1.75,
+          "duration": 0.25,
+          "velocity": 80,
+          "enabled": true
+        },
+        {
+          "pitch": 52,
+          "start": 2.75,
+          "duration": 2.0,
+          "velocity": 88,
+          "enabled": true
+        },
+        {
+          "pitch": 58,
+          "start": 2.75,
+          "duration": 2.0,
+          "velocity": 111,
+          "enabled": true
+        },
+        {
+          "pitch": 59,
+          "start": 2.75,
+          "duration": 1.0,
+          "velocity": 73,
+          "enabled": true
+        },
+        {
+          "pitch": 60,
+          "start": 4.75,
+          "duration": 0.5,
+          "velocity": 107,
+          "enabled": true
+        },
+        {
+          "pitch": 59,
+          "start": 5.25,
+          "duration": 1.0,
+          "velocity": 76,
+          "enabled": true
+        },
+        {
+          "pitch": 69,
+          "start": 5.5,
+          "duration": 0.25,
+          "velocity": 99,
+          "enabled": true
+        }
+      ]
+    }
+  ]
+}

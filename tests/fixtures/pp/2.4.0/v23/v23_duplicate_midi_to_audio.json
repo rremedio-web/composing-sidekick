@@ -1,0 +1,16 @@
+{
+  "arguments": {
+    "id": "416",
+    "toPath": "t11[1|1]",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: track t11 (id 415) is audio; a MIDI clip needs a MIDI track"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-duplicate"
+}

@@ -1,0 +1,37 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 29
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "61|1",
+              "id": "989",
+              "name": "Seq Example lock"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1120",
+              "name": "Seq Example lock"
+            }
+          ],
+          "deviceCount": 1,
+          "id": "961",
+          "instrument": "Kontakt 8",
+          "name": "30-Kontakt 8",
+          "sessionClipCount": 1,
+          "trackIndex": 29,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

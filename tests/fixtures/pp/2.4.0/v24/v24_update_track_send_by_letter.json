@@ -1,0 +1,23 @@
+{
+  "arguments": {
+    "path": "t10",
+    "sends": [
+      {
+        "gainDb": -6,
+        "return": "A"
+      }
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "529",
+          "path": "t10"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

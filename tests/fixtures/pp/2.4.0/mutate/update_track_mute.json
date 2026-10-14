@@ -1,0 +1,18 @@
+{
+  "arguments": {
+    "id": "401",
+    "mute": true
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "401",
+          "path": "t10"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

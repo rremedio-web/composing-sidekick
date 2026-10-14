@@ -1,0 +1,92 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 29
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "61|1",
+              "end": "5|1",
+              "id": "989",
+              "length": "4bar",
+              "looping": true,
+              "name": "Seq Example lock",
+              "notes": "[{p:77,t:8.75,d:0.25,v:102},{p:77,t:24,d:0.25,v:42},{p:78,t:26.25,d:0.25,v:61},{p:79,t:13.25,d:0.25,v:71},{p:80,t:9.5,d:0.25,v:79},{p:82,t:12,d:0.25,v:102},{p:83,t:20.25,d:0.25,v:83},{p:84,t:1,d:0.2344,v:107},{p:84,t:2,d:0.25,v:48},{p:84,t:5,d:0.25,v:87},{p:84,t:28.75,d:0.25,v:121},{p:84,t:29.5,d:0.25,v:95},{p:85,t:4.5,d:0.25,v:77},{p:85,t:18.5,d:0.25,v:116},{p:85,t:22.75,d:0.25,v:67},{p:87,t:17,d:0.2344,v:74}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "65|1",
+              "end": "5|1",
+              "id": "1120",
+              "length": "4bar",
+              "looping": true,
+              "name": "Seq Example lock",
+              "notes": "[{p:77,t:8.5,d:0.25,v:63},{p:77,t:24.75,d:0.25,v:45},{p:78,t:25.25,d:0.25,v:67},{p:79,t:13.5,d:0.25,v:107},{p:80,t:8.5,d:0.25,v:98},{p:82,t:12.5,d:0.25,v:115},{p:83,t:20.75,d:0.25,v:87},{p:84,t:1,d:0.2344,v:109},{p:84,t:2.75,d:0.25,v:66},{p:84,t:6.75,d:0.25,v:101},{p:84,t:28,d:0.25,v:46},{p:84,t:28.5,d:0.25,v:91},{p:85,t:4.5,d:0.25,v:59},{p:85,t:18.75,d:0.25,v:120},{p:85,t:22.5,d:0.25,v:105},{p:87,t:17,d:0.2344,v:92}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "devices": [
+            {
+              "id": "993",
+              "path": "t29/d0",
+              "type": "instrument: Kontakt 8"
+            }
+          ],
+          "gainDb": 1.100000023841858,
+          "id": "961",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "instrument": "Kontakt 8",
+          "monitoringState": "auto",
+          "name": "30-Kontakt 8",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": -0.24,
+          "sends": [
+            {
+              "gainDb": 0,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": 0,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 1,
+          "trackIndex": 29,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

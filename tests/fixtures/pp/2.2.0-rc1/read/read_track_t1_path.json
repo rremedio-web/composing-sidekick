@@ -1,0 +1,25 @@
+{
+  "arguments": {
+    "include": [
+      "mixer",
+      "devices",
+      "session-clips",
+      "arrangement-clips",
+      "notes",
+      "routings"
+    ],
+    "path": "t1"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error executing tool 'ppal-read-track': Either id or trackIndex must be provided"
+      },
+      {
+        "text": "WARNING: ppal-read-track ignored unexpected argument(s): path"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-track"
+}

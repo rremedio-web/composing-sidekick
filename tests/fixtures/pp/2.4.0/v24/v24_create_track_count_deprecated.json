@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "count": 1,
+    "name": "CAPTURE 24 AUDIO",
+    "type": "audio"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "531",
+          "path": "t12"
+        }
+      },
+      {
+        "text": "WARNING: param \"count\" is deprecated and will be removed; use \"path\" instead (e.g. path: \"t+\"). path names every track, so repeat it once per track instead of counting"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-track"
+}

@@ -1,0 +1,104 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 19
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "33|1",
+              "id": "1016"
+            },
+            {
+              "arrangementStart": "37|1",
+              "id": "1025"
+            },
+            {
+              "arrangementStart": "41|1",
+              "id": "1026"
+            },
+            {
+              "arrangementStart": "45|1",
+              "id": "1027",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "49|1",
+              "id": "1096",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "53|1",
+              "id": "1188",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "57|1",
+              "id": "1189",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "61|1",
+              "id": "1190",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1191",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "69|1",
+              "id": "1341",
+              "name": "Block B"
+            },
+            {
+              "arrangementStart": "73|1",
+              "id": "1344",
+              "name": "Block B"
+            },
+            {
+              "arrangementStart": "77|1",
+              "id": "1353",
+              "name": "Block A"
+            },
+            {
+              "arrangementStart": "81|1",
+              "id": "1377"
+            },
+            {
+              "arrangementStart": "82|1",
+              "id": "1378"
+            },
+            {
+              "arrangementStart": "83|1",
+              "id": "1379"
+            },
+            {
+              "arrangementStart": "84|1",
+              "id": "1380"
+            },
+            {
+              "arrangementStart": "101|1",
+              "id": "1192"
+            }
+          ],
+          "deviceCount": 3,
+          "id": "21",
+          "instrument": "Bassline",
+          "name": "20-Bassline",
+          "sessionClipCount": 4,
+          "trackIndex": 19,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

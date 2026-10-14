@@ -1,0 +1,27 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 30
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "deviceCount": 1,
+          "id": "962",
+          "instrument": "Kontakt 8",
+          "name": "31-Kontakt 8",
+          "sessionClipCount": 1,
+          "state": "muted",
+          "trackIndex": 30,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

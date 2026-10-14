@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "id": "584",
+    "params": [
+      {
+        "name": "sidechainSourceTrackId",
+        "value": "530"
+      }
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: no param landed \u2014 \"sidechainSourceTrackId\": track \"CAPTURE 24 B\" t11 (id 530) cannot be a sidechain source \u2014 it has no audio-bearing devices"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-update-device"
+}

@@ -1,0 +1,176 @@
+{
+  "arguments": {
+    "operations": [
+      {
+        "property": "name",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop_start",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop_end",
+        "type": "getProperty"
+      },
+      {
+        "property": "start_marker",
+        "type": "getProperty"
+      },
+      {
+        "property": "end_marker",
+        "type": "getProperty"
+      },
+      {
+        "property": "looping",
+        "type": "getProperty"
+      },
+      {
+        "property": "start_time",
+        "type": "getProperty"
+      },
+      {
+        "property": "end_time",
+        "type": "getProperty"
+      },
+      {
+        "property": "signature_numerator",
+        "type": "getProperty"
+      },
+      {
+        "property": "signature_denominator",
+        "type": "getProperty"
+      },
+      {
+        "property": "is_midi_clip",
+        "type": "getProperty"
+      },
+      {
+        "property": "muted",
+        "type": "getProperty"
+      },
+      {
+        "args": [
+          0,
+          128,
+          -100000,
+          200000
+        ],
+        "method": "get_notes_extended",
+        "type": "call"
+      }
+    ],
+    "path": "id 513"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "513",
+          "path": "live_set tracks 6 arrangement_clips 2",
+          "results": [
+            {
+              "operation": {
+                "property": "name",
+                "type": "getProperty"
+              },
+              "result": "Tom Pattern"
+            },
+            {
+              "operation": {
+                "property": "loop_start",
+                "type": "getProperty"
+              },
+              "result": 0
+            },
+            {
+              "operation": {
+                "property": "loop_end",
+                "type": "getProperty"
+              },
+              "result": 16
+            },
+            {
+              "operation": {
+                "property": "start_marker",
+                "type": "getProperty"
+              },
+              "result": 0
+            },
+            {
+              "operation": {
+                "property": "end_marker",
+                "type": "getProperty"
+              },
+              "result": 16
+            },
+            {
+              "operation": {
+                "property": "looping",
+                "type": "getProperty"
+              },
+              "result": 1
+            },
+            {
+              "operation": {
+                "property": "start_time",
+                "type": "getProperty"
+              },
+              "result": 160
+            },
+            {
+              "operation": {
+                "property": "end_time",
+                "type": "getProperty"
+              },
+              "result": 176
+            },
+            {
+              "operation": {
+                "property": "signature_numerator",
+                "type": "getProperty"
+              },
+              "result": 4
+            },
+            {
+              "operation": {
+                "property": "signature_denominator",
+                "type": "getProperty"
+              },
+              "result": 4
+            },
+            {
+              "operation": {
+                "property": "is_midi_clip",
+                "type": "getProperty"
+              },
+              "result": 1
+            },
+            {
+              "operation": {
+                "property": "muted",
+                "type": "getProperty"
+              },
+              "result": 0
+            },
+            {
+              "operation": {
+                "args": [
+                  0,
+                  128,
+                  -100000,
+                  200000
+                ],
+                "method": "get_notes_extended",
+                "type": "call"
+              },
+              "result": "{\"notes\": [{\"note_id\": 43, \"pitch\": 36, \"start_time\": 0.25, \"duration\": 0.25, \"velocity\": 63.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 48, \"pitch\": 42, \"start_time\": 1.25, \"duration\": 0.25, \"velocity\": 90.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 56, \"pitch\": 41, \"start_time\": 4.0, \"duration\": 0.5, \"velocity\": 87.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 60, \"pitch\": 42, \"start_time\": 4.25, \"duration\": 0.25, \"velocity\": 77.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 69, \"pitch\": 38, \"start_time\": 8.0, \"duration\": 0.5, \"velocity\": 82.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 74, \"pitch\": 48, \"start_time\": 9.0, \"duration\": 0.25, \"velocity\": 126.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 82, \"pitch\": 41, \"start_time\": 12.25, \"duration\": 0.25, \"velocity\": 117.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 84, \"pitch\": 48, \"start_time\": 12.25, \"duration\": 0.25, \"velocity\": 71.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 90, \"pitch\": 36, \"start_time\": 14.75, \"duration\": 0.25, \"velocity\": 61.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 44, \"pitch\": 37, \"start_time\": 0.25, \"duration\": 0.25, \"velocity\": 67.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 70, \"pitch\": 41, \"start_time\": 8.0, \"duration\": 0.5, \"velocity\": 123.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 51, \"pitch\": 38, \"start_time\": 2.5, \"duration\": 0.25, \"velocity\": 84.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 62, \"pitch\": 38, \"start_time\": 4.5, \"duration\": 0.5, \"velocity\": 94.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 76, \"pitch\": 49, \"start_time\": 8.75, \"duration\": 0.5, \"velocity\": 98.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 85, \"pitch\": 36, \"start_time\": 14.25, \"duration\": 0.5, \"velocity\": 42.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 52, \"pitch\": 41, \"start_time\": 1.0, \"duration\": 0.5, \"velocity\": 50.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 63, \"pitch\": 48, \"start_time\": 5.25, \"duration\": 0.5, \"velocity\": 74.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 77, \"pitch\": 48, \"start_time\": 8.5, \"duration\": 0.5, \"velocity\": 88.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 86, \"pitch\": 38, \"start_time\": 13.25, \"duration\": 0.5, \"velocity\": 60.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 45, \"pitch\": 42, \"start_time\": 0.0, \"duration\": 0.2344, \"velocity\": 69.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 46, \"pitch\": 48, \"start_time\": 0.25, \"duration\": 0.25, \"velocity\": 87.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 49, \"pitch\": 48, \"start_time\": 0.0, \"duration\": 0.25, \"velocity\": 49.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 53, \"pitch\": 42, \"start_time\": 0.25, \"duration\": 0.25, \"velocity\": 125.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 54, \"pitch\": 42, \"start_time\": 0.5, \"duration\": 0.25, \"velocity\": 75.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 57, \"pitch\": 36, \"start_time\": 4.0, \"duration\": 0.25, \"velocity\": 60.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 58, \"pitch\": 42, \"start_time\": 4.5, \"duration\": 0.25, \"velocity\": 79.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 61, \"pitch\": 36, \"start_time\": 5.0, \"duration\": 0.25, \"velocity\": 79.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 64, \"pitch\": 36, \"start_time\": 5.75, \"duration\": 0.25, \"velocity\": 111.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 65, \"pitch\": 42, \"start_time\": 5.0, \"duration\": 0.25, \"velocity\": 113.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 67, \"pitch\": 42, \"start_time\": 7.25, \"duration\": 0.25, \"velocity\": 116.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 71, \"pitch\": 42, \"start_time\": 8.0, \"duration\": 0.2344, \"velocity\": 112.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 72, \"pitch\": 48, \"start_time\": 8.25, \"duration\": 0.25, \"velocity\": 44.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 75, \"pitch\": 48, \"start_time\": 9.25, \"duration\": 0.25, \"velocity\": 47.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 78, \"pitch\": 42, \"start_time\": 9.75, \"duration\": 0.25, \"velocity\": 40.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 79, \"pitch\": 42, \"start_time\": 10.0, \"duration\": 0.25, \"velocity\": 48.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 47, \"pitch\": 42, \"start_time\": 0.25, \"duration\": 0.25, \"velocity\": 53.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 50, \"pitch\": 36, \"start_time\": 0.5, \"duration\": 0.25, \"velocity\": 127.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 55, \"pitch\": 36, \"start_time\": 2.25, \"duration\": 0.25, \"velocity\": 84.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 59, \"pitch\": 36, \"start_time\": 4.75, \"duration\": 0.25, \"velocity\": 126.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 66, \"pitch\": 42, \"start_time\": 5.25, \"duration\": 0.25, \"velocity\": 43.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 68, \"pitch\": 42, \"start_time\": 6.75, \"duration\": 0.25, \"velocity\": 58.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 73, \"pitch\": 42, \"start_time\": 8.25, \"duration\": 0.25, \"velocity\": 54.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 80, \"pitch\": 42, \"start_time\": 8.5, \"duration\": 0.25, \"velocity\": 57.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 83, \"pitch\": 36, \"start_time\": 12.0, \"duration\": 0.25, \"velocity\": 61.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 87, \"pitch\": 48, \"start_time\": 14.0, \"duration\": 0.25, \"velocity\": 40.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 88, \"pitch\": 36, \"start_time\": 13.75, \"duration\": 0.25, \"velocity\": 125.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 89, \"pitch\": 36, \"start_time\": 14.5, \"duration\": 0.25, \"velocity\": 113.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 81, \"pitch\": 37, \"start_time\": 8.75, \"duration\": 0.25, \"velocity\": 47.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}]}"
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-live-api"
+}

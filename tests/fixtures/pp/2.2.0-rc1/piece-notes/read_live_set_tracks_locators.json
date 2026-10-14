@@ -1,0 +1,383 @@
+{
+  "arguments": {
+    "include": [
+      "tracks",
+      "locators"
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "locators": [],
+          "masterTrack": {
+            "arrangementClipCount": 0,
+            "deviceCount": 0,
+            "id": "304",
+            "name": "Main",
+            "sessionClipCount": 0,
+            "type": "master"
+          },
+          "name": "NOCTURNEv2",
+          "returnTracks": [
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "id": "25",
+              "name": "A-ValhallaFutureVerb",
+              "returnTrackIndex": 0,
+              "sessionClipCount": 0,
+              "type": "return"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "id": "26",
+              "name": "B-Delay",
+              "returnTrackIndex": 1,
+              "sessionClipCount": 0,
+              "type": "return"
+            }
+          ],
+          "scale": "C Major",
+          "scalePitches": "C,D,E,F,G,A,B",
+          "sceneCount": 21,
+          "tempo": 90,
+          "timeSignature": "4/4",
+          "tracks": [
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "hasProducerPalDevice": true,
+              "id": "2",
+              "name": "PP",
+              "sessionClipCount": 0,
+              "trackIndex": 0,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 1,
+              "id": "3",
+              "instrument": "Kontakt 8",
+              "name": "Low Drone",
+              "sessionClipCount": 5,
+              "trackIndex": 1,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 1,
+              "deviceCount": 4,
+              "id": "346",
+              "instrument": "Kontakt 8",
+              "name": "Detune Lead",
+              "sessionClipCount": 1,
+              "trackIndex": 2,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 2,
+              "deviceCount": 1,
+              "id": "4",
+              "instrument": "TAL Sampler",
+              "name": "Noise Bed",
+              "sessionClipCount": 1,
+              "trackIndex": 3,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 4,
+              "deviceCount": 2,
+              "id": "6",
+              "instrument": "Instrument Rack",
+              "name": "5-Float Pad",
+              "sessionClipCount": 3,
+              "trackIndex": 4,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "id": "7",
+              "isGroup": true,
+              "name": "6-Group",
+              "sessionClipCount": 0,
+              "trackIndex": 5,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 2,
+              "groupId": "7",
+              "id": "8",
+              "instrument": "Kontakt 8",
+              "isGroupMember": true,
+              "name": "Drum Map",
+              "sessionClipCount": 10,
+              "trackIndex": 6,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 7,
+              "deviceCount": 2,
+              "groupId": "7",
+              "id": "9",
+              "instrument": "Drum Rack",
+              "isGroupMember": true,
+              "name": "Kit Var 3",
+              "sessionClipCount": 2,
+              "trackIndex": 7,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 8,
+              "deviceCount": 1,
+              "groupId": "7",
+              "id": "10",
+              "instrument": "Drum Rack",
+              "isGroupMember": true,
+              "name": "9-Glitch Kit",
+              "sessionClipCount": 13,
+              "trackIndex": 8,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "11",
+              "name": "Omnisphere",
+              "sessionClipCount": 0,
+              "trackIndex": 9,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "12",
+              "name": "Interface",
+              "sessionClipCount": 0,
+              "state": "muted",
+              "trackIndex": 10,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "13",
+              "isGroup": true,
+              "name": "Digital In",
+              "sessionClipCount": 0,
+              "trackIndex": 11,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "13",
+              "id": "14",
+              "isGroupMember": true,
+              "name": "Sampler 1-2",
+              "sessionClipCount": 0,
+              "trackIndex": 12,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "13",
+              "id": "15",
+              "isGroupMember": true,
+              "name": "Synth C 1-2",
+              "sessionClipCount": 0,
+              "trackIndex": 13,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "13",
+              "id": "16",
+              "isGroupMember": true,
+              "name": "Ext Edge",
+              "sessionClipCount": 0,
+              "trackIndex": 14,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "13",
+              "id": "17",
+              "isGroupMember": true,
+              "name": "Synth B",
+              "sessionClipCount": 0,
+              "trackIndex": 15,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 2,
+              "groupId": "13",
+              "id": "18",
+              "isGroupMember": true,
+              "name": "Synth A",
+              "sessionClipCount": 0,
+              "trackIndex": 16,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 10,
+              "deviceCount": 0,
+              "groupId": "13",
+              "id": "19",
+              "isGroupMember": true,
+              "name": "Synth A",
+              "sessionClipCount": 0,
+              "trackIndex": 17,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "20",
+              "name": "19-Audio",
+              "sessionClipCount": 0,
+              "trackIndex": 18,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 17,
+              "deviceCount": 3,
+              "id": "21",
+              "instrument": "Bassline",
+              "name": "20-Bassline",
+              "sessionClipCount": 4,
+              "trackIndex": 19,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 1,
+              "deviceCount": 1,
+              "id": "22",
+              "instrument": "OsTIrus",
+              "name": "Voice FX",
+              "sessionClipCount": 3,
+              "trackIndex": 20,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "1372",
+              "name": "22-MIDI",
+              "sessionClipCount": 0,
+              "trackIndex": 21,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "865",
+              "name": "23-Audio",
+              "sessionClipCount": 0,
+              "trackIndex": 22,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "844",
+              "name": "24-MIDI",
+              "sessionClipCount": 0,
+              "trackIndex": 23,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "856",
+              "isArmed": true,
+              "name": "25-MIDI",
+              "sessionClipCount": 5,
+              "trackIndex": 24,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 9,
+              "deviceCount": 2,
+              "id": "23",
+              "instrument": "Kontakt 8",
+              "name": "Grain Pad",
+              "sessionClipCount": 6,
+              "takeLaneCount": 1,
+              "trackIndex": 25,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 3,
+              "id": "24",
+              "instrument": "Instrument Rack",
+              "name": "27-Tape Strings",
+              "sessionClipCount": 3,
+              "trackIndex": 26,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 3,
+              "id": "1017",
+              "instrument": "Instrument Rack",
+              "name": "28-Tape Strings",
+              "sessionClipCount": 3,
+              "trackIndex": 27,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 2,
+              "id": "1113",
+              "instrument": "Instrument Rack",
+              "name": "29-Tape Strings",
+              "sessionClipCount": 3,
+              "trackIndex": 28,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 2,
+              "deviceCount": 1,
+              "id": "961",
+              "instrument": "Kontakt 8",
+              "name": "30-Kontakt 8",
+              "sessionClipCount": 1,
+              "trackIndex": 29,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "id": "962",
+              "instrument": "Kontakt 8",
+              "name": "31-Kontakt 8",
+              "sessionClipCount": 1,
+              "state": "muted",
+              "trackIndex": 30,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "1203",
+              "name": "SIDEKICK JAM",
+              "sessionClipCount": 5,
+              "trackIndex": 31,
+              "type": "midi"
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

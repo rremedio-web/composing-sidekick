@@ -1,0 +1,33 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips"
+    ],
+    "path": "t9"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 1,
+          "id": "358",
+          "instrument": "Omnisphere",
+          "isArmed": true,
+          "name": "10-Omnisphere",
+          "path": "t9",
+          "sessionClips": [
+            {
+              "id": "359",
+              "name": "10-Omnisphere 2",
+              "path": "t9/s0"
+            }
+          ],
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

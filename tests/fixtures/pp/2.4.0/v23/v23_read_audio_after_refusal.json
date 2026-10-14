@@ -1,0 +1,25 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "path": "t11"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "deviceCount": 0,
+          "id": "415",
+          "name": "CAPTURE 23 AUDIO",
+          "path": "t11",
+          "sessionClipCount": 0,
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

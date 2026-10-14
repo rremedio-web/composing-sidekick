@@ -1,0 +1,176 @@
+{
+  "arguments": {
+    "operations": [
+      {
+        "property": "name",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop_start",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop_end",
+        "type": "getProperty"
+      },
+      {
+        "property": "start_marker",
+        "type": "getProperty"
+      },
+      {
+        "property": "end_marker",
+        "type": "getProperty"
+      },
+      {
+        "property": "looping",
+        "type": "getProperty"
+      },
+      {
+        "property": "start_time",
+        "type": "getProperty"
+      },
+      {
+        "property": "end_time",
+        "type": "getProperty"
+      },
+      {
+        "property": "signature_numerator",
+        "type": "getProperty"
+      },
+      {
+        "property": "signature_denominator",
+        "type": "getProperty"
+      },
+      {
+        "property": "is_midi_clip",
+        "type": "getProperty"
+      },
+      {
+        "property": "muted",
+        "type": "getProperty"
+      },
+      {
+        "args": [
+          0,
+          128,
+          -100000,
+          200000
+        ],
+        "method": "get_notes_extended",
+        "type": "call"
+      }
+    ],
+    "path": "id 1016"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "1016",
+          "path": "live_set tracks 19 arrangement_clips 0",
+          "results": [
+            {
+              "operation": {
+                "property": "name",
+                "type": "getProperty"
+              },
+              "result": ""
+            },
+            {
+              "operation": {
+                "property": "loop_start",
+                "type": "getProperty"
+              },
+              "result": 88
+            },
+            {
+              "operation": {
+                "property": "loop_end",
+                "type": "getProperty"
+              },
+              "result": 104
+            },
+            {
+              "operation": {
+                "property": "start_marker",
+                "type": "getProperty"
+              },
+              "result": 88
+            },
+            {
+              "operation": {
+                "property": "end_marker",
+                "type": "getProperty"
+              },
+              "result": 108
+            },
+            {
+              "operation": {
+                "property": "looping",
+                "type": "getProperty"
+              },
+              "result": 1
+            },
+            {
+              "operation": {
+                "property": "start_time",
+                "type": "getProperty"
+              },
+              "result": 128
+            },
+            {
+              "operation": {
+                "property": "end_time",
+                "type": "getProperty"
+              },
+              "result": 144
+            },
+            {
+              "operation": {
+                "property": "signature_numerator",
+                "type": "getProperty"
+              },
+              "result": 4
+            },
+            {
+              "operation": {
+                "property": "signature_denominator",
+                "type": "getProperty"
+              },
+              "result": 4
+            },
+            {
+              "operation": {
+                "property": "is_midi_clip",
+                "type": "getProperty"
+              },
+              "result": 1
+            },
+            {
+              "operation": {
+                "property": "muted",
+                "type": "getProperty"
+              },
+              "result": 0
+            },
+            {
+              "operation": {
+                "args": [
+                  0,
+                  128,
+                  -100000,
+                  200000
+                ],
+                "method": "get_notes_extended",
+                "type": "call"
+              },
+              "result": "{\"notes\": [{\"note_id\": 6, \"pitch\": 51, \"start_time\": 16.5, \"duration\": 0.8282688665501166, \"velocity\": 92.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 1, \"pitch\": 55, \"start_time\": 1.261406562187812, \"duration\": 0.2619060626873127, \"velocity\": 127.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 2, \"pitch\": 55, \"start_time\": 1.5, \"duration\": 0.22851757617382618, \"velocity\": 109.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 3, \"pitch\": 55, \"start_time\": 2.0, \"duration\": 0.21921151764901764, \"velocity\": 107.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 9, \"pitch\": 43, \"start_time\": 37.5, \"duration\": 0.56810168997669, \"velocity\": 47.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 4, \"pitch\": 46, \"start_time\": 5.5, \"duration\": 0.27194940476190477, \"velocity\": 57.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 5, \"pitch\": 46, \"start_time\": 17.5, \"duration\": 0.7012042644855145, \"velocity\": 54.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 7, \"pitch\": 46, \"start_time\": 28.5, \"duration\": 0.4257474296536797, \"velocity\": 51.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 8, \"pitch\": 46, \"start_time\": 32.5, \"duration\": 0.2952, \"velocity\": 85.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 10, \"pitch\": 49, \"start_time\": 41.0, \"duration\": 0.862, \"velocity\": 113.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 11, \"pitch\": 49, \"start_time\": 42.0, \"duration\": 1.4035313644688645, \"velocity\": 101.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 12, \"pitch\": 49, \"start_time\": 45.5, \"duration\": 1.5502, \"velocity\": 52.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 13, \"pitch\": 49, \"start_time\": 50.5, \"duration\": 11.0331, \"velocity\": 47.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 14, \"pitch\": 49, \"start_time\": 61.75, \"duration\": 8.309803477772228, \"velocity\": 55.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 15, \"pitch\": 49, \"start_time\": 74.25, \"duration\": 5.4138, \"velocity\": 64.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 16, \"pitch\": 49, \"start_time\": 80.0, \"duration\": 7.9167, \"velocity\": 103.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 19, \"pitch\": 49, \"start_time\": 108.0, \"duration\": 4.7137, \"velocity\": 117.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 18, \"pitch\": 41, \"start_time\": 96.0, \"duration\": 9.065081012737263, \"velocity\": 83.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}, {\"note_id\": 17, \"pitch\": 55, \"start_time\": 91.25, \"duration\": 5.5144, \"velocity\": 69.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 0.0}]}"
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-live-api"
+}

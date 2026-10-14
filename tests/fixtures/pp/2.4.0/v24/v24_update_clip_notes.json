@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "id": "551",
+    "notes": "[{\"p\": 67, \"t\": 0, \"d\": 0.5, \"v\": 90}]"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "551",
+          "noteCount": 3,
+          "path": "t10[1|1]"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-clip"
+}

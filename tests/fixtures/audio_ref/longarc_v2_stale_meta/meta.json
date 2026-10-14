@@ -1,0 +1,11 @@
+{
+ "contract_version": "audio-ref-card-v3",
+ "source": "https://example.invalid/watch?v=synthetic-longarc",
+ "source_kind": "youtube",
+ "title": "Longarc",
+ "structure": {
+  "feel_bpm": 71.0,
+  "grid_bpm": 142.0,
+  "density": "medium"
+ }
+}

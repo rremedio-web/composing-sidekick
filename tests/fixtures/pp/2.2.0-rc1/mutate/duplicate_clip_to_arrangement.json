@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "arrangementLength": "2bar",
+    "arrangementStart": "5|1",
+    "id": "359",
+    "toPath": "t10",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementStart": "5|1",
+          "id": "402",
+          "path": "t10"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-duplicate"
+}

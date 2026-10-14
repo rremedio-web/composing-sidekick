@@ -1,0 +1,55 @@
+{
+  "arguments": {
+    "operations": [
+      {
+        "property": "start_time",
+        "type": "getProperty"
+      },
+      {
+        "args": [
+          0,
+          128,
+          -100000,
+          200000
+        ],
+        "method": "get_notes_extended",
+        "type": "call"
+      }
+    ],
+    "path": "id 553"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "553",
+          "path": "live_set tracks 10 arrangement_clips 0",
+          "results": [
+            {
+              "operation": {
+                "property": "start_time",
+                "type": "getProperty"
+              },
+              "result": 16
+            },
+            {
+              "operation": {
+                "args": [
+                  0,
+                  128,
+                  -100000,
+                  200000
+                ],
+                "method": "get_notes_extended",
+                "type": "call"
+              },
+              "result": "{\"notes\": [{\"note_id\": 3, \"pitch\": 60, \"start_time\": 0.0, \"duration\": 1.0, \"velocity\": 100.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 5, \"pitch\": 64, \"start_time\": 2.0, \"duration\": 1.0, \"velocity\": 100.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}, {\"note_id\": 4, \"pitch\": 67, \"start_time\": 0.0, \"duration\": 0.5, \"velocity\": 90.0, \"mute\": 0, \"probability\": 1.0, \"velocity_deviation\": 0.0, \"release_velocity\": 64.0}]}"
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-live-api"
+}

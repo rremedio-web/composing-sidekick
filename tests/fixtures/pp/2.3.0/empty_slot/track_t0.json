@@ -1,0 +1,26 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips"
+    ],
+    "path": "t0"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 1,
+          "hasProducerPalDevice": true,
+          "id": "2",
+          "name": "Producer",
+          "path": "t0",
+          "sessionClips": [],
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

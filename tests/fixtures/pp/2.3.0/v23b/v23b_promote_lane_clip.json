@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "id": "376",
+    "toPath": "t10[9|1]",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "390",
+          "path": "t10[9|1]"
+        }
+      },
+      {
+        "text": "WARNING: clip t10/l0[5|1] (id 376) was promoted to the main lane by re-creating it"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-duplicate"
+}

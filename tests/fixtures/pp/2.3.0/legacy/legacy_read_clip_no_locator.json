@@ -1,0 +1,12 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "text": "Error: id or path is required"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-clip"
+}

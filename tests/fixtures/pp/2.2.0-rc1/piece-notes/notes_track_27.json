@@ -1,0 +1,88 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 27
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "45|1",
+              "id": "1022",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "49|1",
+              "id": "1099",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "53|1",
+              "id": "1108",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "57|1",
+              "id": "1110",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "61|1",
+              "id": "1100",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1200",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "69|1",
+              "id": "1321",
+              "name": "Block B"
+            },
+            {
+              "arrangementStart": "73|1",
+              "id": "1324",
+              "name": "Block B"
+            },
+            {
+              "arrangementStart": "77|1",
+              "id": "1370",
+              "name": "Block A"
+            },
+            {
+              "arrangementStart": "81|1",
+              "id": "1385"
+            },
+            {
+              "arrangementStart": "83|1",
+              "id": "1386"
+            },
+            {
+              "arrangementStart": "93|1",
+              "id": "1201"
+            },
+            {
+              "arrangementStart": "101|1",
+              "id": "1202"
+            }
+          ],
+          "deviceCount": 3,
+          "id": "1017",
+          "instrument": "Instrument Rack",
+          "name": "28-Tape Strings",
+          "sessionClipCount": 3,
+          "trackIndex": 27,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

@@ -1,0 +1,87 @@
+{
+  "arguments": {
+    "operations": [
+      {
+        "property": "current_song_time",
+        "type": "getProperty"
+      },
+      {
+        "property": "is_playing",
+        "type": "getProperty"
+      },
+      {
+        "property": "file_path",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop_start",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop_length",
+        "type": "getProperty"
+      }
+    ],
+    "path": "live_set"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "1",
+          "path": "live_set",
+          "results": [
+            {
+              "operation": {
+                "property": "current_song_time",
+                "type": "getProperty"
+              },
+              "result": 63.099708364552114
+            },
+            {
+              "operation": {
+                "property": "is_playing",
+                "type": "getProperty"
+              },
+              "result": 0
+            },
+            {
+              "operation": {
+                "property": "file_path",
+                "type": "getProperty"
+              },
+              "result": "/Users/USER/Desktop/ ping Project/SCRATCH-capture.als"
+            },
+            {
+              "operation": {
+                "property": "loop",
+                "type": "getProperty"
+              },
+              "result": 0
+            },
+            {
+              "operation": {
+                "property": "loop_start",
+                "type": "getProperty"
+              },
+              "result": 8
+            },
+            {
+              "operation": {
+                "property": "loop_length",
+                "type": "getProperty"
+              },
+              "result": 16
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-live-api"
+}

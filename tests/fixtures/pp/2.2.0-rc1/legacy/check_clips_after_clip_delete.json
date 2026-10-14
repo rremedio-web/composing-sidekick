@@ -1,0 +1,30 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips"
+    ],
+    "trackIndex": 10
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 1,
+          "deviceCount": 0,
+          "id": "369",
+          "name": "LEGACY ID",
+          "sessionClips": [
+            {
+              "id": "379",
+              "path": "t10/s1"
+            }
+          ],
+          "trackIndex": 10,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

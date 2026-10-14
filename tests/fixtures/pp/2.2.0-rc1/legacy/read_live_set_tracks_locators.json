@@ -1,0 +1,193 @@
+{
+  "arguments": {
+    "include": [
+      "tracks",
+      "locators"
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "locators": [
+            {
+              "id": "locator-0",
+              "name": "INTRO",
+              "time": "1|1"
+            },
+            {
+              "id": "locator-1",
+              "name": "MAIN 1",
+              "time": "5|1"
+            },
+            {
+              "id": "locator-2",
+              "name": "BREATHE",
+              "time": "21|1"
+            },
+            {
+              "id": "locator-3",
+              "name": "DROP",
+              "time": "29|1"
+            },
+            {
+              "id": "locator-4",
+              "name": "OUT",
+              "time": "37|1"
+            },
+            {
+              "id": "locator-5",
+              "name": "END",
+              "time": "53|1"
+            }
+          ],
+          "masterTrack": {
+            "arrangementClipCount": 0,
+            "deviceCount": 0,
+            "id": "105",
+            "name": "Main",
+            "sessionClipCount": 0,
+            "type": "master"
+          },
+          "name": "SCRATCH-capture",
+          "returnTracks": [
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "id": "12",
+              "name": "A-Reverb",
+              "returnTrackIndex": 0,
+              "sessionClipCount": 0,
+              "type": "return"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "id": "13",
+              "name": "B-Delay",
+              "returnTrackIndex": 1,
+              "sessionClipCount": 0,
+              "type": "return"
+            }
+          ],
+          "scale": "C Major",
+          "scalePitches": "C,D,E,F,G,A,B",
+          "sceneCount": 8,
+          "tempo": 120,
+          "timeSignature": "4/4",
+          "tracks": [
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "hasProducerPalDevice": true,
+              "id": "2",
+              "name": "Producer",
+              "sessionClipCount": 0,
+              "trackIndex": 0,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "4",
+              "name": "Interface",
+              "sessionClipCount": 0,
+              "trackIndex": 1,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "id": "5",
+              "isGroup": true,
+              "name": "Digital In",
+              "sessionClipCount": 0,
+              "trackIndex": 2,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "5",
+              "id": "6",
+              "isGroupMember": true,
+              "name": "Sampler 1-2",
+              "sessionClipCount": 0,
+              "trackIndex": 3,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "5",
+              "id": "7",
+              "isGroupMember": true,
+              "name": "Synth C 1-2",
+              "sessionClipCount": 0,
+              "trackIndex": 4,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "5",
+              "id": "8",
+              "isGroupMember": true,
+              "name": "Ext Edge",
+              "sessionClipCount": 0,
+              "trackIndex": 5,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "5",
+              "id": "9",
+              "isGroupMember": true,
+              "name": "Synth B",
+              "sessionClipCount": 0,
+              "trackIndex": 6,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "5",
+              "id": "10",
+              "isGroupMember": true,
+              "name": "Synth A",
+              "sessionClipCount": 0,
+              "trackIndex": 7,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "groupId": "5",
+              "id": "11",
+              "isGroupMember": true,
+              "name": "Synth A",
+              "sessionClipCount": 0,
+              "trackIndex": 8,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "id": "358",
+              "instrument": "Omnisphere",
+              "isArmed": true,
+              "name": "10-Omnisphere",
+              "playingSlotIndex": 0,
+              "sessionClipCount": 1,
+              "trackIndex": 9,
+              "type": "midi"
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

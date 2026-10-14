@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "path": "t10/s0"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: no clip at t10/s0"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-clip"
+}

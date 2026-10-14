@@ -1,0 +1,25 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 31
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "deviceCount": 0,
+          "id": "1203",
+          "name": "SIDEKICK JAM",
+          "sessionClipCount": 5,
+          "trackIndex": 31,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

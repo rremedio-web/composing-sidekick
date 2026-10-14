@@ -1,0 +1,80 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 20
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "8bar",
+              "arrangementStart": "101|1",
+              "end": "9|1",
+              "id": "1122",
+              "length": "8bar",
+              "looping": true,
+              "name": "Seq Drone 3-step",
+              "notes": "[{p:55,t:8.25,d:0.25,v:103},{p:55,t:25.75,d:0.25,v:56},{p:57,t:9.25,d:0.25,v:65},{p:57,t:18.25,d:0.25,v:126},{p:59,t:0.5,d:0.25,v:122},{p:59,t:16.75,d:0.25,v:62},{p:61,t:1,d:0.25,v:117},{p:61,t:16,d:0.25,v:52},{p:61,t:24,d:0.25,v:40},{p:64,t:2.25,d:0.25,v:73},{p:64,t:8,d:0.25,v:71},{p:64,t:24.75,d:0.25,v:54}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "devices": [
+            {
+              "id": "220",
+              "path": "t20/d0",
+              "type": "instrument: OsTIrus"
+            }
+          ],
+          "gainDb": -8.699999809265137,
+          "id": "22",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "instrument": "OsTIrus",
+          "monitoringState": "auto",
+          "name": "Voice FX",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": 0,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -20.600000381469727,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 3,
+          "trackIndex": 20,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

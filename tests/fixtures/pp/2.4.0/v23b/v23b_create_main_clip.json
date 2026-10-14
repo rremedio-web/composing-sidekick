@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "length": "2bar",
+    "looping": true,
+    "name": "M",
+    "notes": "[{\"p\": 60, \"t\": 0, \"d\": 1, \"v\": 100}, {\"p\": 64, \"t\": 2, \"d\": 1, \"v\": 100}]",
+    "path": "t10[1|1]"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "470",
+          "noteCount": 2,
+          "path": "t10[1|1]"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

@@ -1,0 +1,78 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 25
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "33|1",
+              "id": "959"
+            },
+            {
+              "arrangementStart": "41|1",
+              "id": "960"
+            },
+            {
+              "arrangementStart": "49|1",
+              "id": "1104"
+            },
+            {
+              "arrangementStart": "53|1",
+              "id": "1106"
+            },
+            {
+              "arrangementStart": "57|1",
+              "id": "1109"
+            },
+            {
+              "arrangementStart": "61|1",
+              "id": "1381",
+              "name": "Seq Example lock"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1382",
+              "name": "Seq Example lock"
+            },
+            {
+              "arrangementStart": "93|1",
+              "id": "1193"
+            },
+            {
+              "arrangementStart": "101|1",
+              "id": "1194"
+            }
+          ],
+          "deviceCount": 2,
+          "id": "23",
+          "instrument": "Kontakt 8",
+          "name": "Grain Pad",
+          "sessionClipCount": 6,
+          "takeLanes": [
+            {
+              "clips": [
+                {
+                  "arrangementStart": "20|3.544",
+                  "id": "1236",
+                  "name": "Grain Pad"
+                }
+              ],
+              "name": "Lane",
+              "path": "t25/l0"
+            }
+          ],
+          "trackIndex": 25,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

@@ -1,0 +1,92 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 3
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "44bar",
+              "arrangementStart": "1|1",
+              "end": "10|1",
+              "id": "293",
+              "length": "9bar",
+              "looping": true,
+              "name": "2-TAL Sampler 1",
+              "notes": "[{p:72,t:0,d:1.727,v:118}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "n0.2989/4",
+              "arrangementStart": "93|1",
+              "end": "7|1",
+              "id": "1121",
+              "length": "6bar",
+              "looping": true,
+              "name": "2-TAL Sampler 1",
+              "notes": "[{p:72,t:0,d:1.727,v:103}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "devices": [
+            {
+              "id": "57",
+              "path": "t3/d0",
+              "type": "instrument: TAL Sampler"
+            }
+          ],
+          "gainDb": -11,
+          "id": "4",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "instrument": "TAL Sampler",
+          "monitoringState": "auto",
+          "name": "Noise Bed",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 1,
+          "trackIndex": 3,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

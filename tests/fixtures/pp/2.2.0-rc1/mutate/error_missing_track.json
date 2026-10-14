@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "trackIndex": 999
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error executing tool 'ppal-read-track': readTrack: trackIndex 999 does not exist"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-track"
+}

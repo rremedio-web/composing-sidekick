@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "path": "t9/s97"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error executing tool 'ppal-read-clip': no scene at \"s97\""
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-clip"
+}

@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "id": "584",
+    "params": [
+      {
+        "name": "sidechainSourceTrack",
+        "value": "531"
+      }
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: no param landed \u2014 \"sidechainSourceTrack\": not found on t10/d1 (id 584)"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-update-device"
+}

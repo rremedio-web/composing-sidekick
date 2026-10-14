@@ -1,0 +1,158 @@
+{
+ "contract_version": "audio-ref-card-v2",
+ "identity": "Fast drum-and-bass sketch at 160 BPM: a two-note sub line, a chopped break, and two half-length breakdowns where the break drops to hats alone.",
+ "tempo": {
+  "grid_bpm": 160.0,
+  "feel_bpm": 160.0,
+  "confidence": "high"
+ },
+ "meter": {
+  "beats_per_bar": 4,
+  "half_time": false
+ },
+ "swing": {
+  "pct": 0,
+  "confidence": "high"
+ },
+ "density": "medium",
+ "register": {
+  "band": "mid",
+  "pitch_span": "F#1-C#5"
+ },
+ "harmony": {
+  "modal_center": "F#",
+  "pitch_classes": [
+   "F#",
+   "A",
+   "B",
+   "C#",
+   "E"
+  ],
+  "interval_content": [
+   "m3",
+   "P4",
+   "P5",
+   "m7"
+  ],
+  "harmonic_rhythm_bars": 4,
+  "confidence": "high"
+ },
+ "melody": {
+  "phrase_length_bars": 4,
+  "contour": "arch",
+  "call_response": "call_and_response",
+  "motif_note_count": 4,
+  "repetition": "varied"
+ },
+ "drums": {
+  "grid": [
+   {
+    "instrument": "kick",
+    "steps": [
+     0,
+     10
+    ]
+   },
+   {
+    "instrument": "snare",
+    "steps": [
+     4,
+     12
+    ]
+   },
+   {
+    "instrument": "hat",
+    "steps": [
+     0,
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14
+    ]
+   },
+   {
+    "instrument": "perc",
+    "steps": [
+     7,
+     15
+    ]
+   }
+  ],
+  "confidence": "high"
+ },
+ "sections": [
+  {
+   "t": "00:00",
+   "label": "Hats and a filtered sub line",
+   "event": "enter",
+   "density": "sparse",
+   "register": "low",
+   "harmony": "F#"
+  },
+  {
+   "t": "01:00",
+   "label": "Chopped break drops in at full density",
+   "event": "drop",
+   "density": "dense",
+   "register": "mid",
+   "harmony": "F#"
+  },
+  {
+   "t": "02:12",
+   "label": "First breakdown: break out, hats and sub only",
+   "event": "breakdown",
+   "density": "sparse",
+   "register": "low",
+   "harmony": "F#"
+  },
+  {
+   "t": "02:24",
+   "label": "Break returns with a pitched stab",
+   "event": "drop",
+   "density": "dense",
+   "register": "mid",
+   "harmony": "F#"
+  },
+  {
+   "t": "03:06",
+   "label": "Second, longer breakdown with a rising pad",
+   "event": "breakdown",
+   "density": "medium",
+   "register": "mid",
+   "harmony": "F#"
+  },
+  {
+   "t": "03:43",
+   "label": "Break returns, stab doubled",
+   "event": "drop",
+   "density": "dense",
+   "register": "high",
+   "harmony": "F#"
+  },
+  {
+   "t": "04:00",
+   "label": "Break thins to hats, sub holds, fade",
+   "event": "exit",
+   "density": "sparse",
+   "register": "low",
+   "harmony": "F#"
+  }
+ ],
+ "imitation": {
+  "do": [
+   "Keep the sub to two notes; let the break carry the energy.",
+   "Use two breakdowns of different length; the second one longer.",
+   "Return from each breakdown on a downbeat with the full break."
+  ],
+  "dont": [
+   "Do not add melodic content above the stab.",
+   "Do not half-time the break."
+  ]
+ },
+ "uncertain": [
+  "Whether the stab is a synth or a resampled vocal."
+ ]
+}

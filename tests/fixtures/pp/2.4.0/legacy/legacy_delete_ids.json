@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "ids": "387",
+    "type": "track"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "deletedPath": "t10",
+          "id": "387"
+        }
+      },
+      {
+        "text": "WARNING: \"ids\" accepted as a fallback; the parameter is \"id\""
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

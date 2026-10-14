@@ -1,0 +1,85 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 1
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "1|1",
+              "id": "287"
+            },
+            {
+              "arrangementStart": "17|1",
+              "id": "398"
+            },
+            {
+              "arrangementStart": "33|1",
+              "id": "288"
+            },
+            {
+              "arrangementStart": "37|1",
+              "id": "289"
+            },
+            {
+              "arrangementStart": "41|1",
+              "id": "290"
+            },
+            {
+              "arrangementStart": "45|1",
+              "id": "399",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "49|1",
+              "id": "1093",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "53|1",
+              "id": "1105",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "57|1",
+              "id": "1169",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "61|1",
+              "id": "1094",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1170",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "93|1",
+              "id": "1171"
+            },
+            {
+              "arrangementStart": "101|1",
+              "id": "1172"
+            }
+          ],
+          "deviceCount": 1,
+          "id": "3",
+          "instrument": "Kontakt 8",
+          "name": "Low Drone",
+          "sessionClipCount": 5,
+          "trackIndex": 1,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

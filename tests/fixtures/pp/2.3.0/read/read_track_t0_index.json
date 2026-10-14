@@ -1,0 +1,72 @@
+{
+  "arguments": {
+    "include": [
+      "mixer",
+      "devices",
+      "session-clips",
+      "arrangement-clips",
+      "notes",
+      "routings"
+    ],
+    "trackIndex": 0
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "devices": [
+            {
+              "id": "360",
+              "name": "Producer_Pal (3)",
+              "path": "t0/d0",
+              "type": "midi-effect: Max MIDI Effect"
+            }
+          ],
+          "gainDb": 0,
+          "hasProducerPalDevice": true,
+          "id": "2",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "monitoringState": "auto",
+          "name": "Producer",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "3"
+          },
+          "outputRoutingType": {
+            "name": "No Output",
+            "outputId": "2"
+          },
+          "pan": 0,
+          "path": "t0",
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-Reverb",
+              "returnId": "12"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay",
+              "returnId": "13"
+            }
+          ],
+          "sessionClips": [],
+          "type": "midi"
+        }
+      },
+      {
+        "text": "WARNING: param \"trackIndex\" is deprecated and will be removed; use \"path\" instead"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

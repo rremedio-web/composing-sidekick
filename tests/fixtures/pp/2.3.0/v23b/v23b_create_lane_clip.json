@@ -1,0 +1,24 @@
+{
+  "arguments": {
+    "length": "1bar",
+    "name": "L0",
+    "notes": "[{\"p\": 60, \"t\": 0, \"d\": 1, \"v\": 100}, {\"p\": 64, \"t\": 2, \"d\": 1, \"v\": 100}]",
+    "path": "t10/l0[5|1]"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "376",
+          "noteCount": 2,
+          "path": "t10/l0[5|1]"
+        }
+      },
+      {
+        "text": "WARNING: targeting take lane \"t10/l0\". Expand the take-lanes arrow on the track header in Live to see it."
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

@@ -1,0 +1,45 @@
+{
+  "arguments": {
+    "include": [
+      "devices",
+      "mixer"
+    ],
+    "path": "rt0"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "devices": [
+            {
+              "id": "103",
+              "path": "rt0/d0",
+              "type": "audio-effect: Reverb"
+            }
+          ],
+          "gainDb": 0,
+          "id": "12",
+          "name": "A-Reverb",
+          "pan": 0,
+          "path": "rt0",
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-Reverb",
+              "returnId": "12"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay",
+              "returnId": "13"
+            }
+          ],
+          "sessionClipCount": 0
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

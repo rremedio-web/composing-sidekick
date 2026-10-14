@@ -1,0 +1,17 @@
+{
+  "arguments": {
+    "include": [
+      "tracks",
+      "locators"
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "text": "{name:\"SCRATCH-capture\",tempo:120,timeSignature:\"4/4\",sceneCount:8,tracks:[{id:\"2\",path:\"t0\",type:\"midi\",name:\"Producer\",sessionClipCount:0,arrangementClipCount:0,deviceCount:1,hasProducerPalDevice:true},{id:\"4\",path:\"t1\",type:\"audio\",name:\"Interface\",sessionClipCount:0,arrangementClipCount:0,deviceCount:0},{id:\"5\",path:\"t2\",type:\"audio\",name:\"Digital In\",isGroup:true,sessionClipCount:0,arrangementClipCount:0,deviceCount:0},{id:\"6\",path:\"t3\",type:\"audio\",name:\"Sampler 1-2\",isGroupMember:true,groupId:\"5\",sessionClipCount:0,arrangementClipCount:0,deviceCount:0},{id:\"7\",path:\"t4\",type:\"audio\",name:\"Synth C 1-2\",isGroupMember:true,groupId:\"5\",sessionClipCount:0,arrangementClipCount:0,deviceCount:0},{id:\"8\",path:\"t5\",type:\"audio\",name:\"Ext Edge\",isGroupMember:true,groupId:\"5\",sessionClipCount:0,arrangementClipCount:0,deviceCount:0},{id:\"9\",path:\"t6\",type:\"audio\",name:\"Synth B\",isGroupMember:true,groupId:\"5\",sessionClipCount:0,arrangementClipCount:0,deviceCount:0},{id:\"10\",path:\"t7\",type:\"audio\",name:\"Synth A\",isGroupMember:true,groupId:\"5\",sessionClipCount:0,arrangementClipCount:0,deviceCount:0},{id:\"11\",path:\"t8\",type:\"midi\",name:\"Synth A\",isGroupMember:true,groupId:\"5\",sessionClipCount:0,arrangementClipCount:0,deviceCount:0},{id:\"358\",path:\"t9\",type:\"midi\",name:\"10-Omnisphere\",isArmed:true,instrument:\"Omnisphere\",sessionClipCount:1,arrangementClipCount:0,deviceCount:1,playingSlotIndex:0}],returnTracks:[{id:\"12\",path:\"rt0\",name:\"A-Reverb\",sessionClipCount:0,arrangementClipCount:0,deviceCount:1},{id:\"13\",path:\"rt1\",name:\"B-Delay\",sessionClipCount:0,arrangementClipCount:0,deviceCount:1}],mainTrack:{id:\"105\",path:\"mt\",name:\"Main\",sessionClipCount:0,arrangementClipCount:0,deviceCount:0},scale:\"C Major\",scalePitches:\"C,D,E,F,G,A,B\",locators:[{id:\"locator-0\",name:\"INTRO\",time:\"1|1\",position:\"loc:INTRO\"},{id:\"locator-1\",name:\"MAIN 1\",time:\"5|1\",position:\"loc:MAIN 1\"},{id:\"locator-2\",name:\"BREATHE\",time:\"21|1\",position:\"loc:BREATHE\"},{id:\"locator-3\",name:\"DROP\",time:\"29|1\",position:\"loc:DROP\"},{id:\"locator-4\",name:\"OUT\",time:\"37|1\",position:\"loc:OUT\"},{id:\"locator-5\",name:\"END\",time:\"53|1\",position:\"loc:END\"}]}"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

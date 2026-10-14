@@ -1,0 +1,136 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "timing",
+      "notes"
+    ],
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "4bar",
+              "end": "5|1",
+              "id": "416",
+              "length": "4bar",
+              "looping": true,
+              "name": "A",
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100},{p:64,t:8,d:1,v:100},{p:65,t:12,d:1,v:100}]",
+              "path": "t10[1|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "2bar",
+              "end": "5|1",
+              "id": "428",
+              "length": "4bar",
+              "looping": true,
+              "name": "A",
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100},{p:64,t:8,d:1,v:100},{p:65,t:12,d:1,v:100}]",
+              "path": "t10[17|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "2bar",
+              "end": "5|1",
+              "id": "433",
+              "length": "4bar",
+              "looping": true,
+              "name": "A",
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100},{p:64,t:8,d:1,v:100},{p:65,t:12,d:1,v:100}]",
+              "path": "t10[33|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "end": "5|1",
+              "id": "430",
+              "length": "4bar",
+              "looping": true,
+              "name": "A",
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100},{p:64,t:8,d:1,v:100},{p:65,t:12,d:1,v:100}]",
+              "path": "t10[35|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "end": "5|1",
+              "id": "435",
+              "length": "4bar",
+              "looping": true,
+              "name": "A",
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100},{p:64,t:8,d:1,v:100},{p:65,t:12,d:1,v:100}]",
+              "path": "t10[41|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "2bar",
+              "end": "5|1",
+              "id": "437",
+              "length": "4bar",
+              "looping": true,
+              "name": "A",
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100},{p:64,t:8,d:1,v:100},{p:65,t:12,d:1,v:100}]",
+              "path": "t10[57|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "2bar",
+              "end": "5|1",
+              "firstStart": "3|1",
+              "id": "441",
+              "length": "4bar",
+              "looping": true,
+              "name": "A",
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100},{p:64,t:8,d:1,v:100},{p:65,t:12,d:1,v:100}]",
+              "path": "t10[59|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "end": "5|1",
+              "id": "450",
+              "length": "4bar",
+              "looping": true,
+              "name": "A",
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100},{p:64,t:8,d:1,v:100},{p:65,t:12,d:1,v:100}]",
+              "path": "t10[65|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "1bar",
+              "end": "2|1",
+              "id": "451",
+              "length": "1bar",
+              "looping": true,
+              "notes": "[{p:60,t:0,d:1,v:100},{p:62,t:4,d:1,v:100}]",
+              "path": "t10[69|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "deviceCount": 0,
+          "id": "414",
+          "name": "CAPTURE 23 MIDI",
+          "path": "t10",
+          "sessionClipCount": 0,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

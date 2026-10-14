@@ -1,0 +1,74 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 17
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "33|1",
+              "id": "744"
+            },
+            {
+              "arrangementStart": "37|1",
+              "id": "745"
+            },
+            {
+              "arrangementStart": "41|1",
+              "id": "746"
+            },
+            {
+              "arrangementStart": "45|1",
+              "id": "747",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "49|1",
+              "id": "1095",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "53|1",
+              "id": "1182",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "57|1",
+              "id": "1183",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "61|1",
+              "id": "1184",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1185",
+              "name": "Example Rack (8-Bar)"
+            },
+            {
+              "arrangementStart": "93|1",
+              "id": "1186"
+            }
+          ],
+          "deviceCount": 0,
+          "groupId": "13",
+          "id": "19",
+          "isGroupMember": true,
+          "name": "Synth A",
+          "sessionClipCount": 0,
+          "trackIndex": 17,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

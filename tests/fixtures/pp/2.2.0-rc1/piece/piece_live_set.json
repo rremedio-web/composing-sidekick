@@ -1,0 +1,1473 @@
+{
+  "arguments": {
+    "include": [
+      "tracks",
+      "scenes",
+      "routings",
+      "mixer",
+      "locators"
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "locators": [],
+          "masterTrack": {
+            "arrangementClipCount": 0,
+            "deviceCount": 1,
+            "gainDb": -0.3109999895095825,
+            "id": "304",
+            "inputRoutingChannel": null,
+            "inputRoutingType": null,
+            "name": "Main",
+            "outputRoutingChannel": null,
+            "outputRoutingType": null,
+            "pan": 0,
+            "sessionClipCount": 0,
+            "type": "master"
+          },
+          "name": "NOCTURNEv2",
+          "returnTracks": [
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "gainDb": 0,
+              "id": "25",
+              "inputRoutingChannel": null,
+              "inputRoutingType": null,
+              "name": "A-ValhallaFutureVerb",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "returnTrackIndex": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "return"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "gainDb": 0,
+              "id": "26",
+              "inputRoutingChannel": null,
+              "inputRoutingType": null,
+              "name": "B-Delay",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "returnTrackIndex": 1,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "type": "return"
+            }
+          ],
+          "scale": "C Major",
+          "scalePitches": "C,D,E,F,G,A,B",
+          "scenes": [
+            {
+              "clipCount": 7,
+              "id": "27",
+              "name": "1",
+              "sceneIndex": 0
+            },
+            {
+              "clipCount": 6,
+              "id": "28",
+              "name": "2",
+              "sceneIndex": 1
+            },
+            {
+              "clipCount": 5,
+              "id": "29",
+              "name": "3",
+              "sceneIndex": 2
+            },
+            {
+              "clipCount": 10,
+              "id": "30",
+              "name": "4",
+              "sceneIndex": 3
+            },
+            {
+              "clipCount": 8,
+              "id": "31",
+              "name": "5",
+              "sceneIndex": 4
+            },
+            {
+              "clipCount": 10,
+              "id": "32",
+              "name": "6",
+              "sceneIndex": 5
+            },
+            {
+              "clipCount": 6,
+              "id": "33",
+              "name": "7",
+              "sceneIndex": 6
+            },
+            {
+              "clipCount": 8,
+              "id": "34",
+              "name": "8",
+              "sceneIndex": 7
+            },
+            {
+              "clipCount": 2,
+              "id": "320",
+              "name": "Var Ghost",
+              "sceneIndex": 8
+            },
+            {
+              "clipCount": 1,
+              "id": "321",
+              "name": "Build (Tom)",
+              "sceneIndex": 9
+            },
+            {
+              "clipCount": 1,
+              "id": "322",
+              "name": "Build (Delay)",
+              "sceneIndex": 10
+            },
+            {
+              "clipCount": 2,
+              "id": "331",
+              "name": "Sparse Toms",
+              "sceneIndex": 11
+            },
+            {
+              "clipCount": 2,
+              "id": "332",
+              "name": "Sparse Swell",
+              "sceneIndex": 12
+            },
+            {
+              "clipCount": 1,
+              "id": "333",
+              "name": "Sparse Evolving",
+              "sceneIndex": 13
+            },
+            {
+              "clipCount": 0,
+              "id": "313",
+              "name": "15",
+              "sceneIndex": 14
+            },
+            {
+              "clipCount": 0,
+              "id": "314",
+              "name": "16",
+              "sceneIndex": 15
+            },
+            {
+              "clipCount": 0,
+              "id": "315",
+              "name": "17",
+              "sceneIndex": 16
+            },
+            {
+              "clipCount": 0,
+              "id": "316",
+              "name": "18",
+              "sceneIndex": 17
+            },
+            {
+              "clipCount": 0,
+              "id": "317",
+              "name": "19",
+              "sceneIndex": 18
+            },
+            {
+              "clipCount": 0,
+              "id": "318",
+              "name": "20",
+              "sceneIndex": 19
+            },
+            {
+              "clipCount": 0,
+              "id": "319",
+              "name": "21",
+              "sceneIndex": 20
+            }
+          ],
+          "tempo": 90,
+          "timeSignature": "4/4",
+          "tracks": [
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "gainDb": 0,
+              "hasProducerPalDevice": true,
+              "id": "2",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "monitoringState": "auto",
+              "name": "PP",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "3"
+              },
+              "outputRoutingType": {
+                "name": "No Output",
+                "outputId": "2"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 0,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 1,
+              "gainDb": 0.30000001192092896,
+              "id": "3",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Kontakt 8",
+              "monitoringState": "auto",
+              "name": "Low Drone",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 5,
+              "trackIndex": 1,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 1,
+              "deviceCount": 4,
+              "gainDb": -5,
+              "id": "346",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Kontakt 8",
+              "monitoringState": "auto",
+              "name": "Detune Lead",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0.82,
+              "sends": [
+                {
+                  "gainDb": 0,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": 0,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 1,
+              "trackIndex": 2,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 2,
+              "deviceCount": 1,
+              "gainDb": -11,
+              "id": "4",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "TAL Sampler",
+              "monitoringState": "auto",
+              "name": "Noise Bed",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 1,
+              "trackIndex": 3,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 4,
+              "deviceCount": 2,
+              "gainDb": -11.199999809265137,
+              "id": "6",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Instrument Rack",
+              "monitoringState": "auto",
+              "name": "5-Float Pad",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -8.600000381469727,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": 0,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 3,
+              "trackIndex": 4,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "gainDb": -4,
+              "id": "7",
+              "isGroup": true,
+              "name": "6-Group",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 5,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 2,
+              "gainDb": -6,
+              "groupId": "7",
+              "id": "8",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Kontakt 8",
+              "isGroupMember": true,
+              "monitoringState": "auto",
+              "name": "Drum Map",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "6-Group",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -20,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 10,
+              "trackIndex": 6,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 7,
+              "deviceCount": 2,
+              "gainDb": -1.399999976158142,
+              "groupId": "7",
+              "id": "9",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Drum Rack",
+              "isGroupMember": true,
+              "monitoringState": "auto",
+              "name": "Kit Var 3",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "6-Group",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": 0,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": 0,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 2,
+              "trackIndex": 7,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 8,
+              "deviceCount": 1,
+              "gainDb": -4.5,
+              "groupId": "7",
+              "id": "10",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Drum Rack",
+              "isGroupMember": true,
+              "monitoringState": "auto",
+              "name": "9-Glitch Kit",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "6-Group",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 13,
+              "trackIndex": 8,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "id": "11",
+              "inputRoutingChannel": {
+                "inputId": "9",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "8",
+                "name": ""
+              },
+              "monitoringState": "in",
+              "name": "Omnisphere",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 9,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "gainDb": 0,
+              "id": "12",
+              "inputRoutingChannel": {
+                "inputId": "10",
+                "name": "1"
+              },
+              "inputRoutingType": {
+                "inputId": "8",
+                "name": "Ext. In"
+              },
+              "monitoringState": "in",
+              "name": "Interface",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "state": "muted",
+              "trackIndex": 10,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "id": "13",
+              "isGroup": true,
+              "name": "Digital In",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 11,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "13",
+              "id": "14",
+              "inputRoutingChannel": {
+                "inputId": "9",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "8",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "off",
+              "name": "Sampler 1-2",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 12,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "13",
+              "id": "15",
+              "inputRoutingChannel": {
+                "inputId": "9",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "8",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "in",
+              "name": "Synth C 1-2",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 13,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "13",
+              "id": "16",
+              "inputRoutingChannel": {
+                "inputId": "9",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "8",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "off",
+              "name": "Ext Edge",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 14,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "13",
+              "id": "17",
+              "inputRoutingChannel": {
+                "inputId": "9",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "8",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "off",
+              "name": "Synth B",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 15,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 2,
+              "gainDb": -6,
+              "groupId": "13",
+              "id": "18",
+              "inputRoutingChannel": {
+                "inputId": "9",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "8",
+                "name": "Ext. In"
+              },
+              "isGroupMember": true,
+              "monitoringState": "in",
+              "name": "Synth A",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "7"
+              },
+              "outputRoutingType": {
+                "name": "Digital In",
+                "outputId": "6"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 16,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 10,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "groupId": "13",
+              "id": "19",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": ""
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": ""
+              },
+              "isGroupMember": true,
+              "monitoringState": "in",
+              "name": "Synth A",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "12"
+              },
+              "outputRoutingType": {
+                "name": "",
+                "outputId": "11"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 17,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "id": "20",
+              "inputRoutingChannel": {
+                "inputId": "10",
+                "name": "1"
+              },
+              "inputRoutingType": {
+                "inputId": "8",
+                "name": "Ext. In"
+              },
+              "monitoringState": "off",
+              "name": "19-Audio",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 18,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 17,
+              "deviceCount": 3,
+              "gainDb": -9.699999809265137,
+              "id": "21",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Bassline",
+              "monitoringState": "auto",
+              "name": "20-Bassline",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 4,
+              "trackIndex": 19,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 1,
+              "deviceCount": 1,
+              "gainDb": -8.699999809265137,
+              "id": "22",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "OsTIrus",
+              "monitoringState": "auto",
+              "name": "Voice FX",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": 0,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -20.600000381469727,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 3,
+              "trackIndex": 20,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": -6,
+              "id": "1372",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "monitoringState": "in",
+              "name": "22-MIDI",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "3"
+              },
+              "outputRoutingType": {
+                "name": "No Output",
+                "outputId": "2"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 21,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": -6,
+              "id": "865",
+              "inputRoutingChannel": {
+                "inputId": "14",
+                "name": "USB 3-OsTIrus"
+              },
+              "inputRoutingType": {
+                "inputId": "13",
+                "name": "Voice FX"
+              },
+              "monitoringState": "in",
+              "name": "23-Audio",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -5,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -17.799999237060547,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 22,
+              "type": "audio"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "id": "844",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "monitoringState": "auto",
+              "name": "24-MIDI",
+              "outputRoutingChannel": {
+                "name": "2-OsTIrus",
+                "outputId": "16"
+              },
+              "outputRoutingType": {
+                "name": "Voice FX",
+                "outputId": "15"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 0,
+              "trackIndex": 23,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "id": "856",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "isArmed": true,
+              "monitoringState": "auto",
+              "name": "25-MIDI",
+              "outputRoutingChannel": {
+                "name": "3-OsTIrus",
+                "outputId": "17"
+              },
+              "outputRoutingType": {
+                "name": "Voice FX",
+                "outputId": "15"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 5,
+              "trackIndex": 24,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 9,
+              "deviceCount": 2,
+              "gainDb": 1.5,
+              "id": "23",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Kontakt 8",
+              "monitoringState": "auto",
+              "name": "Grain Pad",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -5.599999904632568,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 6,
+              "takeLaneCount": 1,
+              "trackIndex": 25,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 3,
+              "gainDb": -21,
+              "id": "24",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Instrument Rack",
+              "monitoringState": "auto",
+              "name": "27-Tape Strings",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 1,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 3,
+              "trackIndex": 26,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 3,
+              "gainDb": -18,
+              "id": "1017",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Instrument Rack",
+              "monitoringState": "auto",
+              "name": "28-Tape Strings",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": -1,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 3,
+              "trackIndex": 27,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 13,
+              "deviceCount": 2,
+              "gainDb": -8,
+              "id": "1113",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Instrument Rack",
+              "monitoringState": "auto",
+              "name": "29-Tape Strings",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -24,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 3,
+              "trackIndex": 28,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 2,
+              "deviceCount": 1,
+              "gainDb": 1.100000023841858,
+              "id": "961",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Kontakt 8",
+              "monitoringState": "auto",
+              "name": "30-Kontakt 8",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": -0.24,
+              "sends": [
+                {
+                  "gainDb": 0,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": 0,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 1,
+              "trackIndex": 29,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 1,
+              "gainDb": 0,
+              "id": "962",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "instrument": "Kontakt 8",
+              "monitoringState": "auto",
+              "name": "31-Kontakt 8",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "5"
+              },
+              "outputRoutingType": {
+                "name": "Main",
+                "outputId": "4"
+              },
+              "pan": 0.4,
+              "sends": [
+                {
+                  "gainDb": 0,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 1,
+              "state": "muted",
+              "trackIndex": 30,
+              "type": "midi"
+            },
+            {
+              "arrangementClipCount": 0,
+              "deviceCount": 0,
+              "gainDb": 0,
+              "id": "1203",
+              "inputRoutingChannel": {
+                "inputId": "1",
+                "name": "All Channels"
+              },
+              "inputRoutingType": {
+                "inputId": "0",
+                "name": "All Ins"
+              },
+              "monitoringState": "auto",
+              "name": "SIDEKICK JAM",
+              "outputRoutingChannel": {
+                "name": "",
+                "outputId": "3"
+              },
+              "outputRoutingType": {
+                "name": "No Output",
+                "outputId": "2"
+              },
+              "pan": 0,
+              "sends": [
+                {
+                  "gainDb": -70,
+                  "return": "A-ValhallaFutureVerb"
+                },
+                {
+                  "gainDb": -70,
+                  "return": "B-Delay"
+                }
+              ],
+              "sessionClipCount": 5,
+              "trackIndex": 31,
+              "type": "midi"
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "name": "CAPTURE 23 AUDIO",
+    "path": "t+",
+    "type": "audio"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "424",
+          "path": "t11"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-track"
+}

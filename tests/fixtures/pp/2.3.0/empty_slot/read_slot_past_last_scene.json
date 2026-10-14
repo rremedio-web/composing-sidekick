@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "path": "t0/s13"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: no scene at \"s13\""
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-clip"
+}

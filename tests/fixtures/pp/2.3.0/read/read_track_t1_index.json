@@ -1,0 +1,64 @@
+{
+  "arguments": {
+    "include": [
+      "mixer",
+      "devices",
+      "session-clips",
+      "arrangement-clips",
+      "notes",
+      "routings"
+    ],
+    "trackIndex": 1
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "devices": [],
+          "gainDb": 0,
+          "id": "4",
+          "inputRoutingChannel": {
+            "inputId": "5",
+            "name": ""
+          },
+          "inputRoutingType": {
+            "inputId": "4",
+            "name": "Ext. In"
+          },
+          "monitoringState": "off",
+          "name": "Interface",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "7"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "6"
+          },
+          "pan": 0,
+          "path": "t1",
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-Reverb",
+              "returnId": "12"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay",
+              "returnId": "13"
+            }
+          ],
+          "sessionClips": [],
+          "type": "audio"
+        }
+      },
+      {
+        "text": "WARNING: param \"trackIndex\" is deprecated and will be removed; use \"path\" instead"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

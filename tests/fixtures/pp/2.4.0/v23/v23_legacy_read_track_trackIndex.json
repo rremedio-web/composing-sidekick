@@ -1,0 +1,82 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 10
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "4bar",
+              "id": "416",
+              "name": "A",
+              "path": "t10[1|1]"
+            },
+            {
+              "arrangementLength": "2bar",
+              "id": "428",
+              "name": "A",
+              "path": "t10[17|1]"
+            },
+            {
+              "arrangementLength": "2bar",
+              "id": "433",
+              "name": "A",
+              "path": "t10[33|1]"
+            },
+            {
+              "arrangementLength": "4bar",
+              "id": "430",
+              "name": "A",
+              "path": "t10[35|1]"
+            },
+            {
+              "arrangementLength": "4bar",
+              "id": "435",
+              "name": "A",
+              "path": "t10[41|1]"
+            },
+            {
+              "arrangementLength": "2bar",
+              "id": "437",
+              "name": "A",
+              "path": "t10[57|1]"
+            },
+            {
+              "arrangementLength": "2bar",
+              "id": "441",
+              "name": "A",
+              "path": "t10[59|1]"
+            },
+            {
+              "arrangementLength": "4bar",
+              "id": "450",
+              "name": "A",
+              "path": "t10[65|1]"
+            },
+            {
+              "arrangementLength": "1bar",
+              "id": "451",
+              "path": "t10[69|1]"
+            }
+          ],
+          "deviceCount": 0,
+          "id": "414",
+          "name": "CAPTURE 23 MIDI",
+          "path": "t10",
+          "sessionClipCount": 0,
+          "type": "midi"
+        }
+      },
+      {
+        "text": "WARNING: param \"trackIndex\" is deprecated and will be removed; use \"path\" instead (e.g. path: \"t10\")"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

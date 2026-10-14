@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "path": "t10[49|1]",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "deleted": true,
+          "deletedPath": "t10[49|1]",
+          "id": "445",
+          "type": "clip"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

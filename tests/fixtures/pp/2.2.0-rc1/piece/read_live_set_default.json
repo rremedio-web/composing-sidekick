@@ -1,0 +1,21 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "json": {
+          "name": "NOCTURNEv2",
+          "regularTrackCount": 32,
+          "returnTrackCount": 2,
+          "scale": "C Major",
+          "scalePitches": "C,D,E,F,G,A,B",
+          "sceneCount": 21,
+          "tempo": 90,
+          "timeSignature": "4/4"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

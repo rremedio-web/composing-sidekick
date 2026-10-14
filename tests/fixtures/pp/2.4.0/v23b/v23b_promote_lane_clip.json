@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "id": "473",
+    "toPath": "t10[9|1]",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "detail": "promoted to the main lane by re-creating it",
+          "id": "488",
+          "path": "t10[9|1]"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-duplicate"
+}

@@ -1,0 +1,118 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 4
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "22bar",
+              "arrangementStart": "11|1",
+              "end": "3|1",
+              "id": "468",
+              "length": "2bar",
+              "looping": true,
+              "notes": "[{p:65,t:0,d:0.2344,v:110},{p:67,t:4.25,d:0.25,v:111},{p:76,t:0.5,d:0.25,v:88}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "33|1",
+              "end": "3|1",
+              "id": "469",
+              "length": "2bar",
+              "looping": true,
+              "notes": "[{p:60,t:1.25,d:0.25,v:45},{p:64,t:0,d:0.25,v:73},{p:65,t:2.5,d:0.25,v:47},{p:67,t:5,d:0.25,v:123}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "37|1",
+              "end": "3|1",
+              "id": "470",
+              "length": "2bar",
+              "looping": true,
+              "notes": "[{p:65,t:0,d:0.2344,v:57},{p:67,t:4,d:0.25,v:53},{p:76,t:2,d:0.25,v:75}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "41|1",
+              "end": "3|1",
+              "id": "471",
+              "length": "2bar",
+              "looping": true,
+              "notes": "[{p:65,t:1.75,d:0.25,v:98},{p:67,t:6,d:0.25,v:88},{p:72,t:0,d:0.25,v:113},{p:76,t:0.25,d:0.25,v:61}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "devices": [
+            {
+              "id": "78",
+              "name": "Float Pad",
+              "path": "t4/d0",
+              "type": "instrument-rack"
+            },
+            {
+              "id": "874",
+              "path": "t4/d1",
+              "type": "audio-effect: Beat Repeat"
+            }
+          ],
+          "gainDb": -11.199999809265137,
+          "id": "6",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "instrument": "Instrument Rack",
+          "monitoringState": "auto",
+          "name": "5-Float Pad",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -8.600000381469727,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": 0,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 3,
+          "trackIndex": 4,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

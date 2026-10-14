@@ -1,0 +1,25 @@
+{
+  "arguments": {
+    "capture": false,
+    "name": "CAP24 S1,CAP24 S2",
+    "path": "s+,s+"
+  },
+  "response": {
+    "content": [
+      {
+        "json": [
+          {
+            "id": "608",
+            "path": "s8"
+          },
+          {
+            "id": "609",
+            "path": "s9"
+          }
+        ]
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-scene"
+}

@@ -1,0 +1,68 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "timing"
+    ],
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "2bar",
+              "end": "3|1",
+              "id": "372",
+              "length": "2bar",
+              "looping": true,
+              "name": "M",
+              "path": "t10[1|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "1bar",
+              "end": "2|1",
+              "id": "390",
+              "length": "1bar",
+              "looping": true,
+              "name": "L0",
+              "path": "t10[9|1]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "deviceCount": 0,
+          "id": "362",
+          "name": "CAPTURE 23B MIDI",
+          "path": "t10",
+          "sessionClipCount": 1,
+          "takeLanes": [
+            {
+              "clips": [
+                {
+                  "arrangementLength": "1bar",
+                  "end": "2|1",
+                  "id": "376",
+                  "length": "1bar",
+                  "looping": true,
+                  "name": "L0",
+                  "path": "t10/l0[5|1]",
+                  "start": "1|1",
+                  "timeSignature": "4/4"
+                }
+              ],
+              "name": "Lane",
+              "path": "t10/l0"
+            }
+          ],
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

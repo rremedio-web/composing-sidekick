@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "action": "update-arrangement",
+    "loop": true,
+    "loopEnd": "9|1",
+    "loopStart": "5|1",
+    "startTime": "5|1"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "playing": false,
+          "startTime": "5|1"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-playback"
+}

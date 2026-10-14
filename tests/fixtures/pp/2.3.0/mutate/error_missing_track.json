@@ -1,0 +1,17 @@
+{
+  "arguments": {
+    "trackIndex": 999
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: trackIndex 999 does not exist"
+      },
+      {
+        "text": "WARNING: param \"trackIndex\" is deprecated and will be removed; use \"path\" instead"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-track"
+}

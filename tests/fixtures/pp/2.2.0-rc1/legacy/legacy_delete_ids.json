@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "ids": "369",
+    "type": "track"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "deleted": true,
+          "id": "369",
+          "type": "track"
+        }
+      },
+      {
+        "text": "WARNING: ppal-delete accepts \"ids\" as a fallback; the parameter is \"id\""
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

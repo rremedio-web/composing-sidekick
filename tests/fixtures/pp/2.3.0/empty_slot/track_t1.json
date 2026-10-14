@@ -1,0 +1,25 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips"
+    ],
+    "path": "t1"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 0,
+          "id": "4",
+          "name": "Interface",
+          "path": "t1",
+          "sessionClips": [],
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

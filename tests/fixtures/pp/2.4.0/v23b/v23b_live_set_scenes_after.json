@@ -1,0 +1,80 @@
+{
+  "arguments": {
+    "include": [
+      "scenes"
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "name": "SCRATCH-capture",
+          "regularTrackCount": 12,
+          "returnTrackCount": 2,
+          "scale": "C Major",
+          "scalePitches": "C,D,E,F,G,A,B",
+          "scenes": [
+            {
+              "clipCount": 1,
+              "id": "14",
+              "name": "1",
+              "path": "s0"
+            },
+            {
+              "clipCount": 0,
+              "id": "15",
+              "name": "2",
+              "path": "s1"
+            },
+            {
+              "clipCount": 0,
+              "id": "16",
+              "name": "3",
+              "path": "s2"
+            },
+            {
+              "clipCount": 0,
+              "id": "17",
+              "name": "4",
+              "path": "s3"
+            },
+            {
+              "clipCount": 0,
+              "id": "18",
+              "name": "5",
+              "path": "s4"
+            },
+            {
+              "clipCount": 0,
+              "id": "19",
+              "name": "6",
+              "path": "s5"
+            },
+            {
+              "clipCount": 0,
+              "id": "20",
+              "name": "7",
+              "path": "s6"
+            },
+            {
+              "clipCount": 0,
+              "id": "21",
+              "name": "8",
+              "path": "s7"
+            },
+            {
+              "clipCount": 0,
+              "id": "462",
+              "name": "CAPTURE 23B",
+              "path": "s8"
+            }
+          ],
+          "tempo": 120,
+          "timeSignature": "4/4"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-live-set"
+}

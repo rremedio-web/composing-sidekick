@@ -1,0 +1,67 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 10
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "devices": [
+            {
+              "id": "1376",
+              "path": "t10/d0",
+              "type": "audio-effect: TONE3000"
+            }
+          ],
+          "gainDb": 0,
+          "id": "12",
+          "inputRoutingChannel": {
+            "inputId": "10",
+            "name": "1"
+          },
+          "inputRoutingType": {
+            "inputId": "8",
+            "name": "Ext. In"
+          },
+          "monitoringState": "in",
+          "name": "Interface",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 0,
+          "state": "muted",
+          "trackIndex": 10,
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

@@ -1,0 +1,59 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "2bar",
+              "id": "553",
+              "name": "M1 renamed",
+              "path": "t10[5|1]"
+            },
+            {
+              "arrangementLength": "2bar",
+              "id": "557",
+              "name": "M1 renamed",
+              "path": "t10[17|1]"
+            },
+            {
+              "arrangementLength": "2bar",
+              "id": "558",
+              "name": "M2b",
+              "path": "t10[25|1]"
+            }
+          ],
+          "deviceCount": 2,
+          "id": "529",
+          "name": "CAPTURE 24 A renamed",
+          "path": "t10",
+          "sessionClipCount": 2,
+          "takeLanes": [
+            {
+              "clips": [
+                {
+                  "arrangementLength": "1bar",
+                  "id": "561",
+                  "name": "L0",
+                  "path": "t10/l0[1|1]"
+                }
+              ],
+              "id": "560",
+              "name": "LANE A",
+              "path": "t10/l0"
+            }
+          ],
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

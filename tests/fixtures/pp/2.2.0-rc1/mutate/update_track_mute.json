@@ -1,0 +1,17 @@
+{
+  "arguments": {
+    "id": "391",
+    "mute": true
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "391"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

@@ -1,0 +1,194 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 25
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "5bar",
+              "arrangementStart": "33|1",
+              "end": "6|1",
+              "id": "959",
+              "length": "5bar",
+              "looping": false,
+              "notes": "[{p:60,t:16,d:2.0992,v:116},{p:64,t:14.25,d:1.8436,v:95},{p:64,t:15.75,d:0.3759,v:71},{p:66,t:0.25,d:3.4261,v:45},{p:67,t:1.5,d:3.571,v:58},{p:67,t:4.5,d:2.7746,v:119},{p:70,t:9.25,d:2.9672,v:80},{p:70,t:10.5,d:1.804,v:89},{p:72,t:16,d:1.4485,v:41},{p:78,t:1.5,d:1.9824,v:51}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "5bar+n/8",
+              "arrangementStart": "41|1",
+              "end": "7|1",
+              "id": "960",
+              "length": "5bar+n/8",
+              "looping": false,
+              "notes": "[{p:60,t:18.25,d:1.9673,v:50},{p:61,t:13.25,d:1.8164,v:106},{p:64,t:8,d:1.9876,v:122},{p:64,t:10.5,d:2.2993,v:107},{p:66,t:3.8898,d:2.1603,v:64},{p:67,t:10.75,d:0.3778,v:72},{p:72,t:16.25,d:1.7542,v:95},{p:73,t:15.25,d:1.5735,v:93},{p:78,t:3.8898,d:2.3286,v:76},{p:79,t:9.75,d:1.1799,v:115}]",
+              "start": "1|4.5",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "1bar+n/8",
+              "arrangementStart": "49|1",
+              "end": "7|1",
+              "id": "1104",
+              "length": "1bar+n/8",
+              "looping": false,
+              "notes": "[{p:66,t:3.8898,d:2.1603,v:66},{p:78,t:3.8898,d:2.3286,v:106}]",
+              "start": "5|4.5",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "1bar+n/8",
+              "arrangementStart": "53|1",
+              "end": "7|1",
+              "id": "1106",
+              "length": "1bar+n/8",
+              "looping": false,
+              "notes": "[{p:78,t:3.8898,d:2.1603,v:64},{p:90,t:3.8898,d:2.3286,v:41}]",
+              "start": "5|4.5",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "1bar+n/8",
+              "arrangementStart": "57|1",
+              "end": "7|1",
+              "id": "1109",
+              "length": "1bar+n/8",
+              "looping": false,
+              "notes": "[{p:78,t:3.8898,d:2.1603,v:103},{p:90,t:3.8898,d:2.3286,v:44}]",
+              "start": "5|4.5",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "61|1",
+              "end": "5|1",
+              "id": "1381",
+              "length": "4bar",
+              "looping": true,
+              "name": "Seq Example lock",
+              "notes": "[{p:77,t:10.75,d:2,v:107},{p:77,t:24,d:0.25,v:43},{p:78,t:25.25,d:0.25,v:52},{p:79,t:14.25,d:0.75,v:78},{p:80,t:9.75,d:1.25,v:57},{p:82,t:13.75,d:2,v:91},{p:83,t:20.75,d:0.25,v:119},{p:84,t:1.75,d:1.25,v:67},{p:84,t:3.75,d:1.25,v:103},{p:84,t:5,d:2,v:46},{p:84,t:28.25,d:0.25,v:40},{p:84,t:30.75,d:0.25,v:124},{p:85,t:5.5,d:1.5,v:90},{p:85,t:17,d:0.25,v:115},{p:85,t:20,d:0.25,v:79},{p:87,t:17.25,d:0.25,v:73}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "65|1",
+              "end": "5|1",
+              "id": "1382",
+              "length": "4bar",
+              "looping": true,
+              "name": "Seq Example lock",
+              "notes": "[{p:77,t:10.75,d:0.25,v:43},{p:77,t:26,d:0.25,v:62},{p:78,t:24.5,d:0.25,v:42},{p:79,t:12.75,d:2,v:48},{p:80,t:10.5,d:2,v:92},{p:82,t:14,d:2,v:114},{p:83,t:21.25,d:0.25,v:102},{p:84,t:2.25,d:0.75,v:87},{p:84,t:3.25,d:1.75,v:60},{p:84,t:6,d:1,v:123},{p:84,t:28.5,d:0.25,v:113},{p:84,t:30.75,d:0.25,v:111},{p:85,t:6,d:2,v:74},{p:85,t:18.25,d:0.25,v:90},{p:85,t:20.5,d:0.25,v:66},{p:87,t:17,d:0.2344,v:96}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "8bar",
+              "arrangementStart": "93|1",
+              "end": "21|1",
+              "id": "1193",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:55,t:25.25,d:1.8308,v:77},{p:57,t:20,d:3.5372,v:45},{p:59,t:16.5,d:3.7554,v:61},{p:61,t:14,d:1.0659,v:77},{p:61,t:40.75,d:1.911,v:125},{p:61,t:44,d:2.8255,v:49},{p:61,t:56,d:7.6899,v:60},{p:64,t:3.75,d:8.7188,v:40},{p:64,t:28,d:3.3356,v:106},{p:64,t:39,d:2.2122,v:64},{p:64,t:50,d:6.1774,v:55}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "8bar",
+              "arrangementStart": "101|1",
+              "end": "21|1",
+              "id": "1194",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:55,t:25.75,d:1.3308,v:98},{p:57,t:22.5,d:1.4501,v:107},{p:59,t:19.25,d:1.0054,v:122},{p:61,t:13,d:2.0339,v:60},{p:61,t:42,d:1.8352,v:125},{p:61,t:44,d:2.8255,v:91},{p:61,t:56,d:7.6899,v:119},{p:64,t:3.5,d:8.9688,v:83},{p:64,t:30,d:2.5978,v:65},{p:64,t:37.75,d:3.2122,v:69},{p:64,t:48.5,d:7.6774,v:45}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "devices": [
+            {
+              "id": "231",
+              "path": "t25/d0",
+              "type": "instrument: Kontakt 8"
+            },
+            {
+              "id": "872",
+              "path": "t25/d1",
+              "type": "audio-effect: DimensionExpander"
+            }
+          ],
+          "gainDb": 1.5,
+          "id": "23",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "instrument": "Kontakt 8",
+          "monitoringState": "auto",
+          "name": "Grain Pad",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -5.599999904632568,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 6,
+          "takeLanes": [
+            {
+              "clips": [
+                {
+                  "arrangementLength": "n13.408/4",
+                  "arrangementStart": "20|3.544",
+                  "end": "4|4.952",
+                  "id": "1236",
+                  "length": "n13.408/4",
+                  "looping": false,
+                  "name": "Grain Pad",
+                  "notes": "[{p:66,t:2.544,d:13.408,v:118},{p:74,t:2.544,d:13.408,v:124},{p:78,t:2.544,d:13.408,v:83}]",
+                  "start": "1|3.544",
+                  "timeSignature": "4/4"
+                }
+              ],
+              "name": "Lane",
+              "path": "t25/l0"
+            }
+          ],
+          "trackIndex": 25,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

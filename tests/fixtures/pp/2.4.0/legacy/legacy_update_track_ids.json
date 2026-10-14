@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "ids": "387",
+    "name": "LEGACY IDS"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "387",
+          "path": "t10"
+        }
+      },
+      {
+        "text": "WARNING: \"ids\" accepted as a fallback; the parameter is \"id\""
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

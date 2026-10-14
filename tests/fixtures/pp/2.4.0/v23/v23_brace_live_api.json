@@ -1,0 +1,65 @@
+{
+  "arguments": {
+    "operations": [
+      {
+        "property": "loop",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop_start",
+        "type": "getProperty"
+      },
+      {
+        "property": "loop_length",
+        "type": "getProperty"
+      },
+      {
+        "property": "current_song_time",
+        "type": "getProperty"
+      }
+    ],
+    "path": "live_set"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "1",
+          "path": "live_set",
+          "results": [
+            {
+              "operation": {
+                "property": "loop",
+                "type": "getProperty"
+              },
+              "result": 1
+            },
+            {
+              "operation": {
+                "property": "loop_start",
+                "type": "getProperty"
+              },
+              "result": 16
+            },
+            {
+              "operation": {
+                "property": "loop_length",
+                "type": "getProperty"
+              },
+              "result": 16
+            },
+            {
+              "operation": {
+                "property": "current_song_time",
+                "type": "getProperty"
+              },
+              "result": 272
+            }
+          ]
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-live-api"
+}

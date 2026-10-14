@@ -1,0 +1,27 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips"
+    ],
+    "path": "t8"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 0,
+          "groupId": "5",
+          "id": "11",
+          "isGroupMember": true,
+          "name": "Synth A",
+          "path": "t8",
+          "sessionClips": [],
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

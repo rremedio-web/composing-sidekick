@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "length": "1bar",
+    "name": "C",
+    "notes": "[{\"p\": 67, \"t\": 0, \"d\": 1, \"v\": 90}]",
+    "path": "t10[42|1]"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "443",
+          "noteCount": 1,
+          "path": "t10[42|1]"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

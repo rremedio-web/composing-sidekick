@@ -1,0 +1,12 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "text": "{view:\"session\",selectedTrack:{id:\"2\",type:\"midi\",trackIndex:0},selectedScene:{id:\"27\",sceneIndex:0},selectedDevice:{id:\"1373\",path:\"t0/d0\"}}"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-select"
+}

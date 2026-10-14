@@ -1,0 +1,24 @@
+{
+  "arguments": {
+    "id": "552,999998",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "json": [
+          {
+            "detail": "nothing to delete",
+            "id": "552"
+          },
+          {
+            "detail": "nothing to delete",
+            "id": "999998"
+          }
+        ]
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

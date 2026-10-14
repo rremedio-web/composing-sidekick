@@ -1,0 +1,25 @@
+{
+  "arguments": {
+    "trackIndex": 10
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 0,
+          "id": "387",
+          "name": "LEGACY IDS",
+          "path": "t10",
+          "sessionClipCount": 0,
+          "type": "midi"
+        }
+      },
+      {
+        "text": "WARNING: param \"trackIndex\" is deprecated and will be removed; use \"path\" instead (e.g. path: \"t10\")"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

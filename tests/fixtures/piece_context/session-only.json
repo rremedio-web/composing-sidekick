@@ -1,0 +1,62 @@
+{
+  "path": "sanitized fixture path: session-only.als",
+  "track_count": 6,
+  "midi_track_names": [
+    "Synth 1",
+    "Synth 2"
+  ],
+  "audio_track_names": [
+    "Audio 1",
+    "Audio 2"
+  ],
+  "clip_count": 1,
+  "audio_clip_count": 0,
+  "clips": [
+    {
+      "name": "(unnamed clip)",
+      "track": "Synth 1",
+      "start": 0.0,
+      "end": 8.0,
+      "note_count": 5,
+      "is_drum": false,
+      "clip_source": "session",
+      "notes": [
+        {
+          "pitch": 50,
+          "start": 2.75,
+          "duration": 1.0,
+          "velocity": 86,
+          "enabled": true
+        },
+        {
+          "pitch": 54,
+          "start": 4.0,
+          "duration": 0.25,
+          "velocity": 82,
+          "enabled": true
+        },
+        {
+          "pitch": 52,
+          "start": 5.0,
+          "duration": 0.5,
+          "velocity": 64,
+          "enabled": true
+        },
+        {
+          "pitch": 62,
+          "start": 5.0,
+          "duration": 0.25,
+          "velocity": 104,
+          "enabled": true
+        },
+        {
+          "pitch": 60,
+          "start": 6.0,
+          "duration": 1.0,
+          "velocity": 105,
+          "enabled": true
+        }
+      ]
+    }
+  ]
+}

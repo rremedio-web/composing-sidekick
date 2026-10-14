@@ -1,0 +1,31 @@
+{
+  "arguments": {
+    "id": "551",
+    "include": [
+      "notes",
+      "timing"
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementLength": "2bar",
+          "end": "3|1",
+          "id": "551",
+          "length": "2bar",
+          "looping": true,
+          "name": "M1 renamed",
+          "notes": "[{p:60,t:0,d:1,v:100},{p:64,t:2,d:1,v:100},{p:67,t:0,d:0.5,v:90}]",
+          "path": "t10[1|1]",
+          "start": "1|1",
+          "timeSignature": "4/4",
+          "type": "midi",
+          "view": "arrangement"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-clip"
+}

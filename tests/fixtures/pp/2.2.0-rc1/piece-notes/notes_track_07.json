@@ -1,0 +1,64 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 7
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "13|1",
+              "id": "529",
+              "name": "Tom Pattern"
+            },
+            {
+              "arrangementStart": "45|1",
+              "id": "530",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "49|1",
+              "id": "1102",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "53|1",
+              "id": "1176",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "57|1",
+              "id": "1177",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "61|1",
+              "id": "531",
+              "name": "Steady Grid"
+            },
+            {
+              "arrangementStart": "65|1",
+              "id": "1178",
+              "name": "Steady Grid"
+            }
+          ],
+          "deviceCount": 2,
+          "groupId": "7",
+          "id": "9",
+          "instrument": "Drum Rack",
+          "isGroupMember": true,
+          "name": "Kit Var 3",
+          "sessionClipCount": 2,
+          "trackIndex": 7,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

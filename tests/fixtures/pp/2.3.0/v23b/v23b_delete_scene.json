@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "path": "s8",
+    "type": "scene"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "deleted": true,
+          "deletedPath": "s8",
+          "id": "364",
+          "type": "scene"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

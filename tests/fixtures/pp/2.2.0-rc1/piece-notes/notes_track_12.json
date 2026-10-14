@@ -1,0 +1,27 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 12
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "deviceCount": 0,
+          "groupId": "13",
+          "id": "14",
+          "isGroupMember": true,
+          "name": "Sampler 1-2",
+          "sessionClipCount": 0,
+          "trackIndex": 12,
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

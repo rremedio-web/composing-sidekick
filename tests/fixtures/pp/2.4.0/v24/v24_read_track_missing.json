@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "path": "t999"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: nothing at path \"t999\"; ppal-create-track adds tracks"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-read-track"
+}

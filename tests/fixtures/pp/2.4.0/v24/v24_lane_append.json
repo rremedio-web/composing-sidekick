@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "name": "LANE A",
+    "path": "t10/l+"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "created": "l0",
+          "id": "560",
+          "name": "LANE A",
+          "path": "t10/l0"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

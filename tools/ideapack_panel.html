@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IdeaPack — audition rack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=Saira:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121214; --bg2:#0c0c0e; --panel:#1c1d22; --raised:#23252b; --raised2:#282a31;
+    --line:#34363d; --hair:rgba(255,255,255,.05); --shadow:rgba(0,0,0,.6);
+    --ink:#eceae4; --dim:#8b8d96; --faint:#5e6069;
+    --amber:#ff8240; --amber2:#ffb066; --amber-glow:rgba(255,130,64,.45);
+    --green:#5fd08a; --green-glow:rgba(95,208,138,.5);
+    --red:#e8635b; --red-glow:rgba(232,99,91,.5);
+    --display:"Saira Condensed","Arial Narrow",sans-serif;
+    --ui:"Saira",system-ui,-apple-system,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{ background:var(--bg); color:var(--ink); font:15px/1.5 var(--ui); -webkit-font-smoothing:antialiased;
+    padding:28px 18px 60px; min-height:100vh; }
+  body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(130% 90% at 50% -15%, rgba(255,130,64,.07), transparent 55%),
+               radial-gradient(120% 100% at 50% 120%, rgba(0,0,0,.55), transparent 55%); }
+  body::after{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.04; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* ---- device shell ---- */
+  .device{ position:relative; z-index:1; max-width:1080px; margin:0 auto; background:linear-gradient(180deg,#202126,#191a1e);
+    border:1px solid #000; border-radius:16px;
+    box-shadow: inset 0 1px 0 var(--hair), inset 0 0 0 1px rgba(0,0,0,.4), 0 28px 70px -28px #000, 0 3px 0 #000;
+    overflow:hidden; }
+  .head{ display:flex; align-items:center; gap:14px; padding:14px 18px;
+    background:linear-gradient(180deg,#26272d,#1c1d22); border-bottom:1px solid #000; box-shadow:inset 0 1px 0 var(--hair); }
+  .power{ width:11px; height:11px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#ffd0a8,var(--amber) 60%,#7a3413);
+    box-shadow:0 0 10px 1px var(--amber-glow), inset 0 0 2px rgba(0,0,0,.5); animation:pulse 2.6s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{box-shadow:0 0 10px 1px var(--amber-glow), inset 0 0 2px rgba(0,0,0,.5);} 50%{box-shadow:0 0 16px 3px var(--amber-glow), inset 0 0 2px rgba(0,0,0,.5);} }
+  .wordmark{ font-family:var(--display); font-weight:700; font-size:21px; letter-spacing:.14em; text-transform:uppercase; }
+  .wordmark b{ color:var(--amber); }
+  .head .tag{ font-size:11px; color:var(--dim); letter-spacing:.02em; max-width:430px; }
+  .head .packid{ margin-left:auto; font:12px var(--mono); color:var(--faint); text-align:right; white-space:nowrap; }
+  .head .packid b{ color:var(--amber2); font-weight:500; }
+
+  .body{ display:grid; grid-template-columns:minmax(280px,1fr) minmax(360px,1.25fr); gap:0; }
+  .col{ padding:16px 18px; min-width:0; }   /* min-width:0 lets the column shrink so .session scrolls internally */
+  .col.left{ border-right:1px solid #000; box-shadow:inset -1px 0 0 var(--hair); background:rgba(0,0,0,.12); }
+  .cand>div{ min-width:0; }                 /* the candidate's middle column wraps instead of forcing page overflow */
+  @media (max-width:840px){ .body{ grid-template-columns:1fr; } .col.left{ border-right:0; box-shadow:inset 0 -1px 0 var(--hair); } }
+
+  /* ---- modules ---- */
+  .mod{ background:linear-gradient(180deg,var(--raised),#1f2025); border:1px solid var(--line); border-radius:10px; min-width:0;
+    padding:13px 13px 14px; margin-bottom:14px; box-shadow:inset 0 1px 0 var(--hair), 0 2px 5px -2px var(--shadow);
+    animation:rise .5s cubic-bezier(.2,.7,.3,1) both; }
+  @keyframes rise{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+  .mod-h{ font-family:var(--display); font-weight:600; font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--dim); margin:0 0 11px; display:flex; align-items:center; gap:8px; }
+  .mod-h::before{ content:""; width:7px; height:7px; background:var(--amber); border-radius:1px; box-shadow:0 0 6px var(--amber-glow); }
+
+  .kv{ display:grid; grid-template-columns:auto 1fr; gap:5px 14px; }
+  .kv .k{ color:var(--faint); font-size:12px; text-transform:uppercase; letter-spacing:.04em; align-self:center; }
+  .kv .v{ font:13px var(--mono); color:var(--ink); }
+
+  /* ---- inputs / buttons ---- */
+  label.fld{ display:flex; flex-direction:column; gap:4px; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--faint); }
+  input[type=number],input[type=text],textarea{ background:var(--bg2); color:var(--ink); border:1px solid #000;
+    border-radius:6px; padding:8px 10px; font:13px var(--mono); box-shadow:inset 0 2px 4px rgba(0,0,0,.45); }
+  input:focus,textarea:focus{ outline:none; border-color:var(--amber); box-shadow:inset 0 2px 4px rgba(0,0,0,.45), 0 0 0 2px var(--amber-glow); }
+  input[type=number]{ width:96px; } textarea{ width:100%; min-height:78px; resize:vertical; }
+  input[type=file]{ font:11px var(--ui); color:var(--dim); }
+  .btn{ font-family:var(--display); font-weight:600; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink); background:linear-gradient(180deg,var(--raised2),#1d1e23); border:1px solid #000; border-radius:7px;
+    padding:9px 14px; cursor:pointer; box-shadow:inset 0 1px 0 var(--hair), 0 2px 4px -1px var(--shadow); transition:transform .06s, box-shadow .15s, border-color .15s; }
+  .btn:hover:not(:disabled){ border-color:var(--amber); }
+  .btn:active:not(:disabled){ transform:translateY(1px); box-shadow:inset 0 2px 5px rgba(0,0,0,.5); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .btn.primary{ background:linear-gradient(180deg,var(--amber2),var(--amber)); color:#2a1305; border-color:#a04812; box-shadow:inset 0 1px 0 rgba(255,255,255,.3), 0 2px 10px -2px var(--amber-glow); }
+  .bar{ display:flex; gap:9px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+  .note{ color:var(--dim); font-size:12px; } .err{ color:var(--red); font-size:12.5px; min-height:1em; }
+  .copied{ color:var(--green); font:11px var(--mono); }
+
+  /* ---- candidate modules ---- */
+  .cand{ position:relative; display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:center;
+    background:linear-gradient(180deg,#202126,#191a1f); border:1px solid var(--line); border-left:3px solid var(--clip,#555);
+    border-radius:9px; padding:11px 13px; margin-bottom:10px; box-shadow:inset 0 1px 0 var(--hair); animation:rise .5s both; }
+  .cand.best{ border-color:var(--green); box-shadow:inset 0 0 0 1px var(--green), 0 0 18px -6px var(--green-glow); }
+  .cand.worst{ border-color:var(--red); box-shadow:inset 0 0 0 1px var(--red), 0 0 18px -6px var(--red-glow); opacity:.82; }
+  @media (max-width:520px){ .cand{ grid-template-columns:auto 1fr; } .cand .scorebox{ grid-column:1/-1; } }
+  .leds{ display:grid; grid-template-columns:auto auto; gap:3px 7px; align-items:center; justify-items:center; }
+  .led{ width:20px; height:20px; border-radius:50%; border:1px solid #000; cursor:pointer; padding:0;
+    background:radial-gradient(circle at 35% 30%,#3a3c44,#16171b); box-shadow:inset 0 1px 2px rgba(0,0,0,.6), inset 0 0 0 2px rgba(0,0,0,.3); transition:box-shadow .15s; }
+  .led:hover{ box-shadow:inset 0 1px 2px rgba(0,0,0,.6), 0 0 0 2px rgba(255,255,255,.08); }
+  .led.keep.on{ background:radial-gradient(circle at 35% 30%,#c6ffd9,var(--green) 65%,#1b6d3c); box-shadow:0 0 12px 1px var(--green-glow); }
+  .led.drop.on{ background:radial-gradient(circle at 35% 30%,#ffc9c5,var(--red) 65%,#7a2420); box-shadow:0 0 12px 1px var(--red-glow); }
+  .ledlbl{ font-family:var(--display); font-size:9.5px; letter-spacing:.12em; color:var(--faint); }
+  .cand-title{ font-family:var(--display); font-weight:600; font-size:17px; letter-spacing:.01em; line-height:1.1; }
+  .chips{ display:flex; gap:6px; flex-wrap:wrap; margin:5px 0; }
+  .tab{ font-family:var(--display); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px;
+    border-radius:4px; border:1px solid var(--line); color:var(--dim); background:#191a1f; }
+  .tab.on{ color:#2a1305; background:var(--clip,var(--amber)); border-color:#000; font-weight:600; }
+  .why{ color:var(--dim); font-size:12.5px; line-height:1.4; } .cand-meta{ color:var(--faint); font:11px var(--mono); margin-top:4px; }
+  .scorebox{ display:flex; flex-direction:column; gap:5px; min-width:96px; }
+  .meter-l{ font:9.5px var(--mono); color:var(--faint); display:flex; justify-content:space-between; }
+  .meter{ height:6px; background:var(--bg2); border-radius:3px; box-shadow:inset 0 1px 2px rgba(0,0,0,.6); overflow:hidden; }
+  .meter .fill{ display:block; height:100%; background:linear-gradient(90deg,var(--amber),var(--amber2)); }
+  .taste{ font:11px var(--mono); color:var(--green); text-align:right; }
+
+  /* ---- scope readout ---- */
+  .scope{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:8px; border:1px solid var(--line);
+    background:var(--bg2); box-shadow:inset 0 2px 6px rgba(0,0,0,.5); flex-wrap:wrap; }
+  .scope-led{ width:12px; height:12px; border-radius:50%; flex:none; }
+  .scope.trains .scope-led{ background:radial-gradient(circle at 35% 30%,#c6ffd9,var(--green) 65%,#1b6d3c); box-shadow:0 0 12px 1px var(--green-glow); }
+  .scope.parked .scope-led{ background:radial-gradient(circle at 35% 30%,#ffe0b0,var(--amber) 65%,#7a3413); box-shadow:0 0 12px 1px var(--amber-glow); }
+  .scope-state{ font-family:var(--display); font-weight:600; font-size:13px; letter-spacing:.12em; }
+  .scope.trains .scope-state{ color:var(--green); } .scope.parked .scope-state{ color:var(--amber2); }
+  .scope-detail{ margin-left:auto; font:11px var(--mono); color:var(--faint); }
+
+  /* ---- session clip grid ---- */
+  .session{ background:var(--bg2); border:1px solid #000; border-radius:8px; padding:10px; box-shadow:inset 0 2px 8px rgba(0,0,0,.55);
+    overflow-x:auto; }
+  .srow{ display:flex; gap:7px; align-items:stretch; }
+  .srow.head{ margin-bottom:7px; }
+  .scell{ flex:none; width:46px; display:flex; align-items:center; justify-content:center; }
+  .scene-lbl{ font-family:var(--display); font-size:10px; letter-spacing:.1em; color:var(--faint); text-transform:uppercase; }
+  .scene-num{ font:13px var(--mono); color:var(--dim); border-right:1px solid var(--line); }
+  .track-head{ flex:1; min-width:128px; text-align:center; font:11px var(--mono); color:var(--faint);
+    padding:3px 0; border-radius:4px 4px 0 0; background:#17181c; letter-spacing:.03em; }
+  .track-head.set{ color:#2a1305; background:linear-gradient(180deg,var(--amber2),var(--amber)); font-weight:600; }
+  .slot{ flex:1; min-width:128px; position:relative; display:flex; flex-direction:column; gap:2px; justify-content:center;
+    min-height:52px; padding:7px 9px 7px 11px; border-radius:6px; border:1px dashed var(--line); color:var(--faint);
+    background:#17181c; transition:box-shadow .2s, transform .1s; }
+  .slot.armed{ border:1px solid #000; color:#1a0e04; cursor:default;
+    background:linear-gradient(180deg, color-mix(in srgb, var(--clip) 86%, #fff 6%), color-mix(in srgb, var(--clip) 80%, #000 16%));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.25), 0 0 14px -5px var(--clip); animation:arm .35s ease both; }
+  @keyframes arm{ from{opacity:.2; transform:scale(.97);} to{opacity:1; transform:none;} }
+  .slot.bad{ border:1px solid var(--red); color:var(--red); background:#1d1416; }
+  .slot .tri{ position:absolute; right:9px; top:7px; font-size:9px; opacity:.8; }
+  .slot.armed .tri{ color:#1a0e04; } .slot:not(.armed) .tri{ color:var(--faint); }
+  .slot-name{ font-family:var(--display); font-weight:600; font-size:13px; letter-spacing:.02em; line-height:1.05;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:12px; }
+  .slot-sub{ font:10px var(--mono); opacity:.85; }
+
+  pre{ background:var(--bg2); border:1px solid #000; border-left:3px solid var(--amber); border-radius:7px; padding:11px 12px;
+    overflow:auto; max-height:260px; font:11.5px/1.5 var(--mono); color:#cdd2dc; margin:10px 0 0; box-shadow:inset 0 2px 6px rgba(0,0,0,.5); }
+</style>
+</head>
+<body>
+<div class="device">
+  <div class="head">
+    <span class="power" aria-hidden="true"></span>
+    <span class="wordmark">Idea<b>Pack</b></span>
+    <span class="tag">Audition rack — previews lanes &amp; emits tool-call payloads. It never writes to Ableton and never trains anything itself; scope is derived by the server from <span style="font-family:var(--mono)">contrast_axis</span>, you only pick keep&nbsp;/&nbsp;drop.</span>
+    <span class="packid" id="packId">—</span>
+  </div>
+
+  <div class="body">
+    <div class="col left">
+      <div class="mod">
+        <div class="mod-h">Load</div>
+        <div class="bar" style="margin-top:0">
+          <button class="btn" id="loadSample">Reload sample</button>
+          <label class="fld" style="flex-direction:row; align-items:center; gap:7px">.json <input type="file" id="fileIn" accept="application/json,.json"></label>
+        </div>
+        <textarea id="jsonIn" spellcheck="false" placeholder="…or paste an IdeaPack JSON" style="margin-top:10px"></textarea>
+        <div class="bar"><button class="btn primary" id="parseBtn">Load pasted</button><span id="loadMsg" class="note"></span></div>
+      </div>
+      <div class="mod">
+        <div class="mod-h">Pack</div>
+        <div class="kv" id="packKv"></div>
+      </div>
+      <div class="mod">
+        <div class="mod-h">Source clip</div>
+        <div class="kv" id="clipKv"></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="mod">
+        <div class="mod-h">Candidates — keep / drop</div>
+        <div id="cands"></div>
+        <div id="pickErr" class="err"></div>
+      </div>
+
+      <div class="mod">
+        <div class="mod-h">Rating call</div>
+        <div id="scopeBanner"></div>
+        <label class="fld" style="margin:11px 0 8px">Reason (short, optional)
+          <input type="text" id="reason" placeholder="flowing · static · jumpy" style="width:100%"></label>
+        <div class="bar"><button class="btn primary" id="genRate" disabled>Generate rating call</button><span id="rateCopied" class="copied" hidden>copied ✓</span></div>
+        <pre id="ratePre" hidden></pre>
+      </div>
+
+      <div class="mod">
+        <div class="mod-h">Audition lanes — session view</div>
+        <div class="bar" style="margin-top:0">
+          <label class="fld">Start track <input type="number" id="startTrack" min="0" step="1" placeholder="required"></label>
+          <label class="fld">Scene <input type="number" id="scene" min="0" step="1" value="0"></label>
+        </div>
+        <div class="note" id="laneNote" style="margin:9px 0 8px">Clips have no target track until you set an explicit start track — nothing in your set gets clobbered.</div>
+        <div id="lanes"></div>
+        <div class="bar"><button class="btn" id="prepBtn" disabled title="set an explicit start track first">Prepare confirmed handoff</button><span id="prepCopied" class="copied" hidden>copied ✓</span></div>
+        <pre id="prepPre" hidden></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------------- pure logic (also exercised by tools/ideapack_panel.test.mjs under node) -------------- */
+function _candList(pack){ return (pack && Array.isArray(pack.candidates)) ? pack.candidates : []; }
+
+/* Build the pickable list from candidates[] — THE array that gets rated — enriching display from the
+   matching ideas[] entry BY ID (idea.candidate.id). Picking is therefore always indexed against
+   candidates[], so a pack whose ideas[] and candidates[] differ in order/length can never rate the
+   wrong candidate, and every candidate stays visible/selectable. */
+function displayCandidates(pack){
+  var cands = _candList(pack);
+  var ideas = (pack && Array.isArray(pack.ideas)) ? pack.ideas : [];
+  var byId = {};
+  ideas.forEach(function(idea){
+    var cid = (idea.candidate && idea.candidate.id) || idea.id;
+    if (cid != null && byId[cid] === undefined) byId[cid] = idea;
+  });
+  return cands.map(function(c, i){
+    var idea = byId[c.id] || {};
+    var notes = c.notes || idea.notes || [];
+    return {
+      index: i, id: c.id,
+      title: idea.title || c.the_move || c.dimension || c.id || ("candidate " + (i + 1)),
+      role: c.role || idea.role, source: c.source || idea.source,
+      dimension: c.dimension || idea.dimension, why: c.why || idea.why,
+      n_notes: notes.length, base_score: idea.base_score, taste_score: idea.taste_score
+    };
+  });
+}
+
+/* Scope is the SERVER's derivation — the panel only displays it, never re-derives or asks the user. */
+function scopeInfo(pack){
+  var rc = (pack && pack.rating_contract) || {};
+  var scope = rc.rating_scope || "unknown";
+  var model = rc.trainable_model || "none";
+  var trains = model === "lead_taste";
+  var note;
+  if (trains) note = "This rating TRAINS the lead taste model (" + model + ").";
+  else if (model === "harmony_future") note = "Stored as first-class data, but NOT trained — no harmony model exists yet (" + model + ").";
+  else note = "Stored, but trains nothing (" + model + "). The pack did not vary a single supported model axis.";
+  return { scope: scope, model: model, trains: trains, note: note, contrast_axis: (pack && pack.contrast_axis) || "unknown" };
+}
+
+/* Explicit, non-negative integer or null. Blank / negative / non-integer => null (handoff stays blocked). */
+function parseTrack(raw){
+  if (raw === null || raw === undefined) return null;
+  var s = String(raw).trim();
+  if (s === "" || !/^\d+$/.test(s)) return null;
+  return parseInt(s, 10);
+}
+
+/* Mirrors the server: track_index = start_track + lane.track_offset; slot = "<track>/<scene>".
+   With no explicit start track, slot/track stay null (matches prepare_idea_pack_audition_lanes confirm=false). */
+function laneRows(pack, startRaw, sceneRaw){
+  var lanes = (pack && Array.isArray(pack.audition_lanes)) ? pack.audition_lanes : [];
+  var start = parseTrack(startRaw);
+  var scene = parseTrack(sceneRaw); if (scene === null) scene = 0;
+  return lanes.map(function(l, i){
+    var hasOff = (typeof l.track_offset === "number");   // never fabricate an offset the server wouldn't use
+    var ti = (start === null || !hasOff) ? null : start + l.track_offset;
+    return {
+      idea_id: l.idea_id, clip_name: l.clip_name, role: l.role, source: l.source,
+      n_notes: l.n_notes, scene_index: scene, missing_offset: !hasOff,
+      track_index: ti, slot: (ti === null) ? null : (ti + "/" + scene)
+    };
+  });
+}
+
+/* The exact payload an MCP client would send. contrast_axis is always echoed; scope/model are left to the
+   server to derive (never user-entered). best is required; worst is optional. */
+function buildRatingCall(pack, bestIdx, worstIdx, reason){
+  var cands = _candList(pack);
+  if (!cands.length || bestIdx === null || bestIdx < 0 || bestIdx >= cands.length)
+    throw new Error("a valid best index is required");
+  if (worstIdx !== null && worstIdx !== undefined && worstIdx === bestIdx)
+    throw new Error("best and worst must differ");
+  var args = { candidates: cands, best: bestIdx };
+  if (worstIdx !== null && worstIdx !== undefined && worstIdx >= 0) args.worst = worstIdx;
+  args.reason = (reason && String(reason).trim()) ? String(reason).trim().toLowerCase() : null;
+  args.contrast_axis = (pack && pack.contrast_axis) || null;   // scope/trainable_model derive server-side
+  return { tool: "rate_candidates", arguments: args };
+}
+
+/* The handoff is itself a tool call (preview-only here). Refuses to build without an explicit start track. */
+function buildHandoffCall(pack, startRaw, sceneRaw){
+  var start = parseTrack(startRaw);
+  if (start === null) throw new Error("explicit start_track required");
+  var scene = parseTrack(sceneRaw); if (scene === null) scene = 0;
+  return { tool: "prepare_idea_pack_audition_lanes",
+           arguments: { idea_pack: pack, confirm: true, start_track: start, scene_index: scene } };
+}
+
+var IdeaPanel = { scopeInfo: scopeInfo, parseTrack: parseTrack, laneRows: laneRows,
+                  buildRatingCall: buildRatingCall, buildHandoffCall: buildHandoffCall,
+                  displayCandidates: displayCandidates, _candList: _candList };
+if (typeof module !== "undefined" && module.exports) module.exports = IdeaPanel;
+if (typeof globalThis !== "undefined") globalThis.IdeaPanel = IdeaPanel;
+
+/* ---------------- DOM (skipped under node) ---------------- */
+function initPanel(){
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { pack:null, best:null, worst:null };
+  var ROLE_COLOR = { lead:"#ff8a4d", harmony:"#39cdbb", bass:"#9b8cff", pad:"#5fd08a",
+                     groove:"#e8b84b", drums:"#e8b84b", arrangement:"#7aa8ff", mixed:"#9aa0ad" };
+  var roleColor = function(r){ return ROLE_COLOR[String(r||"").toLowerCase()] || "#7c7e88"; };
+
+  // el() builds DOM with text-only children (createTextNode). There is intentionally NO html sink,
+  // so pack-derived strings (clip names, why, the_move) can never be interpreted as markup (XSS guard).
+  function el(tag, attrs, kids){
+    var n = document.createElement(tag); attrs = attrs || {};
+    for (var k in attrs){ if (k === "class") n.className = attrs[k]; else n.setAttribute(k, attrs[k]); }
+    (kids || []).forEach(function(c){ if (c == null) return; n.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    return n;
+  }
+  function clear(n){ while (n.firstChild) n.removeChild(n.firstChild); }
+  function legacyCopy(text){
+    try { var ta=document.createElement("textarea"); ta.value=text; ta.setAttribute("readonly","");
+      ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select();
+      var okc=document.execCommand("copy"); document.body.removeChild(ta); return okc; } catch(e){ return false; }
+  }
+  function copy(text, badge){
+    function flash(){ badge.hidden=false; setTimeout(function(){ badge.hidden=true; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText)
+      navigator.clipboard.writeText(text).then(flash, function(){ if (legacyCopy(text)) flash(); });
+    else if (legacyCopy(text)) flash();   // file:// often lacks the async clipboard API
+  }
+  function kv(parent, k, v){ parent.appendChild(el("div",{class:"k"},[k])); parent.appendChild(el("div",{class:"v"},[v==null?"—":String(v)])); }
+
+  function render(){
+    var p = state.pack; if (!p) return;
+    $("packId").textContent = p.id || "—";
+    var pk = $("packKv"); clear(pk);
+    kv(pk, "contrast axis", p.contrast_axis);
+    kv(pk, "candidates", _candList(p).length);
+    kv(pk, "schema", p.schema_version);
+    var sc = p.source_clip || {}; var ck = $("clipKv"); clear(ck);
+    kv(ck, "notes", sc.n_notes); kv(ck, "span", sc.span_beats != null ? sc.span_beats + " beats" : null);
+    kv(ck, "range", Array.isArray(sc.pitch_range) ? sc.pitch_range.join(" – ") : null);
+    kv(ck, "key", sc.detected_key || sc.key); kv(ck, "tempo", sc.tempo);
+    kv(ck, "from", (sc.source_context && (sc.source_context.slot || sc.source_context.source)) || "manual");
+    renderCands(p); renderScope(p); renderLanes(); updateRate();
+  }
+
+  function renderCands(p){
+    var box = $("cands"); clear(box);
+    displayCandidates(p).forEach(function(d, n){
+      var i = d.index, col = roleColor(d.role);
+      var card = el("div", {class:"cand" + (state.best===i?" best":"") + (state.worst===i?" worst":"")});
+      card.style.setProperty("--clip", col); card.style.animationDelay = (n*55) + "ms";
+      var keep = el("button", {class:"led keep" + (state.best===i?" on":""), type:"button", "aria-label":"keep candidate "+(i+1), "aria-pressed":(state.best===i), title:"keep (best)"});
+      keep.addEventListener("click", function(){ state.best = (state.best===i?null:i); if (state.worst===i) state.worst=null; render(); });
+      var drop = el("button", {class:"led drop" + (state.worst===i?" on":""), type:"button", "aria-label":"drop candidate "+(i+1), "aria-pressed":(state.worst===i), title:"drop (worst)"});
+      drop.addEventListener("click", function(){ state.worst = (state.worst===i?null:i); if (state.best===i) state.best=null; render(); });
+      var leds = el("div", {class:"leds"}, [keep, drop, el("span",{class:"ledlbl"},["KEEP"]), el("span",{class:"ledlbl"},["DROP"])]);
+
+      var chips = el("div", {class:"chips"}, [ el("span",{class:"tab on"},[String(d.role||"?")]) ]);
+      if (d.dimension) chips.appendChild(el("span",{class:"tab"},[String(d.dimension)]));
+      var mid = el("div", {}, [
+        el("div",{class:"cand-title"},[String(d.title)]), chips,
+        d.why ? el("div",{class:"why"},[String(d.why)]) : null,
+        el("div",{class:"cand-meta"},["candidate index " + i + " · " + d.n_notes + " notes"])
+      ]);
+
+      var fill = el("span",{class:"fill"}); fill.style.width = Math.round(Math.max(0,Math.min(1, d.base_score||0))*100) + "%";
+      var score = el("div", {class:"scorebox"}, [
+        el("div",{class:"meter-l"},[ el("span",{},["STYLE"]), el("span",{},[d.base_score!=null?String(d.base_score):"—"]) ]),
+        el("div",{class:"meter"},[fill]),
+        el("div",{class:"taste"},["taste " + (d.taste_score!=null?d.taste_score:"—")])
+      ]);
+      card.appendChild(leds); card.appendChild(mid); card.appendChild(score);
+      box.appendChild(card);
+    });
+    if (state.best !== null || state.worst !== null){
+      var clr = el("button", {class:"btn", style:"margin-top:2px"}, ["Clear picks"]);
+      clr.addEventListener("click", function(){ state.best=null; state.worst=null; render(); });
+      box.appendChild(clr);
+    }
+  }
+
+  function renderScope(p){
+    var si = scopeInfo(p); var sb = $("scopeBanner"); clear(sb);
+    var strip = el("div", {class:"scope " + (si.trains?"trains":"parked"), title:si.note}, [
+      el("span",{class:"scope-led"}),
+      el("span",{class:"scope-state"},[ si.trains ? "TRAINS LEAD TASTE" : "STORED · NOT TRAINED" ]),
+      el("span",{class:"scope-detail"},[ "scope:" + si.scope + "  model:" + si.model ])
+    ]);
+    sb.appendChild(strip);
+  }
+
+  function renderLanes(){
+    var rows = laneRows(state.pack, $("startTrack").value, $("scene").value);
+    var scene = parseTrack($("scene").value); if (scene === null) scene = 0;
+    var box = $("lanes"); clear(box);
+    var grid = el("div", {class:"session"});
+    var head = el("div", {class:"srow head"}, [ el("div",{class:"scell scene-lbl"},["scenes"]) ]);
+    rows.forEach(function(r){
+      var label = r.missing_offset ? "trk ?" : (r.track_index!=null ? ("trk " + r.track_index) : "trk —");
+      head.appendChild(el("div", {class:"track-head" + (r.track_index!=null?" set":"")}, [label]));
+    });
+    var clipRow = el("div", {class:"srow"}, [ el("div",{class:"scell scene-num"},[String(scene)]) ]);
+    rows.forEach(function(r){
+      var armed = r.slot != null;
+      var slot = el("div", {class:"slot" + (armed?" armed":"") + (r.missing_offset?" bad":"")});
+      slot.style.setProperty("--clip", roleColor(r.role));
+      slot.appendChild(el("span",{class:"tri"},["▶"]));
+      slot.appendChild(el("span",{class:"slot-name"},[ String(r.missing_offset ? "missing track_offset" : r.clip_name) ]));
+      slot.appendChild(el("span",{class:"slot-sub"},[ r.missing_offset ? "malformed lane" : (armed ? ("→ " + r.slot + " · " + (r.n_notes!=null?r.n_notes+" notes":"")) : "set start track") ]));
+      clipRow.appendChild(slot);
+    });
+    grid.appendChild(head); grid.appendChild(clipRow); box.appendChild(grid);
+    $("prepBtn").disabled = (parseTrack($("startTrack").value) === null) || !rows.length;
+  }
+
+  function updateRate(){
+    var err = $("pickErr"); err.textContent = "";
+    var canRate = state.best !== null;
+    if (state.best === null) err.textContent = "keep one candidate to enable the rating call";
+    else if (state.worst !== null && state.best === state.worst){ canRate=false; err.textContent="keep and drop must differ"; }
+    $("genRate").disabled = !canRate;
+  }
+
+  function loadPack(obj, msg){
+    if (!obj || typeof obj !== "object" || !Array.isArray(obj.candidates)){
+      $("loadMsg").textContent = "Not a valid IdeaPack (need a candidates[] array)."; $("loadMsg").className="err"; return;
+    }
+    state.pack = obj; state.best=null; state.worst=null;
+    $("loadMsg").textContent = msg || ("loaded " + (obj.id||"")); $("loadMsg").className="note";
+    $("ratePre").hidden = true; $("prepPre").hidden = true;
+    render();
+  }
+
+  $("loadSample").addEventListener("click", function(){ loadPack(JSON.parse(JSON.stringify(DEFAULT_PACK)), "sample reloaded"); });
+  $("parseBtn").addEventListener("click", function(){
+    try { loadPack(JSON.parse($("jsonIn").value), "loaded pasted JSON"); }
+    catch(e){ $("loadMsg").textContent = "JSON parse error: " + e.message; $("loadMsg").className="err"; }
+  });
+  $("fileIn").addEventListener("change", function(e){
+    var f = e.target.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function(){ try { loadPack(JSON.parse(r.result), "loaded " + f.name); } catch(err){ $("loadMsg").textContent="JSON parse error: "+err.message; $("loadMsg").className="err"; } };
+    r.readAsText(f);
+  });
+  $("startTrack").addEventListener("input", renderLanes);
+  $("scene").addEventListener("input", renderLanes);
+  $("genRate").addEventListener("click", function(){
+    try { var txt = JSON.stringify(buildRatingCall(state.pack, state.best, state.worst, $("reason").value), null, 2);
+      $("ratePre").textContent = txt; $("ratePre").hidden=false; copy(txt, $("rateCopied")); }
+    catch(e){ $("pickErr").textContent = e.message; }
+  });
+  $("prepBtn").addEventListener("click", function(){
+    try { var txt = JSON.stringify(buildHandoffCall(state.pack, $("startTrack").value, $("scene").value), null, 2);
+      $("prepPre").textContent = txt; $("prepPre").hidden=false; copy(txt, $("prepCopied")); }
+    catch(e){ $("laneNote").textContent = e.message; $("laneNote").className="err"; }
+  });
+
+  loadPack(JSON.parse(JSON.stringify(DEFAULT_PACK)), "sample loaded");
+}
+
+var DEFAULT_PACK = {"schema_version": 1, "id": "ideapack-9fa03716a0-0-3", "source": "clip", "contrast_axis": "mixed", "rating_contract": {"rating_scope": "mixed", "trainable_model": "none", "scope_source": "derived_from_contrast_axis"}, "source_clip": {"id": "clip-9fa03716a0", "n_notes": 6, "span_beats": 4.0, "pitch_range": [62, 69], "key": "D minor", "tempo": 120.0, "source_context": {}, "detected_key": "D minor"}, "inferred_controls": {"role": "lead", "key": "D minor", "tempo": 120.0, "pack_size": 3, "continuation_bars": 4, "seed": 0, "contrast_axis": "mixed"}, "critique": {"overall": 0.754, "scores": {"scale_fit": 0.728, "interval_shape": 0.889, "melodic_fit": 1.0, "gesture_fit": 0.313, "groove": 0.816, "register": 1.0, "polyphony": 0.865}, "suggestions": ["Add a colour/chromatic note \u2014 your catalog sits ~91% diatonic; a passing tone or modal colour would read more like you."], "verdict": "On-style \u2014 minor tweaks at most.", "detected_key": "D minor", "scale_conformity": 1.0, "tempo_hint": 120.0}, "development": {"variation_names": ["theme", "octave_up", "octave_down", "half_time", "double_time", "thin", "thicken", "fragment", "reharmonize", "call_response"], "variations": {"theme": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}], "octave_up": [{"pitch": 74, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 77, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 81, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 79, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 77, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 74, "start_beats": 3.0, "duration_beats": 0.55, "velocity": 70}, {"pitch": 76, "start_beats": 3.55, "duration_beats": 0.25, "velocity": 60}], "octave_down": [{"pitch": 50, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 53, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 57, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 55, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 53, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 50, "start_beats": 3.0, "duration_beats": 0.55, "velocity": 70}, {"pitch": 52, "start_beats": 3.55, "duration_beats": 0.25, "velocity": 60}], "half_time": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 1.0, "velocity": 80}, {"pitch": 65, "start_beats": 1.0, "duration_beats": 1.0, "velocity": 76}, {"pitch": 69, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 78}, {"pitch": 65, "start_beats": 4.0, "duration_beats": 2.0, "velocity": 72}, {"pitch": 62, "start_beats": 6.0, "duration_beats": 2.0, "velocity": 70}], "double_time": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.25, "velocity": 80}, {"pitch": 65, "start_beats": 0.25, "duration_beats": 0.25, "velocity": 76}, {"pitch": 69, "start_beats": 0.5, "duration_beats": 0.25, "velocity": 78}, {"pitch": 67, "start_beats": 0.75, "duration_beats": 0.25, "velocity": 74}, {"pitch": 65, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 72}], "thin": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}], "thicken": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 66, "start_beats": 1.0, "duration_beats": 0.25, "velocity": 64}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 67, "start_beats": 2.6, "duration_beats": 0.25, "velocity": 57}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}], "fragment": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 57, "start_beats": 2.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 60, "start_beats": 2.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 64, "start_beats": 3.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 62, "start_beats": 3.5, "duration_beats": 0.5, "velocity": 74}], "reharmonize": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 70, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 65, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}], "call_response": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 77, "start_beats": 2.04, "duration_beats": 0.92, "velocity": 78}, {"pitch": 74, "start_beats": 3.04, "duration_beats": 0.92, "velocity": 76}]}}, "growth": {"key": "D minor", "tempo": 120.0, "seed_summary": {"n_notes": 6, "span_beats": 4.0, "detected_key": "D minor", "continuation_starts_beat": 4}, "count": 3, "taste_weight": 0.33, "hint": "audition each suggestion's `notes` (your loop + its continuation), then rate_candidates(candidates, best=<i>, worst=<j>, reason='...')"}, "ideas": [{"id": "idea-1", "title": "1-2-1-5 (fall)", "role": "lead", "source": "lead", "dimension": "melody (rare cell)", "why": "grows your loop with a fall move you've used in only 11 tracks \u2014 native but dormant", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 62, "start_beats": 7.0, "duration_beats": 1.0, "velocity": 68}, {"pitch": 64, "start_beats": 8.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 9.0, "duration_beats": 0.5, "velocity": 68}, {"pitch": 69, "start_beats": 9.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 62, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 13.0, "duration_beats": 2.0, "velocity": 68}, {"pitch": 62, "start_beats": 15.0, "duration_beats": 1.5, "velocity": 68}, {"pitch": 64, "start_beats": 16.5, "duration_beats": 0.5, "velocity": 68}, {"pitch": 62, "start_beats": 17.0, "duration_beats": 1.0, "velocity": 68}, {"pitch": 62, "start_beats": 18.0, "duration_beats": 0.25, "velocity": 68}], "continuation": [{"pitch": 62, "start_beats": 7.0, "duration_beats": 1.0, "velocity": 68}, {"pitch": 64, "start_beats": 8.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 9.0, "duration_beats": 0.5, "velocity": 68}, {"pitch": 69, "start_beats": 9.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 62, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 13.0, "duration_beats": 2.0, "velocity": 68}, {"pitch": 62, "start_beats": 15.0, "duration_beats": 1.5, "velocity": 68}, {"pitch": 64, "start_beats": 16.5, "duration_beats": 0.5, "velocity": 68}, {"pitch": 62, "start_beats": 17.0, "duration_beats": 1.0, "velocity": 68}, {"pitch": 62, "start_beats": 18.0, "duration_beats": 0.25, "velocity": 68}], "backing": null, "candidate": {"id": "grow-1", "role": "lead", "source": "lead", "key": "D minor", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 62, "start_beats": 7.0, "duration_beats": 1.0, "velocity": 68}, {"pitch": 64, "start_beats": 8.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 9.0, "duration_beats": 0.5, "velocity": 68}, {"pitch": 69, "start_beats": 9.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 62, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 13.0, "duration_beats": 2.0, "velocity": 68}, {"pitch": 62, "start_beats": 15.0, "duration_beats": 1.5, "velocity": 68}, {"pitch": 64, "start_beats": 16.5, "duration_beats": 0.5, "velocity": 68}, {"pitch": 62, "start_beats": 17.0, "duration_beats": 1.0, "velocity": 68}, {"pitch": 62, "start_beats": 18.0, "duration_beats": 0.25, "velocity": 68}], "dimension": "melody (rare cell)", "the_move": "1-2-1-5 (fall)", "why": "grows your loop with a fall move you've used in only 11 tracks \u2014 native but dormant"}, "base_score": 0.762, "taste_score": 6.847, "clip_name": "sidekick idea-1 1-2-1-5 (fall)"}, {"id": "idea-2", "title": "the 2 (a note you rarely touch)", "role": "lead", "source": "lead", "dimension": "melody (rare degree)", "why": "extends your loop toward the 2, one of your least-used in-key notes", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 62, "start_beats": 4.5, "duration_beats": 1.0, "velocity": 68}, {"pitch": 64, "start_beats": 5.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 69, "start_beats": 9.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 64, "start_beats": 9.5, "duration_beats": 0.5, "velocity": 68}, {"pitch": 69, "start_beats": 11.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 67, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 14.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 64, "start_beats": 15.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 69, "start_beats": 16.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 17.0, "duration_beats": 0.25, "velocity": 68}], "continuation": [{"pitch": 62, "start_beats": 4.5, "duration_beats": 1.0, "velocity": 68}, {"pitch": 64, "start_beats": 5.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 69, "start_beats": 9.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 64, "start_beats": 9.5, "duration_beats": 0.5, "velocity": 68}, {"pitch": 69, "start_beats": 11.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 67, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 14.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 64, "start_beats": 15.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 69, "start_beats": 16.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 17.0, "duration_beats": 0.25, "velocity": 68}], "backing": null, "candidate": {"id": "grow-2", "role": "lead", "source": "lead", "key": "D minor", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 62, "start_beats": 4.5, "duration_beats": 1.0, "velocity": 68}, {"pitch": 64, "start_beats": 5.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 69, "start_beats": 9.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 64, "start_beats": 9.5, "duration_beats": 0.5, "velocity": 68}, {"pitch": 69, "start_beats": 11.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 67, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 14.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 64, "start_beats": 15.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 69, "start_beats": 16.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 17.0, "duration_beats": 0.25, "velocity": 68}], "dimension": "melody (rare degree)", "the_move": "the 2 (a note you rarely touch)", "why": "extends your loop toward the 2, one of your least-used in-key notes"}, "base_score": 0.751, "taste_score": 6.424, "clip_name": "sidekick idea-2 the 2 (a note you rarely touch)"}, {"id": "idea-3", "title": "v\u2192VI", "role": "harmony", "source": "harmony", "dimension": "harmony (rare progression)", "why": "continues your loop through v\u2192VI \u2014 a progression you reach for far less than VI\u2194iv, a different harmonic color", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 57, "start_beats": 4.5, "duration_beats": 2.0, "velocity": 68}, {"pitch": 53, "start_beats": 6.5, "duration_beats": 2.0, "velocity": 68}, {"pitch": 53, "start_beats": 8.5, "duration_beats": 1.5, "velocity": 68}, {"pitch": 57, "start_beats": 10.0, "duration_beats": 0.5, "velocity": 68}, {"pitch": 58, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 57, "start_beats": 14.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 62, "start_beats": 16.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 67, "start_beats": 18.5, "duration_beats": 2.0, "velocity": 68}], "continuation": [{"pitch": 57, "start_beats": 4.5, "duration_beats": 2.0, "velocity": 68}, {"pitch": 53, "start_beats": 6.5, "duration_beats": 2.0, "velocity": 68}, {"pitch": 53, "start_beats": 8.5, "duration_beats": 1.5, "velocity": 68}, {"pitch": 57, "start_beats": 10.0, "duration_beats": 0.5, "velocity": 68}, {"pitch": 58, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 57, "start_beats": 14.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 62, "start_beats": 16.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 67, "start_beats": 18.5, "duration_beats": 2.0, "velocity": 68}], "backing": {"pad": [{"pitch": 69, "start_beats": 4, "duration_beats": 8, "velocity": 62}, {"pitch": 72, "start_beats": 4, "duration_beats": 8, "velocity": 58}, {"pitch": 72, "start_beats": 4, "duration_beats": 8, "velocity": 54}, {"pitch": 70, "start_beats": 12, "duration_beats": 8, "velocity": 62}, {"pitch": 72, "start_beats": 12, "duration_beats": 8, "velocity": 58}, {"pitch": 72, "start_beats": 12, "duration_beats": 8, "velocity": 54}], "bass": [{"pitch": 45, "start_beats": 4, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 6.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 8.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 10.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 12, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 14.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 16.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 18.0, "duration_beats": 1.0, "velocity": 82}]}, "candidate": {"id": "grow-3", "role": "harmony", "source": "harmony", "key": "D minor", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 57, "start_beats": 4.5, "duration_beats": 2.0, "velocity": 68}, {"pitch": 53, "start_beats": 6.5, "duration_beats": 2.0, "velocity": 68}, {"pitch": 53, "start_beats": 8.5, "duration_beats": 1.5, "velocity": 68}, {"pitch": 57, "start_beats": 10.0, "duration_beats": 0.5, "velocity": 68}, {"pitch": 58, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 57, "start_beats": 14.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 62, "start_beats": 16.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 67, "start_beats": 18.5, "duration_beats": 2.0, "velocity": 68}], "dimension": "harmony (rare progression)", "the_move": "v\u2192VI", "why": "continues your loop through v\u2192VI \u2014 a progression you reach for far less than VI\u2194iv, a different harmonic color", "backing": {"pad": [{"pitch": 69, "start_beats": 4, "duration_beats": 8, "velocity": 62}, {"pitch": 72, "start_beats": 4, "duration_beats": 8, "velocity": 58}, {"pitch": 72, "start_beats": 4, "duration_beats": 8, "velocity": 54}, {"pitch": 70, "start_beats": 12, "duration_beats": 8, "velocity": 62}, {"pitch": 72, "start_beats": 12, "duration_beats": 8, "velocity": 58}, {"pitch": 72, "start_beats": 12, "duration_beats": 8, "velocity": 54}], "bass": [{"pitch": 45, "start_beats": 4, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 6.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 8.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 10.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 12, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 14.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 16.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 18.0, "duration_beats": 1.0, "velocity": 82}]}}, "base_score": 0.786, "taste_score": 6.915, "clip_name": "sidekick idea-3 v\u2192VI"}], "candidates": [{"id": "grow-1", "role": "lead", "source": "lead", "key": "D minor", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 62, "start_beats": 7.0, "duration_beats": 1.0, "velocity": 68}, {"pitch": 64, "start_beats": 8.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 9.0, "duration_beats": 0.5, "velocity": 68}, {"pitch": 69, "start_beats": 9.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 62, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 13.0, "duration_beats": 2.0, "velocity": 68}, {"pitch": 62, "start_beats": 15.0, "duration_beats": 1.5, "velocity": 68}, {"pitch": 64, "start_beats": 16.5, "duration_beats": 0.5, "velocity": 68}, {"pitch": 62, "start_beats": 17.0, "duration_beats": 1.0, "velocity": 68}, {"pitch": 62, "start_beats": 18.0, "duration_beats": 0.25, "velocity": 68}], "dimension": "melody (rare cell)", "the_move": "1-2-1-5 (fall)", "why": "grows your loop with a fall move you've used in only 11 tracks \u2014 native but dormant"}, {"id": "grow-2", "role": "lead", "source": "lead", "key": "D minor", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 62, "start_beats": 4.5, "duration_beats": 1.0, "velocity": 68}, {"pitch": 64, "start_beats": 5.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 69, "start_beats": 9.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 64, "start_beats": 9.5, "duration_beats": 0.5, "velocity": 68}, {"pitch": 69, "start_beats": 11.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 67, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 14.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 64, "start_beats": 15.0, "duration_beats": 0.25, "velocity": 68}, {"pitch": 69, "start_beats": 16.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 62, "start_beats": 17.0, "duration_beats": 0.25, "velocity": 68}], "dimension": "melody (rare degree)", "the_move": "the 2 (a note you rarely touch)", "why": "extends your loop toward the 2, one of your least-used in-key notes"}, {"id": "grow-3", "role": "harmony", "source": "harmony", "key": "D minor", "notes": [{"pitch": 62, "start_beats": 0.0, "duration_beats": 0.5, "velocity": 80}, {"pitch": 65, "start_beats": 0.5, "duration_beats": 0.5, "velocity": 76}, {"pitch": 69, "start_beats": 1.0, "duration_beats": 0.5, "velocity": 78}, {"pitch": 67, "start_beats": 1.5, "duration_beats": 0.5, "velocity": 74}, {"pitch": 65, "start_beats": 2.0, "duration_beats": 1.0, "velocity": 72}, {"pitch": 62, "start_beats": 3.0, "duration_beats": 1.0, "velocity": 70}, {"pitch": 57, "start_beats": 4.5, "duration_beats": 2.0, "velocity": 68}, {"pitch": 53, "start_beats": 6.5, "duration_beats": 2.0, "velocity": 68}, {"pitch": 53, "start_beats": 8.5, "duration_beats": 1.5, "velocity": 68}, {"pitch": 57, "start_beats": 10.0, "duration_beats": 0.5, "velocity": 68}, {"pitch": 58, "start_beats": 12.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 57, "start_beats": 14.5, "duration_beats": 0.25, "velocity": 68}, {"pitch": 62, "start_beats": 16.0, "duration_beats": 0.5, "velocity": 76}, {"pitch": 67, "start_beats": 18.5, "duration_beats": 2.0, "velocity": 68}], "dimension": "harmony (rare progression)", "the_move": "v\u2192VI", "why": "continues your loop through v\u2192VI \u2014 a progression you reach for far less than VI\u2194iv, a different harmonic color", "backing": {"pad": [{"pitch": 69, "start_beats": 4, "duration_beats": 8, "velocity": 62}, {"pitch": 72, "start_beats": 4, "duration_beats": 8, "velocity": 58}, {"pitch": 72, "start_beats": 4, "duration_beats": 8, "velocity": 54}, {"pitch": 70, "start_beats": 12, "duration_beats": 8, "velocity": 62}, {"pitch": 72, "start_beats": 12, "duration_beats": 8, "velocity": 58}, {"pitch": 72, "start_beats": 12, "duration_beats": 8, "velocity": 54}], "bass": [{"pitch": 45, "start_beats": 4, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 6.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 8.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 45, "start_beats": 10.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 12, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 14.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 16.0, "duration_beats": 1.0, "velocity": 82}, {"pitch": 46, "start_beats": 18.0, "duration_beats": 1.0, "velocity": 82}]}}], "audition_lanes": [{"lane_index": 0, "idea_id": "idea-1", "track_offset": 0, "scene_index": 0, "clip_name": "sidekick idea-1 1-2-1-5 (fall)", "role": "lead", "source": "lead", "n_notes": 16, "requires_explicit_target": true}, {"lane_index": 1, "idea_id": "idea-2", "track_offset": 1, "scene_index": 0, "clip_name": "sidekick idea-2 the 2 (a note you rarely touch)", "role": "lead", "source": "lead", "n_notes": 16, "requires_explicit_target": true}, {"lane_index": 2, "idea_id": "idea-3", "track_offset": 2, "scene_index": 0, "clip_name": "sidekick idea-3 v\u2192VI", "role": "harmony", "source": "harmony", "n_notes": 14, "requires_explicit_target": true}], "write_policy": {"auto_write": false, "requires_confirm": true, "requires_explicit_target": true, "handoff_tool": "prepare_idea_pack_audition_lanes"}, "rating_hint": "After listening, call rate_candidates(pack['candidates'], best=<i>, worst=<j>, reason='...', contrast_axis=pack['contrast_axis']). Ratings train only when the pack varied one supported model axis."};
+if (typeof document !== "undefined" && document.addEventListener)
+  document.addEventListener("DOMContentLoaded", initPanel);
+</script>
+</body>
+</html>

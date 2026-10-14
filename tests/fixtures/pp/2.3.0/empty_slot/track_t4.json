@@ -1,0 +1,27 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips"
+    ],
+    "path": "t4"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 0,
+          "groupId": "5",
+          "id": "7",
+          "isGroupMember": true,
+          "name": "Synth C 1-2",
+          "path": "t4",
+          "sessionClips": [],
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

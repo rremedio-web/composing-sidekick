@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "length": "1bar",
+    "name": "L0",
+    "notes": "[{\"p\": 60, \"t\": 0, \"d\": 1, \"v\": 100}, {\"p\": 64, \"t\": 2, \"d\": 1, \"v\": 100}]",
+    "path": "t10/l0[1|1]"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "detail": "expand the take-lanes arrow on the track header in Live to see it",
+          "id": "561",
+          "noteCount": 2,
+          "path": "t10/l0[1|1]"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

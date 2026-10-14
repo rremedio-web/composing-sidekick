@@ -1,0 +1,25 @@
+{
+  "arguments": {
+    "id": "999999,999998"
+  },
+  "response": {
+    "content": [
+      {
+        "json": [
+          {
+            "detail": "id \"999999\" does not exist",
+            "id": "999999",
+            "ok": false
+          },
+          {
+            "detail": "id \"999998\" does not exist",
+            "id": "999998",
+            "ok": false
+          }
+        ]
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-clip"
+}

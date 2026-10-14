@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "mute": true,
+    "name": "CAPTURE 24 A renamed",
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "529",
+          "path": "t10"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

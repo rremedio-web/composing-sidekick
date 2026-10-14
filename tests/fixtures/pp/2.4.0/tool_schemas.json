@@ -1,0 +1,1454 @@
+{
+  "ppal-connect": {
+    "description": "Connect to Ableton Live and initialize Producer Pal. Call before other ppal-* tools when the user says use/connect to ableton.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {},
+      "type": "object"
+    }
+  },
+  "ppal-context": {
+    "description": "The user's persistent context and memory. `scope` picks the layer, `action` reads or writes it. Prefer read before any write/delete.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "action": {
+          "default": "read",
+          "description": "read (default): project/global \u2192 the document; memory \u2192 the entry named `name`, or the whole index if no `name`. write: replace the document, or create/update the memory entry `name`. delete: remove the memory entry `name`.",
+          "enum": [
+            "read",
+            "write",
+            "delete"
+          ],
+          "type": "string"
+        },
+        "content": {
+          "description": "Text to write \u2014 project/global: the whole document; memory: the entry body (one fact). Max 10000 chars.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Memory entry's one-line recall hook for the index \u2014 what's inside and when it's relevant. Required on a memory write.",
+          "maxLength": 500,
+          "type": "string"
+        },
+        "force": {
+          "description": "Only when a write was skipped for dropping the whole document: true replaces it anyway.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Memory entry name (read/write/delete on scope:memory), one entry per call. Reuse a name to update, not duplicate.",
+          "maxLength": 200,
+          "type": "string"
+        },
+        "scope": {
+          "default": "project",
+          "description": "project (default): facts about THIS Live Set (genre, song structure), always in its context. global: who the user is across ALL projects (style, preferences, high-level goals), always in context. memory: durable facts and rules that matter only in CERTAIN situations, loaded on demand by name.",
+          "enum": [
+            "project",
+            "global",
+            "memory"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-create-clip": {
+    "description": "Create MIDI or audio clip(s). Requires path \u2014 't0/s0' for the session, 't0[5|1]' for the arrangement. For audio: use sampleFile (absolute path), otherwise omit sampleFile to create a MIDI clip. The sample defines an audio clip's region, so start/length/firstStart/looping are MIDI-only. Params with no list form apply to every clip.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "auto": {
+          "description": "auto-play the new session clip(s) \u2014 worth setting whenever the user will want to hear what you made. play-scene launches the whole scene so the new clip stays in sync with the others (it restarts them; say so first). play-clip fires the clip alone",
+          "enum": [
+            "play-scene",
+            "play-clip"
+          ],
+          "type": "string"
+        },
+        "color": {
+          "description": "#RRGGBB, or comma-separated one per path",
+          "type": "string"
+        },
+        "firstStart": {
+          "description": "bar|beat playback start (looping clips, when different from start; clip meter); or comma-separated one per path",
+          "type": "string"
+        },
+        "gainDb": {
+          "description": "audio clip gain in decibels, 0 = unity (ignored for MIDI)",
+          "maximum": 24,
+          "minimum": -70,
+          "type": "number"
+        },
+        "length": {
+          "description": "duration: <count>bar (e.g., '4bar'), n<fraction> note value (e.g., 'n/4'), or <count>bar+n<fraction> (e.g., '1bar+n/4'). Clip meter. MIDI only, default: next full bar after latest note. Audio clip length comes from the sample. Or comma-separated one per path",
+          "type": "string"
+        },
+        "looping": {
+          "description": "enable looping for the clip",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "name, or comma-separated one per path",
+          "type": "string"
+        },
+        "notes": {
+          "description": "MIDI notes as a JSON array string, e.g. `[{p:60,t:0,d:4,v:100}]` (see Skills) - MIDI clips only",
+          "type": "string"
+        },
+        "path": {
+          "description": "where the clip(s) go, comma-separated for multiple. 't<track>/s<scene>' is a clip slot (scenes are created up to that index); 't<track>[<position>]' is that spot on the track's arrangement, where a position is bar|beat or loc:<locator name or id>. An arrangement path needs both halves. 't<track>/l<lane>[<position>]' puts it on a take lane, creating lanes up to that index. All indices 0-based, so 't0/s0' is the first track's first scene, and a number the user says is 1-based - their \"scene 3\" is s2 (e.g., 't0/s0' or 't0[5|1]' or 't0/s0,t1[loc:Chorus]')",
+          "type": "string"
+        },
+        "pitchShift": {
+          "description": "audio clip pitch shift in semitones, supports decimals (ignored for MIDI)",
+          "maximum": 48,
+          "minimum": -48,
+          "type": "number"
+        },
+        "sampleFile": {
+          "description": "absolute path to audio file - audio clips only; or comma-separated one per path (write a comma in a path as \\,)",
+          "type": "string"
+        },
+        "start": {
+          "description": "bar|beat position where loop/clip region begins (clip meter); or comma-separated one per path",
+          "type": "string"
+        },
+        "timeSignature": {
+          "description": "N/D (4/4), default: global time signature; or comma-separated one per path",
+          "type": "string"
+        },
+        "transforms": {
+          "description": "transform expressions (parameter: expression per line). Note-count operations (ratchet()/repeat()/split()/merge()) change how many notes exist",
+          "type": "string"
+        },
+        "warpMode": {
+          "description": "audio clip warp mode (ignored for MIDI)",
+          "enum": [
+            "beats",
+            "tones",
+            "texture",
+            "repitch",
+            "complex",
+            "pro"
+          ],
+          "type": "string"
+        },
+        "warping": {
+          "description": "audio clips only. Omit and Live decides per its Loop/Warp Short Samples setting, often time-stretching the file to the tempo. false = play the file as rendered. The state Live settled on comes back as `warping` unless it's the one you asked for",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-create-device": {
+    "description": "Create a native Live device (instrument, MIDI effect, or audio effect) on a track or inside a chain. Params with no list form apply to every device.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "device": {
+          "description": "device (e.g. \"Wavetable\", \"Drum Rack\"), or comma-separated one per path; omit this and preset to list available devices",
+          "type": "string"
+        },
+        "name": {
+          "description": "name, or comma-separated one per path",
+          "type": "string"
+        },
+        "params": {
+          "description": "applied after creation \u2014 array of {name, value} or {id, value}. name = a param name; id = a param id from read-device; value in display units (enum string, note name, number) \u2014 use the `unit` read-device reports for that param, or no unit at all; a param with no `unit` takes a bare number. Many params only accept a coarse ladder of values, so a request lands on the nearest one. Every param sent comes back as one entry, in order: id and name alone when it took the value asked for, the value it reads as (plus a `detail`) when Live kept a different one, or `ok:false` and why nothing was written. For a Drum Rack, prefix the name with a pad path to address a pad's device, e.g. {name:'pC1/sample', value:'<abs file path>'} loads a sample into pad C1 (auto-creates the pad's Simpler) \u2014 build a full kit in one call",
+          "items": {
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "insertion path(s), required with device, comma-separated for multiple (e.g., 't0/d+' or 't0/d+,t1/d+,t0/d0/c0/d+'). 't0/d+' appends; 't0/d1' inserts at 1. An insert renumbers the chain, so no later entry may be spelled through a chain an earlier one inserts into. 't0/d0/c+' appends a new chain to that rack and loads the device into it (the result reports the index it landed at); 'c<n>' makes the chains up to n. In a Drum Rack a chain belongs to a pad, so use 't0/d0/pC1' or 't0/d0/pC1/c+' for another layer",
+          "type": "string"
+        },
+        "preset": {
+          "description": "create from a preset (needs the Producer Pal remote script): a preset name, looked up among device's presets when device is given, else among all; or a path from ppal-library. Comma-separated one per path",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-create-scene": {
+    "description": "Create empty scene(s) or capture playing session clips. Params with no list form apply to every scene.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "capture": {
+          "default": false,
+          "description": "copy playing session clips instead of creating empty?",
+          "type": "boolean"
+        },
+        "color": {
+          "description": "#RRGGBB, or comma-separated one per scene",
+          "type": "string"
+        },
+        "name": {
+          "description": "name, or comma-separated one per scene",
+          "type": "string"
+        },
+        "path": {
+          "description": "where they go: 's+' appends, 's<index>' inserts there and shifts the rest down (s0 is the first scene, so a user's \"scene 3\" is s2). Comma-separated for several, one entry per scene, in order (e.g. 's+,s+' appends two, 's2,s2' inserts two at 2). Required when capture=false, optional when capture=true",
+          "type": "string"
+        },
+        "tempo": {
+          "description": "BPM (-1 disables when capturing)",
+          "type": "number"
+        },
+        "timeSignature": {
+          "description": "N/D (4/4) or \"disabled\" when capturing, or comma-separated one per scene",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-create-track": {
+    "description": "Create track(s). Params with no list form apply to every track.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "arm": {
+          "description": "record armed?",
+          "type": "boolean"
+        },
+        "color": {
+          "description": "#RRGGBB, or comma-separated one per track",
+          "type": "string"
+        },
+        "mute": {
+          "description": "muted?",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "name, or comma-separated one per track",
+          "type": "string"
+        },
+        "path": {
+          "description": "where it goes: 't+' appends, 't<index>' inserts there (t0 is the first track, so a user's \"track 3\" is t2), 'rt+' adds a return track. Comma-separated for several, one entry per track, in order (e.g. 't+,t+,t+' appends three, 't2,t2' inserts two at 2)",
+          "type": "string"
+        },
+        "solo": {
+          "description": "soloed?",
+          "type": "boolean"
+        },
+        "type": {
+          "default": "midi",
+          "description": "type",
+          "enum": [
+            "midi",
+            "audio"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-delete": {
+    "description": "Delete objects. Supports tracks, scenes, clips, devices, drum pads, and drum rack chains. Every type takes an id or a path.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "id": {
+          "description": "ID(s) to delete, comma-separated for multiple (must be same type)",
+          "type": "string"
+        },
+        "path": {
+          "description": "path(s) to delete, comma-separated for multiple: tracks ('t0', 'rt1'), scenes ('s0'), session clips ('t0/s1'), arrangement clips by where they start ('t0[5|1]'), devices ('t0/d1'), drum pads ('t1/d0/pC1'), one layer of a pad ('t1/d0/pC1/c1'). Deleting shifts every later sibling down, so a path in the result is the address from before the call.",
+          "type": "string"
+        },
+        "type": {
+          "description": "type of objects to delete; 'chain' removes one chain from a Drum Rack pad",
+          "enum": [
+            "track",
+            "scene",
+            "clip",
+            "device",
+            "drum-pad",
+            "chain"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    }
+  },
+  "ppal-duplicate": {
+    "description": "Duplicate an object, or several \u2014 id or path takes a comma-separated list. Supports tracks, scenes, clips, devices, and drum pads. Use count for multiple track/scene copies, and toPath for the destination: a clip slot, a spot on the arrangement, a track, a device chain, or a drum pad. Params with no list form apply to every copy.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "arrangementLength": {
+          "description": "clip/scene copies to the arrangement only. duration: <count>bar (e.g., '4bar'), n<fraction> note value (e.g., 'n/4'), or <count>bar+n<fraction> (e.g., '1bar+n/4'), or comma-separated one per copy; song meter. Shorter than the source trims the copy; longer tiles copies to fill the span (many clips, not one) \u2014 for a single clip use ppal-update-clip with looping false and notes for the full length",
+          "type": "string"
+        },
+        "color": {
+          "description": "#RRGGBB, or comma-separated one per copy",
+          "type": "string"
+        },
+        "count": {
+          "default": 1,
+          "description": "copies per source (tracks/scenes only, ignored for clips/devices)",
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "id": {
+          "description": "id(s) of the object(s) to duplicate, comma-separated for multiple (type 'track' also takes a take lane's id, which needs a lane or track toPath)",
+          "type": "string"
+        },
+        "name": {
+          "description": "name, or comma-separated one per copy",
+          "type": "string"
+        },
+        "path": {
+          "description": "path(s) of the object(s) to duplicate, instead of or alongside id, comma-separated for multiple (e.g. 't0', 's1', 't0/s1', 't0[5|1]', 't0/d0', 't0/d0/pC1'; 't0/l0' names a take lane, and needs a lane or track toPath)",
+          "type": "string"
+        },
+        "routeToSource": {
+          "description": "tracks only (errors otherwise): the copy gets no clips or devices of its own and plays the source track's instrument (for MIDI layering/polyrhythms)",
+          "type": "boolean"
+        },
+        "toPath": {
+          "description": "destination(s). Clips: 't2/s1' = a clip slot, third track and second scene (both count from 0, and scenes are created up to that index); 't2[5|1]' = that spot on that track's arrangement, and '[5|1]' the same spot on the source clip's own track (a position is bar|beat or loc:<locator name or id> \u2014 't2[loc:Chorus]' names a section instead of counting bars; an arrangement track must match the clip's MIDI/audio type); 't2/l0' = its first take lane, and lanes are created up to that index; 't2' alone needs a position, and omitting toPath uses the source clip's own track. Devices: 't1/d+' appends, 't1/d0' inserts at 0. Chains: 't1/d0/c+' appends the copy to that rack (any rack of the same kind); omitting toPath appends to the chain's own rack. Scenes: '[5|1]' = that spot on the arrangement, across every track. Tracks: 't2/l0' (or 't2/l+') copies the source's arrangement clips onto that take lane, at the positions they already have. A track source copies its main lane, a 't2/l0' source that lane. A 't2/l0' source onto a bare 't2' promotes the lane's clips to the main lane, over the clips already there. Clips only, and the two tracks must match MIDI/audio type; name/color label the copies. A track copy needs no toPath otherwise. Drum pads: 't0/d0/pD1', required, and must be in the same rack as the source pad (id or path names the source). Comma-separated, one per copy; several sources need one each, except a bare '[5|1]' for clips",
+          "type": "string"
+        },
+        "transforms": {
+          "description": "transform expressions (broadcast across copies; clips only); newline-separated for multiple. Use clip.index / clipseq() for per-copy variation. Note-count operations (ratchet()/repeat()/split()/merge()) change how many notes exist",
+          "type": "string"
+        },
+        "type": {
+          "description": "type of object to duplicate",
+          "enum": [
+            "track",
+            "scene",
+            "clip",
+            "device",
+            "drum-pad",
+            "chain"
+          ],
+          "type": "string"
+        },
+        "withoutClips": {
+          "description": "exclude clips?",
+          "type": "boolean"
+        },
+        "withoutDevices": {
+          "description": "exclude devices?",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    }
+  },
+  "ppal-library": {
+    "description": "Search Live's browser library by name, tags, kind, or source. Defaults to audio samples; pass kind for anything else. Items from the user's configured sample folder always appear before Live's library items (sampleFolder is an explicit user choice); within each group, results sort by use_count desc by default.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "action": {
+          "default": "search",
+          "description": "search: filter library items (default) | listTags: available tags | listCategories: Live's category taxonomy (Sounds, Drums, Genres, \u2026); pass category to drill into its tags | listPlugins: installed VST/VST3/AU plugins (filter with query, vendor, format, deviceKind, subcategory) | findSimilar: rank samples by audio similarity to similarTo | findDuplicates: group library samples with identical audio. findSimilar and findDuplicates also take the search filters.",
+          "enum": [
+            "search",
+            "listTags",
+            "listCategories",
+            "listPlugins",
+            "findSimilar",
+            "findDuplicates"
+          ],
+          "type": "string"
+        },
+        "category": {
+          "description": "listCategories only: a top-level category name (from listCategories with no category) to drill into; returns its tag names, each usable as a tags filter",
+          "type": "string"
+        },
+        "deviceKind": {
+          "description": "device classification filter (search + listPlugins; for listPlugins only instrument/audiofx apply)",
+          "enum": [
+            "instrument",
+            "audiofx",
+            "midifx"
+          ],
+          "type": "string"
+        },
+        "format": {
+          "description": "plugin binary format filter (listPlugins only)",
+          "enum": [
+            "VST",
+            "VST3",
+            "AU"
+          ],
+          "type": "string"
+        },
+        "inFolder": {
+          "description": "absolute folder path; returns only immediate children of that folder (search only). Composes with other filters. Case-insensitive (ASCII). Unresolvable paths return no results with a `detail` explaining the path wasn't found.",
+          "type": "string"
+        },
+        "kind": {
+          "default": "audio",
+          "description": "content kind filter (search only; default: audio \u2014 the only kind loadable into clips/Simpler; a preset or device-group result's path loads as `preset` on ppal-create-device/ppal-update-device).audio=samples | midi=.mid files plus MIDI .alc clips, so it covers all MIDI content | live-clip=all .alc clips (MIDI+audio; each result reports subtype) | preset=instrument/effect presets | device-group=.adg racks | m4l-device=.amxd | live-set=.als | plugin=VST/AU | image/video=media | folder=directory entries (distinct from source:sampleFolder)",
+          "enum": [
+            "audio",
+            "midi",
+            "live-clip",
+            "preset",
+            "device-group",
+            "m4l-device",
+            "live-set",
+            "plugin",
+            "image",
+            "video",
+            "folder"
+          ],
+          "type": "string"
+        },
+        "limit": {
+          "description": "max results; defaults to 50 (search) or 200 (listTags)",
+          "type": "number"
+        },
+        "query": {
+          "description": "name substring (search: supports * as a multi-character wildcard, e.g. kick*acoustic; listPlugins: plain case-insensitive substring)",
+          "type": "string"
+        },
+        "searches": {
+          "description": "search only: run several filtered searches in one call (e.g. build a drum kit) instead of the top-level filters. Each entry takes the same filters as a single search, plus an optional label; results come back in order, grouped per query (max 20). One entry answers like a plain search, ungrouped",
+          "items": {
+            "properties": {
+              "deviceKind": {
+                "description": "device classification filter",
+                "enum": [
+                  "instrument",
+                  "audiofx",
+                  "midifx"
+                ],
+                "type": "string"
+              },
+              "inFolder": {
+                "description": "absolute folder path; immediate children only",
+                "type": "string"
+              },
+              "kind": {
+                "default": "audio",
+                "description": "content kind filter (default: audio)",
+                "enum": [
+                  "audio",
+                  "midi",
+                  "live-clip",
+                  "preset",
+                  "device-group",
+                  "m4l-device",
+                  "live-set",
+                  "plugin",
+                  "image",
+                  "video",
+                  "folder"
+                ],
+                "type": "string"
+              },
+              "label": {
+                "description": "label for this query's result group (defaults to its index)",
+                "type": "string"
+              },
+              "limit": {
+                "description": "max results; defaults to 50",
+                "type": "number"
+              },
+              "query": {
+                "description": "name substring; use * as a multi-character wildcard",
+                "type": "string"
+              },
+              "sort": {
+                "description": "sort order; defaults to use_count desc",
+                "enum": [
+                  "use_count",
+                  "mod_date",
+                  "name"
+                ],
+                "type": "string"
+              },
+              "source": {
+                "description": "where the file lives",
+                "enum": [
+                  "sampleFolder",
+                  "user",
+                  "pack",
+                  "builtin",
+                  "cloud",
+                  "plugin"
+                ],
+                "type": "string"
+              },
+              "tags": {
+                "description": "comma-separated tag names; results must match ALL listed tags",
+                "type": "string"
+              },
+              "type": {
+                "description": "playback type: loop | oneshot | impulse-response",
+                "enum": [
+                  "loop",
+                  "oneshot",
+                  "impulse-response"
+                ],
+                "type": "string"
+              },
+              "verifyPaths": {
+                "description": "stat each result's path and add pathExists (true/false) so you can skip files moved/deleted since Live last indexed",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "similarTo": {
+          "description": "findSimilar only: absolute path of a seed sample (e.g. a path from a prior search) to rank other samples by audio similarity. Combine with the search filters to constrain candidates \u2014 e.g. similarTo a kick + tags=Kick for 'more kicks like this one'. Like Live's Show Similar Files, identical audio is listed once. Each result carries a `distance` (lower = more similar; no fixed scale).",
+          "type": "string"
+        },
+        "sort": {
+          "description": "sort order (search only); defaults to use_count desc",
+          "enum": [
+            "use_count",
+            "mod_date",
+            "name"
+          ],
+          "type": "string"
+        },
+        "source": {
+          "description": "where the file lives (search only). sampleFolder=user-configured sample folder on disk (bypasses Live's DB) | user=your User Library | pack=installed Packs (factory + 3rd-party) | builtin=Ableton's Core Library | cloud=Cloud-stored items | plugin=installed VST/AU/etc. plugins",
+          "enum": [
+            "sampleFolder",
+            "user",
+            "pack",
+            "builtin",
+            "cloud",
+            "plugin"
+          ],
+          "type": "string"
+        },
+        "subcategory": {
+          "description": "subcategory substring filter, case-insensitive (listPlugins only; matches any of a plugin's genre/role tags, e.g. reverb, delay, synth). Also reported per result as `subcategories`.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "comma-separated tag names; results must match ALL listed tags (search only)",
+          "type": "string"
+        },
+        "type": {
+          "description": "playback type filter (search only): loop=loops | oneshot=one-shots (e.g. a kick) | impulse-response=reverb IRs, including ones other searches hide. Prefer oneshot for hits and loop for grooves. Also reported per result as `type`.",
+          "enum": [
+            "loop",
+            "oneshot",
+            "impulse-response"
+          ],
+          "type": "string"
+        },
+        "vendor": {
+          "description": "vendor/manufacturer substring, case-insensitive (listPlugins only)",
+          "type": "string"
+        },
+        "verifyPaths": {
+          "description": "search only: stat each result's path and add pathExists (true/false) so you can skip files moved/deleted since Live last indexed. Off by default (one filesystem check per result).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-live-api": {
+    "description": "Direct access to the Ableton Live Object Model. Execute multiple operations sequentially on a LiveAPI instance. Can read or modify any Live Set property \u2014 use with care.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "operations": {
+          "description": "Array of operations to execute (max 50)",
+          "items": {
+            "properties": {
+              "args": {
+                "description": "Arguments for call_method/call operations",
+                "items": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                },
+                "type": "array"
+              },
+              "method": {
+                "description": "Method name for call_method/call operations",
+                "type": "string"
+              },
+              "property": {
+                "description": "Property name for get/set/set_property/get_property/getProperty/getstring operations, or child type for getChildIds/getcount operations",
+                "type": "string"
+              },
+              "type": {
+                "description": "Operation type. Live Object Model: get, set, call, goto, info, getcount (child count), getstring (property as a string). set always returns 1, even when the write is rejected \u2014 read the property back to confirm. set_property does the same write, but reports the value you sent. Producer Pal helpers returning normalized values: getProperty, getChildIds, exists, getColor, setColor. exists is our judgment, not Live's: Live's own valid field reads 1 even for a bad path, so this checks the object id instead. The LiveAPI object itself, not the Live object it points at: get_property (reads a JS field, not a Live property), set_path, set_id, set_mode, and call_method (calls a JS method, not a Live method)",
+                "enum": [
+                  "get",
+                  "set",
+                  "set_property",
+                  "call",
+                  "goto",
+                  "info",
+                  "getcount",
+                  "getstring",
+                  "getProperty",
+                  "getChildIds",
+                  "exists",
+                  "getColor",
+                  "setColor",
+                  "get_property",
+                  "set_path",
+                  "set_mode",
+                  "set_id",
+                  "call_method"
+                ],
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "items": {
+                      "type": "number"
+                    },
+                    "type": "array"
+                  }
+                ],
+                "description": "Value for set/set_property operations, path for goto or set_path operations, id for set_id operations (the bare number \u2014 \"id 5\" points the object at nothing), mode for set_mode operations (0 follows the path, 1 follows the object), or color for setColor operations (a \"#RRGGBB\" hex string)"
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "type": "object"
+          },
+          "maxItems": 50,
+          "minItems": 1,
+          "type": "array"
+        },
+        "path": {
+          "description": "Optional LiveAPI path (e.g., 'live_set tracks 0'); one object, not a list",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operations"
+      ],
+      "type": "object"
+    }
+  },
+  "ppal-playback": {
+    "description": "Control playback of the arrangement and session scenes/clips.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "action": {
+          "description": "play-arrangement: from startTime, or from wherever it already is\nupdate-arrangement: set startTime and/or loop, without playing\nplay-scene: all clips in scene\nplay-session-clips: by id(s) or path(s)\nstop-session-clips: by id(s) or path(s)\n(both answer with one clips entry per id/path named, in order: {id, path}, or {id|path, ok:false, detail} for one that couldn't be reached)\nstop-all-session-clips: all\nstop: session and arrangement; takes startTime to park the next play",
+          "enum": [
+            "play-arrangement",
+            "update-arrangement",
+            "play-scene",
+            "play-session-clips",
+            "stop-session-clips",
+            "stop-all-session-clips",
+            "stop"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "clip ID(s), comma-separated for multiple; for play-scene, a scene ID (or a clip ID in that scene)",
+          "type": "string"
+        },
+        "loop": {
+          "description": "arrangement loop?",
+          "type": "boolean"
+        },
+        "loopEnd": {
+          "description": "bar|beat (song meter) or loc:<locator>; turns the loop on",
+          "type": "string"
+        },
+        "loopStart": {
+          "description": "bar|beat (song meter) or loc:<locator>; turns the loop on",
+          "type": "string"
+        },
+        "path": {
+          "description": "clip slot(s) 't<track>/s<scene>', both 0-based, comma-separated (e.g., 't0/s1' or 't0/s1,t2/s3'); for play-scene, a scene 's<scene>' (e.g., 's3') or any position in it",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "where arrangement playback starts, and restarts from if it's already playing. Stays put until something changes it: bar|beat in song meter, or loc:<locator name or id> (e.g. '5|1' or 'loc:Verse')",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "type": "object"
+    }
+  },
+  "ppal-read-clip": {
+    "description": "Read clip settings, MIDI notes, and audio properties. Returns overview by default. Use include to add detail. An arrangement clip reports its path as where it starts - 't0[5|1]', or 't0/l0[5|1]' on a take lane; read one by id.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "id": {
+          "description": "clip ID(s) to read, comma-separated for multiple",
+          "type": "string"
+        },
+        "include": {
+          "default": [],
+          "description": "notes = MIDI data (muted notes are hidden and counted in mutedNotes; edits leave them alone). timing = loop/start/end markers. sample = audio file info (sampleFile, gainDb, pitchShift). warp = warp settings (sampleLength, sampleRate, warping, warpMode). color. \"*\" = all",
+          "items": {
+            "enum": [
+              "sample",
+              "notes",
+              "color",
+              "timing",
+              "warp",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "clip location(s) to read, comma-separated, 0-based: a clip slot 't<track>/s<scene>' (e.g., 't0/s3'), or an arrangement clip by where it starts, 't<track>[<position>]' (e.g., 't0[5|1]')",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-read-device": {
+    "description": "Read information about a device, chain, or drum pad by ID or path. Returns overview by default. Use include to add detail.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "id": {
+          "description": "device or drum pad ID(s) to read, comma-separated for multiple",
+          "type": "string"
+        },
+        "include": {
+          "default": [],
+          "description": "chains, return-chains, drum-pads = rack contents (use maxDepth; a chain lists its own gainDb/pan/sends only when non-default). params, param-values = parameters of the addressed device only (read a nested device by its own path). drum-map = pad names keyed by note (drum name in stark, MIDI number in midi-json), plus drumRackPath naming the rack they belong to. sample = Simpler sample file path (flat top-level field; gainDb and other sample params are in params). actions = device-specific actions for update-device (name, signature, description). options = valid pseudo-param values (paramOptions) + dynamic catalogs for specialized devices (IR files, sidechain sources, wavetables) + Wavetable mod routes. \"*\" = all",
+          "items": {
+            "enum": [
+              "actions",
+              "chains",
+              "drum-map",
+              "drum-pads",
+              "params",
+              "param-values",
+              "return-chains",
+              "sample",
+              "options",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "maxDepth": {
+          "default": 0,
+          "description": "Device tree depth for chains/drum-pads. 0=chains only with deviceCount, 1=direct devices, 2+=deeper",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "paramSearch": {
+          "description": "Filter parameters by case-insensitive substring match on name",
+          "type": "string"
+        },
+        "path": {
+          "description": "path(s) to read, comma-separated (e.g., 't1/d0', 't1/inst', 't1/d0/c0', 't1/d0/pC1', 't1/d0/rc0')",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-read-live-set": {
+    "description": "Read Live Set global settings, track/scene overview. Returns overview by default. Use include to add detail.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "include": {
+          "default": [],
+          "description": "tracks, scenes = lists. routings, mixer, color = detail (use with tracks/scenes). locators = arrangement markers. \"*\" = all",
+          "items": {
+            "enum": [
+              "tracks",
+              "scenes",
+              "routings",
+              "mixer",
+              "color",
+              "locators",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-read-scene": {
+    "description": "Read scene settings and clips. Returns overview by default. Use include to add detail.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "id": {
+          "description": "scene ID(s) to read, comma-separated for multiple",
+          "type": "string"
+        },
+        "include": {
+          "default": [],
+          "description": "clips = clip list. notes, sample, timing, warp = clip detail (use with clips). color = scene + clip color. \"*\" = all",
+          "items": {
+            "enum": [
+              "clips",
+              "notes",
+              "sample",
+              "timing",
+              "warp",
+              "color",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "scene path(s) to read, comma-separated: 's<index>', where s0 is the first scene (a user's \"scene 3\" is s2)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-read-track": {
+    "description": "Read track settings, clips, and devices. Returns overview by default. Use include to add detail.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "id": {
+          "description": "track or take lane ID(s) to read, comma-separated for multiple",
+          "type": "string"
+        },
+        "include": {
+          "default": [],
+          "description": "session-clips, arrangement-clips = clip lists (arrangement-clips also lists take lanes). notes, timing, sample, warp = clip detail (use with clips). devices, routings, available-routings, mixer = track data. drum-map = the kit's actual pad pitches and names, plus drumRackPath (a pad path is <drumRackPath>/p<note>); read it before writing drums. color = track + clip color. \"*\" = all",
+          "items": {
+            "enum": [
+              "session-clips",
+              "arrangement-clips",
+              "notes",
+              "timing",
+              "sample",
+              "warp",
+              "devices",
+              "drum-map",
+              "routings",
+              "available-routings",
+              "mixer",
+              "color",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "track path(s) to read, comma-separated: 't<index>' (t0 is the first track, so a user's \"track 3\" is t2), 'rt0' for a return, 'mt' for the main track, 't0/l0' for one take lane",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-select": {
+    "description": "Navigate to and select items in Live. Use for \"show me\", \"go to\", \"open\" requests. No args: read current state. Selecting a clip, clip slot, or arrangement spot switches to its view (session/arrangement) unless view is given.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "id": {
+          "description": "select by ID (auto-detects track/scene/clip/device/chain/drum pad); one ID, not a list",
+          "type": "string"
+        },
+        "openPluginWindow": {
+          "description": "open (true) or close (false) a plug-in's (VST/AU) floating editor window; targets the device given by id or path",
+          "type": "boolean"
+        },
+        "path": {
+          "description": "select by path, 0-based: 't0/s3' a clip slot, 't0' a track, 'rt0' a return track, 'mt' the main track, 's3' a scene, 't0/d1' a device, 't0/d0/c1' a rack chain, 't0/d0/pC1' a drum pad, 't0[5|1]' (or 't0/l0[5|1]') a spot on the arrangement timeline, which moves the arrangement start marker there and selects the clip covering it, if any. One path, not a list - Live holds one selection",
+          "type": "string"
+        },
+        "view": {
+          "description": "main view",
+          "enum": [
+            "session",
+            "arrangement"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-update-clip": {
+    "description": "Update clip(s), MIDI notes, and warp settings (audio clips). Params with no list form apply to every clip.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "arrangementLength": {
+          "description": "duration: <count>bar (e.g., '4bar'), n<fraction> note value (e.g., 'n/4'), or <count>bar+n<fraction> (e.g., '1bar+n/4'), or comma-separated one per clip. Arrangement clips only; song meter. Lengthening a looping clip tiles copies to fill the span (many clips, not one); for a single clip, set looping false and supply notes for the full length",
+          "type": "string"
+        },
+        "arrangementSplit": {
+          "description": "comma-separated song positions to cut clips at: bar|beat in song meter, or loc:<locator name or id> (e.g., '9|1, loc:Chorus') - max 32 points. Cuts the clip into separate clips; to cut a held note into separate notes use split() in transforms. One list for every clip, not one per clip: each clip is cut wherever a position falls inside it, and a position outside it is ignored. Arrangement clips only; song meter. Cannot be combined with toPath or arrangementLength: the cut makes new clips, so those would either miss the new pieces or apply to every one of them - cut in one call, then move/resize the pieces in the next",
+          "type": "string"
+        },
+        "color": {
+          "description": "#RRGGBB, or comma-separated one per clip",
+          "type": "string"
+        },
+        "duplicateLoop": {
+          "description": "double the clip length and copy existing notes (and automation envelopes) into the new half (Live's Duplicate Loop). MIDI clips only. Cannot be combined with start/length - they set the region this doubles, so the clip would end up twice the length you asked for; to double a portion, send start/length in its own call first. preTransforms edit the source before the double; notes/transforms then apply across the full doubled clip",
+          "type": "boolean"
+        },
+        "firstStart": {
+          "description": "bar|beat playback start (looping clips, when different from start; clip meter); or comma-separated one per clip",
+          "type": "string"
+        },
+        "gainDb": {
+          "description": "audio clip gain in decibels, 0 = unity (ignored for MIDI)",
+          "maximum": 24,
+          "minimum": -70,
+          "type": "number"
+        },
+        "id": {
+          "description": "clip ID(s) to update, comma-separated for multiple",
+          "type": "string"
+        },
+        "length": {
+          "description": "duration: <count>bar (e.g., '4bar'), n<fraction> note value (e.g., 'n/4' = quarter), or <count>bar+n<fraction> (e.g., '1bar+n/4'); clip meter; or comma-separated one per clip",
+          "type": "string"
+        },
+        "looping": {
+          "description": "enable looping for the clip",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "name, or comma-separated one per clip",
+          "type": "string"
+        },
+        "notes": {
+          "description": "MIDI notes as a JSON array string, e.g. `[{p:60,t:0,d:4,v:100}]` (p pitch, t start & d duration in beats, v velocity; see Skills) - MIDI clips only. MERGES (overwrites at same pitch+start; restate to edit in place). `v:0` deletes the note at that pitch+start. To clear a region or move notes use preTransforms - don't rewrite the clip",
+          "type": "string"
+        },
+        "path": {
+          "description": "clip(s) to update instead of id, comma-separated: a clip slot 't<track>/s<scene>', or an arrangement clip by where it starts 't<track>[<position>]' (e.g., 't0/s1' or 't0[5|1],t2/s3')",
+          "type": "string"
+        },
+        "pitchShift": {
+          "description": "audio clip pitch shift in semitones, supports decimals (ignored for MIDI)",
+          "maximum": 48,
+          "minimum": -48,
+          "type": "number"
+        },
+        "preTransforms": {
+          "description": "transform expressions applied to EXISTING notes BEFORE merging any new notes (broadcast across the clips); clear or edit notes already in the clip. 'delete' (alias 'v0') removes: a whole bar ('3|*: delete', |* wildcard avoids spilling onto the next downbeat), a span ('1|1-2|1: delete'), one pitch ('C1: delete'), a pitch range ('C1-C5: delete'), or all ('delete'); also remap a drum lane ('C1: C4'). Works with or without notes",
+          "type": "string"
+        },
+        "quantize": {
+          "description": "quantize strength 0-1; default 1 (full snap) when quantizeGrid is set. Snaps note starts to quantizeGrid. MIDI clips only",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "quantizeGrid": {
+          "description": "grid that note starts snap to: 1/16 (default), 1/8, 1/4, 1/8T, 1/16T, 1/32; n/N note values also accepted (n/12=1/8T, n/24=1/16T); mixed grids 1/8+1/8T and 1/16+1/16T are enum-only",
+          "enum": [
+            "1/4",
+            "1/8",
+            "1/8T",
+            "1/8+1/8T",
+            "1/16",
+            "1/16T",
+            "1/16+1/16T",
+            "1/32",
+            "n/4",
+            "n/8",
+            "n/12",
+            "n/16",
+            "n/24",
+            "n/32"
+          ],
+          "type": "string"
+        },
+        "quantizePitch": {
+          "description": "limit quantization to one pitch (e.g. C3 or D#4), or comma-separated one per clip",
+          "type": "string"
+        },
+        "start": {
+          "description": "bar|beat position where loop/clip region begins (clip meter); or comma-separated one per clip",
+          "type": "string"
+        },
+        "timeSignature": {
+          "description": "N/D (4/4), or comma-separated one per clip",
+          "type": "string"
+        },
+        "toPath": {
+          "description": "where to move the clip(s): a clip slot 't<track>/s<scene>' (scenes are created up to that index), a spot on the arrangement 't<track>[<position>]' (a position is bar|beat or loc:<locator name or id>), a take lane 't<track>/l<lane>' (lanes are created up to that index), or '[<position>]' alone to keep the clip's own lane (e.g., 't2/s3' or 't2[5|1],[loc:Chorus]'). A lane with no position keeps the clip's own start. A clip re-created in a slot or on a take lane drops its automation envelopes. Comma-separated, one per clip; a lone '[<position>]' moves every clip, each on its own lane",
+          "type": "string"
+        },
+        "transforms": {
+          "description": "transform expressions applied AFTER merging notes (broadcast across the clips); newline-separated for multiple. Use clip.index / clipseq() for per-clip variation. Note-count operations (ratchet()/repeat()/split()/merge() - see Skills) change how many notes exist; prefer them over rewriting notes by hand",
+          "type": "string"
+        },
+        "warpMode": {
+          "description": "audio clip warp mode (ignored for MIDI)",
+          "enum": [
+            "beats",
+            "tones",
+            "texture",
+            "repitch",
+            "complex",
+            "pro"
+          ],
+          "type": "string"
+        },
+        "warping": {
+          "description": "audio clip warping on/off (ignored for MIDI). false resets the region to the whole file and turns looping off; looping:true forces warping back on",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-update-device": {
+    "description": "Update device(s), chain(s), or drum pad(s). Params with no list form apply to every target.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "abCompare": {
+          "description": "AB Compare: switch to 'a' or 'b' preset, or 'save' current to other slot",
+          "enum": [
+            "a",
+            "b",
+            "save"
+          ],
+          "type": "string"
+        },
+        "actions": {
+          "description": "Device-specific action(s), function-call syntax: bare name or name(args). E.g. \"reverse\", \"warpAs(4)\", \"setModulation('Osc 1 Pos','Env 2',0.5)\". Every action sent comes back as one entry, in order: the action alone when it ran, plus a `detail` when there was nothing to do, or `ok:false` and why nothing happened",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "chokeGroup": {
+          "description": "choke group 0-16, 0=none (drum chains only)",
+          "maximum": 16,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "color": {
+          "description": "#RRGGBB, or comma-separated one per target (chains only)",
+          "type": "string"
+        },
+        "force": {
+          "description": "Only when a sample write was skipped for replacing a pad's instrument: true replaces it anyway.",
+          "type": "boolean"
+        },
+        "gainDb": {
+          "description": "chain's own gain in dB (chains only; a pad path works unless the pad has layers, which take a layer path like 't0/d0/pC1/c1')",
+          "maximum": 6,
+          "minimum": -70,
+          "type": "number"
+        },
+        "id": {
+          "description": "ID(s) to update (device, chain, or drum pad), comma-separated for multiple",
+          "type": "string"
+        },
+        "macroCount": {
+          "description": "Rack only: set visible macro count (0-16). Macros come in pairs, so an odd count rounds up; the entry says where the count landed.",
+          "maximum": 16,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "macroVariation": {
+          "description": "Rack only: create/load/delete/revert variation, or randomize macros. load/delete require macroVariationIndex. create always appends.",
+          "enum": [
+            "create",
+            "load",
+            "delete",
+            "revert",
+            "randomize"
+          ],
+          "type": "string"
+        },
+        "macroVariationIndex": {
+          "description": "Rack only: variation index for load/delete operations (0-based)",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mappedPitch": {
+          "description": "output MIDI note e.g. 'C3', or comma-separated one per target (drum chains only)",
+          "type": "string"
+        },
+        "mute": {
+          "description": "mute state (chains/drum pads only)",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "name, or comma-separated one per target (not drum pads)",
+          "type": "string"
+        },
+        "pan": {
+          "description": "chain's own pan, -1 (left) to 1 (right) (chains only; a pad path works unless the pad has layers, which take a layer path)",
+          "maximum": 1,
+          "minimum": -1,
+          "type": "number"
+        },
+        "params": {
+          "description": "array of {name, value} or {id, value}. name = a param name; id = a param id from read-device; value in display units (enum string, note name, number) \u2014 use the `unit` read-device reports for that param, or no unit at all; a param with no `unit` takes a bare number. Many params only accept a coarse ladder of values, so a request lands on the nearest one. Every param sent comes back as one entry, in order: id and name alone when it took the value asked for, the value it reads as (plus a `detail`) when Live kept a different one, or `ok:false` and why nothing was written. For a Drum Rack target, prefix the name with a pad path, e.g. {name:'pC1/sample', value:'<abs file path>'} sets pad C1's sample (auto-creates the pad's Simpler)",
+          "items": {
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "comma-separated path(s) (e.g., 't1/d0', 't1/inst', 't1/d0/c0', 't1/d0/pC1')",
+          "type": "string"
+        },
+        "preset": {
+          "description": "preset to load onto the device before the rest of the update (needs the Producer Pal remote script): a preset name, or a path from ppal-library; comma-separated one per target. A preset for another device, or a rack, replaces the device: its id changes and its automation is lost",
+          "type": "string"
+        },
+        "sendGainDb": {
+          "description": "chain's send level in dB, requires sendReturn (chains only)",
+          "maximum": 0,
+          "minimum": -70,
+          "type": "number"
+        },
+        "sendReturn": {
+          "description": "rack return chain for sendGainDb: id, exact name (e.g. \"a Reverb\"), or letter (e.g. \"a\"), or comma-separated one per target; requires sendGainDb",
+          "type": "string"
+        },
+        "sends": {
+          "description": "set several of a chain's sends at once: [{return, gainDb}], where return is a rack return chain's id, exact name, or letter \u2014 the `return`/`returnId` read-device reports. Use instead of sendGainDb + sendReturn, which set one",
+          "items": {
+            "properties": {
+              "gainDb": {
+                "maximum": 0,
+                "minimum": -70,
+                "type": "number"
+              },
+              "return": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "return",
+              "gainDb"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "solo": {
+          "description": "solo state (chains/drum pads only)",
+          "type": "boolean"
+        },
+        "toPath": {
+          "description": "move to path ('t2/d+' appends, 't2/d1' inserts at 1, 't0/d0/c1/d+'; 't0/d0/c+' appends a new chain to that rack and moves the device into it). Comma-separated, one per target. To move a whole drum pad (trim, choke group, devices), target the pad path (path 't0/d0/pC1', toPath 't0/d0/pD1'); it stays in its rack and layers onto an occupied pad. A device moved alone keeps its chain's trim only into an empty, untouched chain",
+          "type": "string"
+        },
+        "wrapInRack": {
+          "description": "Wrap device(s) in a new rack (type auto-detected), in series in one chain: MIDI effects, instrument, audio effects, each kind in the order named. One instrument max; MIDI and audio effects together need an instrument",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-update-live-set": {
+    "description": "Update Live Set global settings or manage locators. Locator params with no list form apply to every locator.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "locatorId": {
+          "description": "Locator ID(s) from read-live-set, for delete/rename; comma-separated for several",
+          "type": "string"
+        },
+        "locatorName": {
+          "description": "Create/rename: one name for all, or one per locator. Delete: each name is also a target, deleting every locator with that name",
+          "type": "string"
+        },
+        "locatorOperation": {
+          "description": "Locator operation",
+          "enum": [
+            "create",
+            "delete",
+            "rename"
+          ],
+          "type": "string"
+        },
+        "locatorTime": {
+          "description": "Bar|beat position(s), song meter; comma-separated for several. Required for create. Delete/rename: more locators, after any locatorId",
+          "type": "string"
+        },
+        "scale": {
+          "description": "\"Root ScaleName\" (\"C Major\", \"F# Minor\", \"Bb Dorian\"). Empty string disables scale",
+          "type": "string"
+        },
+        "tempo": {
+          "description": "BPM",
+          "maximum": 999,
+          "minimum": 20,
+          "type": "number"
+        },
+        "timeSignature": {
+          "description": "N/D (4/4)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-update-scene": {
+    "description": "Update scene(s). Params with no list form apply to every scene.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "color": {
+          "description": "#RRGGBB, or comma-separated one per scene",
+          "type": "string"
+        },
+        "id": {
+          "description": "scene ID(s) to update, comma-separated for multiple",
+          "type": "string"
+        },
+        "name": {
+          "description": "name, or comma-separated one per scene",
+          "type": "string"
+        },
+        "path": {
+          "description": "scene path(s) to update instead of id, comma-separated: 's<index>', where s0 is the first scene (a user's \"scene 3\" is s2) - e.g. 's0' or 's0,s3'",
+          "type": "string"
+        },
+        "tempo": {
+          "description": "BPM (-1 disables)",
+          "type": "number"
+        },
+        "timeSignature": {
+          "description": "N/D (4/4) or \"disabled\", or comma-separated one per scene",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ppal-update-track": {
+    "description": "Update track(s). Params with no list form apply to every target.",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": {},
+      "properties": {
+        "arm": {
+          "description": "record armed?",
+          "type": "boolean"
+        },
+        "color": {
+          "description": "#RRGGBB, or comma-separated one per target",
+          "type": "string"
+        },
+        "gainDb": {
+          "description": "track gain in dB",
+          "maximum": 6,
+          "minimum": -70,
+          "type": "number"
+        },
+        "id": {
+          "description": "track or take lane ID(s) to update, comma-separated for multiple",
+          "type": "string"
+        },
+        "inputRoutingChannel": {
+          "description": "name from availableInputRoutingChannels; or comma-separated one per target (write a comma in a name as \\,)",
+          "type": "string"
+        },
+        "inputRoutingType": {
+          "description": "name from availableInputRoutingTypes, set before channel; or comma-separated one per target (write a comma in a name as \\,)",
+          "type": "string"
+        },
+        "leftPan": {
+          "description": "left channel pan in split mode (-1 to 1)",
+          "maximum": 1,
+          "minimum": -1,
+          "type": "number"
+        },
+        "monitoringState": {
+          "description": "input monitoring",
+          "enum": [
+            "in",
+            "auto",
+            "off"
+          ],
+          "type": "string"
+        },
+        "mute": {
+          "description": "muted?",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "name, ideally unique, or comma-separated one per target",
+          "type": "string"
+        },
+        "outputRoutingChannel": {
+          "description": "name from availableOutputRoutingChannels; or comma-separated one per target (write a comma in a name as \\,)",
+          "type": "string"
+        },
+        "outputRoutingType": {
+          "description": "name from availableOutputRoutingTypes, set before channel; or comma-separated one per target (write a comma in a name as \\,)",
+          "type": "string"
+        },
+        "pan": {
+          "description": "pan: -1 (left) to 1 (right)",
+          "maximum": 1,
+          "minimum": -1,
+          "type": "number"
+        },
+        "panningMode": {
+          "description": "panning mode: stereo or split",
+          "enum": [
+            "stereo",
+            "split"
+          ],
+          "type": "string"
+        },
+        "path": {
+          "description": "track or take lane path(s) to update instead of id, comma-separated: 't<index>' (t0 is the first track, so a user's \"track 3\" is t2), 'rt<index>' (return), 'mt' (main), 't<index>/l<lane>' (a take lane, creating the lanes up to it), 't<index>/l+' (append a take lane). A lane takes only name - e.g. 't0,rt1' or 't2/l+'",
+          "type": "string"
+        },
+        "rightPan": {
+          "description": "right channel pan in split mode (-1 to 1)",
+          "maximum": 1,
+          "minimum": -1,
+          "type": "number"
+        },
+        "sendGainDb": {
+          "description": "send gain in dB, requires sendReturn",
+          "maximum": 0,
+          "minimum": -70,
+          "type": "number"
+        },
+        "sendReturn": {
+          "description": "return track: id, exact name (e.g., \"A-Reverb\"), or letter (e.g., \"A\"), or comma-separated one per target",
+          "type": "string"
+        },
+        "sends": {
+          "description": "set several of the track's sends at once: [{return, gainDb}], where return is a return track's id, exact name, or letter \u2014 the `return`/`returnId` read-track reports. Use instead of sendGainDb + sendReturn, which set one",
+          "items": {
+            "properties": {
+              "gainDb": {
+                "maximum": 0,
+                "minimum": -70,
+                "type": "number"
+              },
+              "return": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "return",
+              "gainDb"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "solo": {
+          "description": "soloed?",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

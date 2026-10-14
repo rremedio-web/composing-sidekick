@@ -1,0 +1,67 @@
+{
+  "arguments": {
+    "include": [
+      "mixer",
+      "devices",
+      "session-clips",
+      "arrangement-clips",
+      "notes",
+      "routings"
+    ],
+    "trackIndex": 0
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "devices": [
+            {
+              "id": "1373",
+              "name": "Producer_Pal_2.2.0-rc1",
+              "path": "t0/d0",
+              "type": "midi-effect: Max MIDI Effect"
+            }
+          ],
+          "gainDb": 0,
+          "hasProducerPalDevice": true,
+          "id": "2",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "monitoringState": "auto",
+          "name": "PP",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "3"
+          },
+          "outputRoutingType": {
+            "name": "No Output",
+            "outputId": "2"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClips": [],
+          "trackIndex": 0,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

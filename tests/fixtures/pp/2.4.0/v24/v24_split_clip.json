@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "arrangementSplit": "6|1",
+    "id": "552"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: id \"552\" does not exist"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-update-clip"
+}

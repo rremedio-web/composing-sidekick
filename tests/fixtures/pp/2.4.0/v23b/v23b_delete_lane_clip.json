@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "id": "473",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: cannot delete take-lane clip t10/l0[5|1] (id 473) via the API; remove it in Live's UI"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-delete"
+}

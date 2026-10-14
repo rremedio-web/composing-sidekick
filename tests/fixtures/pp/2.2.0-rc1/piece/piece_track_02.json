@@ -1,0 +1,95 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 2
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "40bar",
+              "arrangementStart": "5|1",
+              "end": "41|1",
+              "id": "1023",
+              "length": "40bar",
+              "looping": false,
+              "name": "3-Kontakt 8 1",
+              "notes": "[{p:58,t:40.25,d:0.75,v:92},{p:59,t:60.5,d:0.7792,v:82},{p:60,t:4.75,d:0.25,v:81},{p:60,t:76.5,d:0.5,v:62},{p:60,t:96.5,d:0.7792,v:47},{p:60,t:112.25,d:0.75,v:116},{p:60,t:133,d:0.2792,v:73},{p:60,t:148,d:0.9375,v:112},{p:61,t:24.75,d:0.5292,v:127}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "devices": [
+            {
+              "id": "353",
+              "path": "t2/d0",
+              "type": "instrument: Kontakt 8"
+            },
+            {
+              "id": "402",
+              "path": "t2/d1",
+              "type": "audio-effect: Glitch2"
+            },
+            {
+              "id": "403",
+              "path": "t2/d2",
+              "type": "audio-effect: DimensionExpander"
+            },
+            {
+              "id": "873",
+              "path": "t2/d3",
+              "type": "audio-effect: ValhallaShimmer"
+            }
+          ],
+          "gainDb": -5,
+          "id": "346",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "instrument": "Kontakt 8",
+          "monitoringState": "auto",
+          "name": "Detune Lead",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0.82,
+          "sends": [
+            {
+              "gainDb": 0,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": 0,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 1,
+          "trackIndex": 2,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

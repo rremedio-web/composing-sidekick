@@ -1,0 +1,23 @@
+{
+  "arguments": {
+    "capture": false,
+    "count": 1,
+    "name": "CAPTURE 23B",
+    "path": "s+"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "462",
+          "path": "s8"
+        }
+      },
+      {
+        "text": "WARNING: param \"count\" is deprecated and will be removed; use \"path\" instead (e.g. path: \"s+\"). path names every scene, so repeat it once per scene instead of counting"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-scene"
+}

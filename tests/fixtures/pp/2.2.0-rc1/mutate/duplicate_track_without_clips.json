@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "id": "358",
+    "name": "SIDEKICK TRY capture",
+    "type": "track",
+    "withoutClips": true
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "clips": [],
+          "id": "391",
+          "trackIndex": 10
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-duplicate"
+}

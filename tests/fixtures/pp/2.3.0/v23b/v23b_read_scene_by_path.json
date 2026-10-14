@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "path": "s8"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "clipCount": 0,
+          "id": "364",
+          "name": "CAPTURE 23B",
+          "path": "s8"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-scene"
+}

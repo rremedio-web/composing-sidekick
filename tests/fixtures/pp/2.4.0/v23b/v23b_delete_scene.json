@@ -1,0 +1,40 @@
+{
+  "arguments": {
+    "id": "462,463,464,465,466,467",
+    "type": "scene"
+  },
+  "response": {
+    "content": [
+      {
+        "json": [
+          {
+            "deletedPath": "s8",
+            "id": "462"
+          },
+          {
+            "deletedPath": "s9",
+            "id": "463"
+          },
+          {
+            "deletedPath": "s10",
+            "id": "464"
+          },
+          {
+            "deletedPath": "s11",
+            "id": "465"
+          },
+          {
+            "deletedPath": "s12",
+            "id": "466"
+          },
+          {
+            "deletedPath": "s13",
+            "id": "467"
+          }
+        ]
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

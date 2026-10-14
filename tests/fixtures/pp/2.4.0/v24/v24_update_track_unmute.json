@@ -1,0 +1,18 @@
+{
+  "arguments": {
+    "mute": false,
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "529",
+          "path": "t10"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

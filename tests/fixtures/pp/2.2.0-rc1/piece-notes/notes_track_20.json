@@ -1,0 +1,32 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 20
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "101|1",
+              "id": "1122",
+              "name": "Seq Drone 3-step"
+            }
+          ],
+          "deviceCount": 1,
+          "id": "22",
+          "instrument": "OsTIrus",
+          "name": "Voice FX",
+          "sessionClipCount": 3,
+          "trackIndex": 20,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

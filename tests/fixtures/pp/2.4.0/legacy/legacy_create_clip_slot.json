@@ -1,0 +1,23 @@
+{
+  "arguments": {
+    "length": "1bar",
+    "notes": "[{\"p\": 60, \"t\": 0, \"d\": 1, \"v\": 100}]",
+    "slot": "10/0"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "396",
+          "noteCount": 1,
+          "path": "t10/s0"
+        }
+      },
+      {
+        "text": "WARNING: param \"slot\" is deprecated and will be removed; use \"path\" instead"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

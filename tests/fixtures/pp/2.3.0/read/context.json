@@ -1,0 +1,14 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "json": {
+          "content": ""
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-context"
+}

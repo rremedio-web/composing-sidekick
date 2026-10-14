@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "length": "2bar",
+    "name": "M2",
+    "notes": "[{\"p\": 67, \"t\": 0, \"d\": 0.5, \"v\": 90}]",
+    "path": "t10[5|1]"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "552",
+          "noteCount": 1,
+          "path": "t10[5|1]"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

@@ -1,0 +1,16 @@
+{
+  "arguments": {
+    "action": "stop"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "playing": false
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-playback"
+}

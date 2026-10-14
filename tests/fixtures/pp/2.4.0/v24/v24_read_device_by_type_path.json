@@ -1,0 +1,132 @@
+{
+  "arguments": {
+    "include": [
+      "params",
+      "param-values"
+    ],
+    "path": "t10/afx0"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "abCompare": "a",
+          "id": "567",
+          "parameters": [
+            {
+              "id": "569",
+              "name": "Device On",
+              "options": [
+                "Off",
+                "On"
+              ],
+              "value": "On"
+            },
+            {
+              "id": "570",
+              "name": "Left Inv",
+              "options": [
+                "Off",
+                "On"
+              ],
+              "value": "Off"
+            },
+            {
+              "id": "571",
+              "name": "Right Inv",
+              "options": [
+                "Off",
+                "On"
+              ],
+              "value": "Off"
+            },
+            {
+              "id": "572",
+              "name": "Channel Mode",
+              "options": [
+                "Left",
+                "Stereo",
+                "Right",
+                "Swap"
+              ],
+              "value": "Stereo"
+            },
+            {
+              "id": "573",
+              "max": 400,
+              "min": 0,
+              "name": "Stereo Width",
+              "unit": "%",
+              "value": 100
+            },
+            {
+              "id": "574",
+              "name": "Mono",
+              "options": [
+                "Off",
+                "On"
+              ],
+              "value": "Off"
+            },
+            {
+              "id": "575",
+              "name": "Bass Mono",
+              "options": [
+                "Off",
+                "On"
+              ],
+              "value": "Off"
+            },
+            {
+              "id": "576",
+              "max": 500,
+              "min": 50,
+              "name": "Bass Freq",
+              "state": "inactive",
+              "unit": "Hz",
+              "value": 120
+            },
+            {
+              "id": "577",
+              "max": 1,
+              "min": -1,
+              "name": "Balance",
+              "unit": "pan",
+              "value": 0
+            },
+            {
+              "id": "578",
+              "max": 35,
+              "min": -70,
+              "name": "Output",
+              "unit": "dB",
+              "value": 0
+            },
+            {
+              "id": "579",
+              "name": "Mute",
+              "options": [
+                "Off",
+                "On"
+              ],
+              "value": "Off"
+            },
+            {
+              "id": "580",
+              "name": "DC Filter",
+              "options": [
+                "Off",
+                "On"
+              ],
+              "value": "Off"
+            }
+          ],
+          "path": "t10/d0",
+          "type": "audio-effect: Utility"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-device"
+}

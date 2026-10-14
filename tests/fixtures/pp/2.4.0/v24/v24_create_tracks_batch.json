@@ -1,0 +1,25 @@
+{
+  "arguments": {
+    "name": "CAPTURE 24 A,CAPTURE 24 B",
+    "path": "t+,t+",
+    "type": "midi"
+  },
+  "response": {
+    "content": [
+      {
+        "json": [
+          {
+            "id": "529",
+            "path": "t10"
+          },
+          {
+            "id": "530",
+            "path": "t11"
+          }
+        ]
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-track"
+}

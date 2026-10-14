@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "name": "CAPTURE 23B MIDI",
+    "path": "t+",
+    "type": "midi"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "362",
+          "path": "t10"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-track"
+}

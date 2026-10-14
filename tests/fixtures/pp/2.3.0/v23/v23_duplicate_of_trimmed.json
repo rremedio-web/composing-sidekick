@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "id": "437",
+    "toPath": "t10[25|1]",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "438",
+          "path": "t10[25|1]"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-duplicate"
+}

@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "path": "t10",
+    "sends": [
+      {
+        "gainDb": -6,
+        "return": "NO SUCH RETURN"
+      }
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: no send landed \u2014 \"NO SUCH RETURN\": no return track matching \"NO SUCH RETURN\" (Available: A-Reverb, B-Delay)"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-update-track"
+}

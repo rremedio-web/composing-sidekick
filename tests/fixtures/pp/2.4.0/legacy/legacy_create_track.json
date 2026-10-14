@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "count": 1,
+    "name": "SIDEKICK TRY legacy"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "387",
+          "path": "t10"
+        }
+      },
+      {
+        "text": "WARNING: param \"count\" is deprecated and will be removed; use \"path\" instead (e.g. path: \"t+\"). path names every track, so repeat it once per track instead of counting"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-track"
+}

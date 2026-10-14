@@ -1,0 +1,27 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 16
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "deviceCount": 2,
+          "groupId": "13",
+          "id": "18",
+          "isGroupMember": true,
+          "name": "Synth A",
+          "sessionClipCount": 0,
+          "trackIndex": 16,
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

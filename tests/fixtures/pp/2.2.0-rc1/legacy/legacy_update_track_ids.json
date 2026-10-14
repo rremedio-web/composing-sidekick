@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "ids": "369",
+    "name": "LEGACY IDS"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "369"
+        }
+      },
+      {
+        "text": "WARNING: ppal-update-track accepts \"ids\" as a fallback; the parameter is \"id\""
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-track"
+}

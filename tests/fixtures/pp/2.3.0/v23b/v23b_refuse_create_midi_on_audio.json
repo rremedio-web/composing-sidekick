@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "length": "1bar",
+    "notes": "[{\"p\": 60, \"t\": 0, \"d\": 1, \"v\": 100}, {\"p\": 64, \"t\": 2, \"d\": 1, \"v\": 100}]",
+    "path": "t11[1|1]"
+  },
+  "response": {
+    "content": [
+      {
+        "json": []
+      },
+      {
+        "text": "WARNING: Failed to create clip at t11[1|1]: track t11 (id 363) is audio; a MIDI clip needs a MIDI track"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

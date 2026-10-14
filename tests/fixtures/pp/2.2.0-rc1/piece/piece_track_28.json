@@ -1,0 +1,226 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 28
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "45|1",
+              "end": "5|1",
+              "id": "1118",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:13.5,d:0.5,v:83},{p:29,t:25.25,d:1,v:49},{p:30,t:26,d:1,v:102},{p:31,t:15,d:0.5,v:66},{p:32,t:9.75,d:1.75,v:105},{p:34,t:13,d:0.75,v:83},{p:35,t:20.5,d:2.5,v:81},{p:36,t:0.75,d:3,v:42},{p:36,t:4.25,d:1,v:84},{p:36,t:5,d:1,v:49},{p:36,t:28,d:1.875,v:115},{p:37,t:4,d:1,v:45},{p:37,t:18.5,d:1,v:41},{p:37,t:21.75,d:1,v:109},{p:39,t:17.75,d:0.25,v:102}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "49|1",
+              "end": "5|1",
+              "id": "1164",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:13.25,d:0.75,v:46},{p:29,t:27.5,d:0.5,v:68},{p:30,t:26.75,d:0.25,v:68},{p:31,t:15.25,d:0.25,v:40},{p:32,t:10.5,d:1,v:63},{p:34,t:12.5,d:0.75,v:111},{p:35,t:22.25,d:0.75,v:102},{p:36,t:3.5,d:0.25,v:88},{p:36,t:5.25,d:0.75,v:45},{p:36,t:6,d:1,v:50},{p:36,t:28,d:1.875,v:115},{p:37,t:5.25,d:1,v:40},{p:37,t:17.75,d:1.5,v:84},{p:37,t:20,d:1,v:90},{p:39,t:17.75,d:0.25,v:64}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "53|1",
+              "end": "5|1",
+              "id": "1119",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:12.5,d:1.5,v:89},{p:29,t:24.5,d:1,v:83},{p:30,t:26,d:1,v:108},{p:31,t:14.75,d:0.75,v:52},{p:32,t:9.75,d:1.75,v:75},{p:34,t:12.5,d:0.75,v:126},{p:35,t:20.75,d:2.25,v:121},{p:36,t:2.5,d:1.25,v:41},{p:36,t:5.5,d:0.5,v:91},{p:36,t:6.5,d:0.5,v:54},{p:36,t:28,d:1.875,v:92},{p:37,t:5.5,d:1,v:69},{p:37,t:16.75,d:1.5,v:76},{p:37,t:20,d:1,v:76},{p:39,t:16.25,d:1.75,v:123}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "57|1",
+              "end": "5|1",
+              "id": "1165",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:12.5,d:1.5,v:113},{p:29,t:25.5,d:1,v:48},{p:30,t:24.75,d:2.25,v:50},{p:31,t:14.75,d:0.75,v:53},{p:32,t:10.75,d:0.75,v:52},{p:34,t:12.5,d:0.75,v:72},{p:35,t:22.5,d:0.5,v:64},{p:36,t:0.75,d:3,v:54},{p:36,t:5,d:1,v:59},{p:36,t:6.5,d:1,v:115},{p:36,t:28,d:1.875,v:59},{p:37,t:5.25,d:1,v:48},{p:37,t:16.25,d:1.5,v:127},{p:37,t:20.5,d:1,v:44},{p:39,t:16.25,d:1.75,v:116}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "61|1",
+              "end": "5|1",
+              "id": "1166",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:13.75,d:0.25,v:101},{p:29,t:24.75,d:1,v:48},{p:30,t:26.75,d:0.25,v:108},{p:31,t:15,d:0.5,v:87},{p:32,t:9.25,d:2.25,v:123},{p:34,t:14.25,d:0.75,v:113},{p:35,t:20.25,d:2.75,v:82},{p:36,t:0.75,d:3,v:115},{p:36,t:4.75,d:1.25,v:72},{p:36,t:6.75,d:1,v:43},{p:36,t:28,d:1.875,v:63},{p:37,t:4.75,d:1,v:112},{p:37,t:16.25,d:1.5,v:96},{p:37,t:21.75,d:1,v:117},{p:39,t:17.5,d:0.5,v:64}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "65|1",
+              "end": "5|1",
+              "id": "1123",
+              "length": "4bar",
+              "looping": true,
+              "name": "Example Rack (8-Bar)",
+              "notes": "[{p:29,t:13.75,d:0.25,v:55},{p:29,t:26,d:1,v:47},{p:30,t:25.5,d:1.5,v:127},{p:31,t:13.25,d:1.5,v:117},{p:32,t:8.75,d:2.75,v:116},{p:34,t:13.5,d:0.75,v:63},{p:35,t:20.5,d:2.5,v:127},{p:36,t:3.25,d:0.5,v:104},{p:36,t:5,d:1,v:66},{p:36,t:5.25,d:1,v:61},{p:36,t:28,d:1.875,v:110},{p:37,t:6.25,d:0.75,v:110},{p:37,t:17.75,d:1.5,v:120},{p:37,t:21.75,d:1,v:91},{p:39,t:17.25,d:0.75,v:56}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "69|1",
+              "end": "5|1",
+              "id": "1320",
+              "length": "4bar",
+              "looping": true,
+              "name": "Block B",
+              "notes": "[{p:29,t:8.5,d:0.5,v:42},{p:29,t:8.75,d:0.25,v:71},{p:30,t:10.75,d:0.25,v:94},{p:32,t:4.25,d:2.25,v:63},{p:36,t:0.25,d:1.25,v:92},{p:36,t:0.5,d:0.25,v:120},{p:36,t:0.75,d:0.25,v:80},{p:36,t:12,d:0.25,v:116},{p:36,t:12.5,d:0.25,v:76},{p:36,t:13.5,d:0.25,v:51},{p:39,t:15.5,d:0.25,v:66},{p:41,t:8.25,d:0.25,v:84},{p:41,t:10.25,d:0.25,v:111},{p:41,t:10.5,d:0.25,v:102},{p:42,t:10.5,d:0.25,v:89},{p:48,t:0,d:0.25,v:120},{p:48,t:1.25,d:0.25,v:125},{p:48,t:1.5,d:0.25,v:72},{p:48,t:3,d:0.25,v:72},{p:48,t:12.5,d:1.5,v:54},{p:49,t:5.75,d:0.25,v:115}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "73|1",
+              "end": "5|1",
+              "id": "1323",
+              "length": "4bar",
+              "looping": true,
+              "name": "Block B",
+              "notes": "[{p:29,t:8.75,d:0.25,v:113},{p:29,t:10.5,d:0.25,v:127},{p:36,t:0.25,d:1.25,v:114},{p:36,t:0.5,d:0.25,v:44},{p:36,t:0.75,d:0.25,v:98},{p:36,t:1,d:0.25,v:60},{p:36,t:2.5,d:0.25,v:52},{p:36,t:2.75,d:0.25,v:97},{p:36,t:12.75,d:1.25,v:71},{p:36,t:14,d:0.25,v:43},{p:41,t:9.25,d:0.25,v:57},{p:41,t:10.5,d:0.25,v:125},{p:41,t:10.75,d:0.25,v:45},{p:42,t:8.75,d:1.25,v:92},{p:42,t:10.25,d:0.25,v:116},{p:44,t:4.25,d:2.25,v:97},{p:48,t:2,d:0.25,v:75},{p:48,t:13,d:0.25,v:52},{p:48,t:13.5,d:0.25,v:89},{p:49,t:4.25,d:0.25,v:102},{p:51,t:14.25,d:0.25,v:103}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "4bar",
+              "arrangementStart": "77|1",
+              "end": "5|1",
+              "id": "1371",
+              "length": "4bar",
+              "looping": true,
+              "name": "Block A",
+              "notes": "[{p:29,t:7.25,d:0.5,v:78},{p:32,t:4.25,d:1.75,v:116},{p:32,t:12,d:3.6562,v:46},{p:34,t:11,d:1,v:61},{p:36,t:1.5,d:2,v:73}]",
+              "start": "1|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "2bar",
+              "arrangementStart": "81|1",
+              "end": "21|1",
+              "id": "1387",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:25,t:15,d:0.0659,v:75},{p:25,t:40.25,d:1.911,v:122},{p:25,t:44,d:3.0139,v:75},{p:25,t:56,d:7.6899,v:63},{p:28,t:3.25,d:9.2188,v:67},{p:31,t:26.75,d:0.3308,v:111},{p:33,t:21.5,d:2.4501,v:97},{p:35,t:18.5,d:1.7554,v:74},{p:37,t:50.25,d:5.9274,v:83},{p:40,t:30.25,d:2.3478,v:123},{p:40,t:37,d:3.2122,v:71}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "2bar",
+              "arrangementStart": "83|1",
+              "end": "21|1",
+              "id": "1388",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:25,t:12.75,d:2.0339,v:88},{p:25,t:40.75,d:1.911,v:79},{p:25,t:44,d:3.0139,v:48},{p:25,t:56,d:7.6899,v:48},{p:28,t:3,d:303/32,v:126},{p:28,t:29.75,d:2.8478,v:79},{p:31,t:27,d:0.0808,v:104},{p:33,t:22.75,d:1.2001,v:91},{p:35,t:17,d:3.2554,v:117},{p:37,t:50,d:6.1774,v:126},{p:40,t:36.5,d:3.2122,v:72}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "8bar",
+              "arrangementStart": "93|1",
+              "end": "21|1",
+              "id": "1167",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:31,t:25.5,d:1.5808,v:125},{p:33,t:23.75,d:0.2001,v:40},{p:35,t:17.5,d:2.7554,v:60},{p:37,t:12.25,d:2.0339,v:85},{p:37,t:40,d:1.911,v:127},{p:37,t:44,d:2.8255,v:64},{p:37,t:56,d:7.6899,v:77},{p:40,t:3.5,d:8.9688,v:58},{p:40,t:28.25,d:3.3356,v:72},{p:40,t:37.5,d:3.2122,v:43},{p:40,t:51.25,d:4.9274,v:107}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            },
+            {
+              "arrangementLength": "8bar",
+              "arrangementStart": "101|1",
+              "end": "21|1",
+              "id": "1168",
+              "length": "8bar",
+              "looping": true,
+              "notes": "[{p:31,t:26.25,d:0.8308,v:58},{p:33,t:21.25,d:2.7001,v:102},{p:35,t:16.25,d:4.0054,v:96},{p:37,t:13,d:2.0339,v:53},{p:37,t:41.25,d:1.911,v:50},{p:37,t:44,d:2.8255,v:87},{p:37,t:56,d:7.6899,v:120},{p:40,t:3.5,d:8.9688,v:92},{p:40,t:30.25,d:2.3478,v:49},{p:40,t:39.5,d:1.7122,v:104},{p:40,t:48.5,d:7.6774,v:69}]",
+              "start": "13|1",
+              "timeSignature": "4/4"
+            }
+          ],
+          "devices": [
+            {
+              "id": "1114",
+              "name": "Tape Strings",
+              "path": "t28/d0",
+              "type": "instrument-rack"
+            },
+            {
+              "id": "1125",
+              "path": "t28/d1",
+              "type": "audio-effect: Archetype Nolly X"
+            }
+          ],
+          "gainDb": -8,
+          "id": "1113",
+          "inputRoutingChannel": {
+            "inputId": "1",
+            "name": "All Channels"
+          },
+          "inputRoutingType": {
+            "inputId": "0",
+            "name": "All Ins"
+          },
+          "instrument": "Instrument Rack",
+          "monitoringState": "auto",
+          "name": "29-Tape Strings",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -24,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 3,
+          "trackIndex": 28,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

@@ -1,0 +1,32 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 2
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "5|1",
+              "id": "1023",
+              "name": "3-Kontakt 8 1"
+            }
+          ],
+          "deviceCount": 4,
+          "id": "346",
+          "instrument": "Kontakt 8",
+          "name": "Detune Lead",
+          "sessionClipCount": 1,
+          "trackIndex": 2,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

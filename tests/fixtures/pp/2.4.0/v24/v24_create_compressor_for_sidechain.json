@@ -1,0 +1,32 @@
+{
+  "arguments": {
+    "device": "Compressor",
+    "name": "CAP24 sidechain",
+    "params": [
+      {
+        "name": "S/C On",
+        "value": "On"
+      }
+    ],
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "584",
+          "params": [
+            {
+              "id": "605",
+              "name": "S/C On",
+              "value": "On"
+            }
+          ],
+          "path": "t10/d1"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-device"
+}

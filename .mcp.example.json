@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "style-sidekick": {
+      "command": "/absolute/path/to/composing-sidekick/.venv/bin/python",
+      "args": ["/absolute/path/to/composing-sidekick/mcp_server/server.py"],
+      "env": {
+        "SIDEKICK_MCP_PROFILE": "compose"
+      }
+    },
+    "producer-pal": {
+      "command": "npx",
+      "args": ["-y", "producer-pal@2.3.0", "-f", "json", "-n", "midi-json"]
+    }
+  }
+}

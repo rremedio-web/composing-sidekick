@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "id": "391",
+    "type": "track"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "deleted": true,
+          "id": "391",
+          "type": "track"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

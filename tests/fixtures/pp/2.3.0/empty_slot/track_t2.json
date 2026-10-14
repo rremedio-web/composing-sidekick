@@ -1,0 +1,26 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips"
+    ],
+    "path": "t2"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 0,
+          "id": "5",
+          "isGroup": true,
+          "name": "Digital In",
+          "path": "t2",
+          "sessionClips": [],
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

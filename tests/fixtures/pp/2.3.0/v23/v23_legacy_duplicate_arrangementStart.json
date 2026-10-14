@@ -1,0 +1,23 @@
+{
+  "arguments": {
+    "arrangementStart": "65|1",
+    "id": "425",
+    "toPath": "t10",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "459",
+          "path": "t10[65|1]"
+        }
+      },
+      {
+        "text": "WARNING: param \"arrangementStart\" is deprecated and will be removed; use \"toPath\" instead (e.g. toPath: \"t2[5|1]\")"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-duplicate"
+}

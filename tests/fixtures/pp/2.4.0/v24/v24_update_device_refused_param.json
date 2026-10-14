@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "gainDb": -6,
+    "id": "567"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: gainDb not applicable to a device"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-update-device"
+}

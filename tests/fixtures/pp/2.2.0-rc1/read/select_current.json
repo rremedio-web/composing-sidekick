@@ -1,0 +1,27 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "json": {
+          "selectedDevice": {
+            "id": "1373",
+            "path": "t0/d0"
+          },
+          "selectedScene": {
+            "id": "27",
+            "sceneIndex": 0
+          },
+          "selectedTrack": {
+            "id": "2",
+            "trackIndex": 0,
+            "type": "midi"
+          },
+          "view": "session"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-select"
+}

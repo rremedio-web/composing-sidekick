@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "action": "play-scene",
+    "path": "s10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "playing": true,
+          "scene": {
+            "id": "610",
+            "path": "s10"
+          }
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-playback"
+}

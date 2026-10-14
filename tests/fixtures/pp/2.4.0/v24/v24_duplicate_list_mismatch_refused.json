@@ -1,0 +1,16 @@
+{
+  "arguments": {
+    "id": "551,552",
+    "toPath": "t10[9|1]",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: toPath names 1 destination but id names 2 sources. A destination holds one object, so toPath must name one per source, in order. A bare [5|1] keeps each clip on its own track."
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-duplicate"
+}

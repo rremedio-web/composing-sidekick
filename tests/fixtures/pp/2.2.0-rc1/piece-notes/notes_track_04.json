@@ -1,0 +1,43 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 4
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "11|1",
+              "id": "468"
+            },
+            {
+              "arrangementStart": "33|1",
+              "id": "469"
+            },
+            {
+              "arrangementStart": "37|1",
+              "id": "470"
+            },
+            {
+              "arrangementStart": "41|1",
+              "id": "471"
+            }
+          ],
+          "deviceCount": 2,
+          "id": "6",
+          "instrument": "Instrument Rack",
+          "name": "5-Float Pad",
+          "sessionClipCount": 3,
+          "trackIndex": 4,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

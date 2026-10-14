@@ -1,0 +1,29 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "path": "t10/l0"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "clips": [
+            {
+              "arrangementLength": "1bar",
+              "id": "561",
+              "name": "L0",
+              "path": "t10/l0[1|1]"
+            }
+          ],
+          "id": "560",
+          "name": "LANE A",
+          "path": "t10/l0"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

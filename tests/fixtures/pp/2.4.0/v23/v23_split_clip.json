@@ -1,0 +1,24 @@
+{
+  "arguments": {
+    "arrangementSplit": "59|1",
+    "id": "437"
+  },
+  "response": {
+    "content": [
+      {
+        "json": [
+          {
+            "id": "437",
+            "path": "t10[57|1]"
+          },
+          {
+            "id": "441",
+            "path": "t10[59|1]"
+          }
+        ]
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-clip"
+}

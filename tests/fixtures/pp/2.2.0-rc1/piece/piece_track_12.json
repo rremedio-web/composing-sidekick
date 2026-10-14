@@ -1,0 +1,62 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 12
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "devices": [],
+          "gainDb": 0,
+          "groupId": "13",
+          "id": "14",
+          "inputRoutingChannel": {
+            "inputId": "9",
+            "name": ""
+          },
+          "inputRoutingType": {
+            "inputId": "8",
+            "name": "Ext. In"
+          },
+          "isGroupMember": true,
+          "monitoringState": "off",
+          "name": "Sampler 1-2",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "7"
+          },
+          "outputRoutingType": {
+            "name": "Digital In",
+            "outputId": "6"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -70,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -70,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 0,
+          "trackIndex": 12,
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

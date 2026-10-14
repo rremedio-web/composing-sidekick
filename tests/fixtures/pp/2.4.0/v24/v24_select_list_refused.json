@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "path": "t10,t11"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: invalid path \"t10,t11\" - select takes one target per call (Live holds one selection)"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-select"
+}

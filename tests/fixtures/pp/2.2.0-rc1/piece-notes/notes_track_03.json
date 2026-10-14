@@ -1,0 +1,37 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 3
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "arrangementStart": "1|1",
+              "id": "293",
+              "name": "2-TAL Sampler 1"
+            },
+            {
+              "arrangementStart": "93|1",
+              "id": "1121",
+              "name": "2-TAL Sampler 1"
+            }
+          ],
+          "deviceCount": 1,
+          "id": "4",
+          "instrument": "TAL Sampler",
+          "name": "Noise Bed",
+          "sessionClipCount": 1,
+          "trackIndex": 3,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

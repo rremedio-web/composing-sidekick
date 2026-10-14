@@ -1,0 +1,21 @@
+{
+  "arguments": {
+    "deviceName": "Compressor",
+    "path": "t10/d+"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "568",
+          "path": "t10/d1"
+        }
+      },
+      {
+        "text": "WARNING: param \"deviceName\" is deprecated and will be removed; use \"device\" instead"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-device"
+}

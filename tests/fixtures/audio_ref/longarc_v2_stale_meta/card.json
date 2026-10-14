@@ -1,0 +1,171 @@
+{
+ "contract_version": "audio-ref-card-v2",
+ "identity": "Long-form instrumental in B minor at 142 BPM: a lone electric-piano figure gathers tape-saturated drums and bowed strings, then thins to one held note.",
+ "tempo": {
+  "grid_bpm": 142.0,
+  "feel_bpm": 71.0,
+  "confidence": "high"
+ },
+ "meter": {
+  "beats_per_bar": 4,
+  "half_time": false
+ },
+ "swing": {
+  "pct": 0,
+  "confidence": "high"
+ },
+ "density": "medium",
+ "register": {
+  "band": "mid",
+  "pitch_span": "B1-F#6"
+ },
+ "harmony": {
+  "modal_center": "B",
+  "pitch_classes": [
+   "B",
+   "C#",
+   "D",
+   "E",
+   "F#",
+   "G",
+   "A"
+  ],
+  "interval_content": [
+   "m3",
+   "P4",
+   "P5",
+   "m7"
+  ],
+  "harmonic_rhythm_bars": 4,
+  "confidence": "high"
+ },
+ "melody": {
+  "phrase_length_bars": 8,
+  "contour": "arch",
+  "call_response": "call_and_response",
+  "motif_note_count": 5,
+  "repetition": "varied"
+ },
+ "drums": {
+  "grid": [
+   {
+    "instrument": "kick",
+    "steps": [
+     0,
+     6,
+     8
+    ]
+   },
+   {
+    "instrument": "snare",
+    "steps": [
+     4,
+     12
+    ]
+   },
+   {
+    "instrument": "ride",
+    "steps": [
+     0,
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14
+    ]
+   },
+   {
+    "instrument": "tom",
+    "steps": [
+     14,
+     15
+    ]
+   }
+  ],
+  "confidence": "high"
+ },
+ "sections": [
+  {
+   "t": "00:00",
+   "label": "Electric piano figure alone over a soft room tone",
+   "event": "enter",
+   "density": "sparse",
+   "register": "mid",
+   "harmony": "B"
+  },
+  {
+   "t": "01:20",
+   "label": "Brushed ride and a low tom pulse join the figure",
+   "event": "texture_change",
+   "density": "medium",
+   "register": "low",
+   "harmony": "B"
+  },
+  {
+   "t": "02:50",
+   "label": "Bowed strings enter in long tones under the piano",
+   "event": "build",
+   "density": "medium",
+   "register": "mid",
+   "harmony": "B"
+  },
+  {
+   "t": "04:10",
+   "label": "Full kit arrives; the figure doubles in octaves",
+   "event": "build",
+   "density": "dense",
+   "register": "high",
+   "harmony": "B"
+  },
+  {
+   "t": "05:30",
+   "label": "Drums return after a hollow stretch; strings swell",
+   "event": "drop",
+   "density": "dense",
+   "register": "high",
+   "harmony": "B"
+  },
+  {
+   "t": "07:00",
+   "label": "Climax with saturated drums and the figure at full width",
+   "event": "drop",
+   "density": "dense",
+   "register": "high",
+   "harmony": "B"
+  },
+  {
+   "t": "08:30",
+   "label": "Kit drops to the ride; strings thin to two voices",
+   "event": "breakdown",
+   "density": "medium",
+   "register": "mid",
+   "harmony": "B"
+  },
+  {
+   "t": "09:40",
+   "label": "One held string note and the room tone fade out",
+   "event": "exit",
+   "density": "sparse",
+   "register": "low",
+   "harmony": "B"
+  }
+ ],
+ "imitation": {
+  "do": [
+   "Open with one figure alone and let it carry the first eighty seconds.",
+   "Add layers one at a time; let the drums leave and return once before the climax.",
+   "Keep the harmony circling B minor with the fourth and seventh as colour.",
+   "End by subtracting to a single sustained note rather than a cadence."
+  ],
+  "dont": [
+   "Do not introduce the full kit before the strings have entered.",
+   "Do not modulate away from B minor.",
+   "Do not fade the ending in under twenty seconds."
+  ]
+ },
+ "uncertain": [
+  "Whether the low tom pulse at 01:20 is played or sampled."
+ ]
+}

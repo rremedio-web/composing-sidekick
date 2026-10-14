@@ -1,0 +1,152 @@
+{
+ "contract_version": "audio-ref-card-v2",
+ "identity": "Slow piano ballad at 66 BPM with brushed drums: verse and chorus share one chord cycle; two quiet breaks strip to piano and voice before each return.",
+ "tempo": {
+  "grid_bpm": 66.0,
+  "feel_bpm": 66.0,
+  "confidence": "high"
+ },
+ "meter": {
+  "beats_per_bar": 4,
+  "half_time": false
+ },
+ "swing": {
+  "pct": 0,
+  "confidence": "high"
+ },
+ "density": "medium",
+ "register": {
+  "band": "mid",
+  "pitch_span": "D2-A5"
+ },
+ "harmony": {
+  "modal_center": "D",
+  "pitch_classes": [
+   "D",
+   "E",
+   "F#",
+   "G",
+   "A",
+   "B"
+  ],
+  "interval_content": [
+   "M2",
+   "M3",
+   "P4",
+   "P5"
+  ],
+  "harmonic_rhythm_bars": 4,
+  "confidence": "high"
+ },
+ "melody": {
+  "phrase_length_bars": 4,
+  "contour": "arch",
+  "call_response": "call_and_response",
+  "motif_note_count": 4,
+  "repetition": "varied"
+ },
+ "drums": {
+  "grid": [
+   {
+    "instrument": "kick",
+    "steps": [
+     0,
+     8
+    ]
+   },
+   {
+    "instrument": "snare",
+    "steps": [
+     4,
+     12
+    ]
+   },
+   {
+    "instrument": "ride",
+    "steps": [
+     0,
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14
+    ]
+   }
+  ],
+  "confidence": "high"
+ },
+ "sections": [
+  {
+   "t": "00:00",
+   "label": "Piano chord cycle with brushed ride",
+   "event": "enter",
+   "density": "sparse",
+   "register": "mid",
+   "harmony": "D"
+  },
+  {
+   "t": "00:36",
+   "label": "Voice enters over the cycle, kick and snare join",
+   "event": "build",
+   "density": "medium",
+   "register": "mid",
+   "harmony": "D"
+  },
+  {
+   "t": "01:05",
+   "label": "First break: piano and voice only",
+   "event": "breakdown",
+   "density": "sparse",
+   "register": "mid",
+   "harmony": "D"
+  },
+  {
+   "t": "01:35",
+   "label": "Chorus returns with strings pad",
+   "event": "drop",
+   "density": "medium",
+   "register": "high",
+   "harmony": "D"
+  },
+  {
+   "t": "02:20",
+   "label": "Second break, lower voice register",
+   "event": "breakdown",
+   "density": "sparse",
+   "register": "low",
+   "harmony": "D"
+  },
+  {
+   "t": "02:48",
+   "label": "Final chorus, then piano alone",
+   "event": "drop",
+   "density": "medium",
+   "register": "mid",
+   "harmony": "D"
+  },
+  {
+   "t": "03:20",
+   "label": "Piano cycle fades under room noise",
+   "event": "exit",
+   "density": "sparse",
+   "register": "mid",
+   "harmony": "D"
+  }
+ ],
+ "imitation": {
+  "do": [
+   "Keep one chord cycle for verse and chorus; change only the layers.",
+   "Strip to piano and voice before each return.",
+   "Let the final chorus be followed by the opening texture, thinner."
+  ],
+  "dont": [
+   "Do not change the tempo at the breaks.",
+   "Do not add drum fills into the returns."
+  ]
+ },
+ "uncertain": [
+  "Whether the strings pad is real strings or a sampled layer."
+ ]
+}

@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "length": "1bar",
+    "notes": "[{\"p\": 60, \"t\": 0, \"d\": 1, \"v\": 100}]",
+    "path": "t10/s1"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "397",
+          "noteCount": 1,
+          "path": "t10/s1"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-clip"
+}

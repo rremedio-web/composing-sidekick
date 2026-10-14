@@ -1,0 +1,28 @@
+{
+  "arguments": {
+    "id": "362,363",
+    "type": "track"
+  },
+  "response": {
+    "content": [
+      {
+        "json": [
+          {
+            "deleted": true,
+            "deletedPath": "t10",
+            "id": "362",
+            "type": "track"
+          },
+          {
+            "deleted": true,
+            "deletedPath": "t11",
+            "id": "363",
+            "type": "track"
+          }
+        ]
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-delete"
+}

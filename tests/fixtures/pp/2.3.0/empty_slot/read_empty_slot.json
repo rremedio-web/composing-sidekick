@@ -1,0 +1,22 @@
+{
+  "arguments": {
+    "path": "t0/s7"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": null,
+          "name": null,
+          "path": "t0/s7",
+          "type": null
+        }
+      },
+      {
+        "text": "WARNING: no clip at t0/s7"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-clip"
+}

@@ -1,0 +1,39 @@
+{
+  "arguments": {
+    "id": "529",
+    "toPath": "t11/l0",
+    "type": "track"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "clips": [
+            {
+              "id": "563",
+              "path": "t11/l0[5|1]"
+            },
+            {
+              "id": "564",
+              "path": "t11/l0[13|1]"
+            },
+            {
+              "id": "565",
+              "path": "t11/l0[17|1]"
+            },
+            {
+              "id": "566",
+              "path": "t11/l0[25|1]"
+            }
+          ],
+          "created": true,
+          "detail": "clips only: a take lane takes no devices, routing, mixer settings or session clips",
+          "id": "562",
+          "path": "t11/l0"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-duplicate"
+}

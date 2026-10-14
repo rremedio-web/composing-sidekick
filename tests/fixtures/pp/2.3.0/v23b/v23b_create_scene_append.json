@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "capture": false,
+    "count": 1,
+    "name": "CAPTURE 23B",
+    "path": "s+"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "364",
+          "path": "s8"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-create-scene"
+}

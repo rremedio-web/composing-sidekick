@@ -1,0 +1,29 @@
+{
+  "arguments": {
+    "id": "584",
+    "params": [
+      {
+        "name": "sidechainSourceTrackId",
+        "value": "531"
+      }
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "584",
+          "params": [
+            {
+              "name": "sidechainSourceTrackId",
+              "value": "531"
+            }
+          ],
+          "path": "t10/d1"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-device"
+}

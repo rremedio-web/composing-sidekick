@@ -1,0 +1,73 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips"
+    ],
+    "trackIndex": 10
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [
+            {
+              "id": "425",
+              "name": "A",
+              "path": "t10[1|1]"
+            },
+            {
+              "id": "437",
+              "name": "A",
+              "path": "t10[17|1]"
+            },
+            {
+              "id": "442",
+              "name": "A",
+              "path": "t10[33|1]"
+            },
+            {
+              "id": "439",
+              "name": "A",
+              "path": "t10[35|1]"
+            },
+            {
+              "id": "444",
+              "name": "A",
+              "path": "t10[41|1]"
+            },
+            {
+              "id": "446",
+              "name": "A",
+              "path": "t10[57|1]"
+            },
+            {
+              "id": "450",
+              "name": "A",
+              "path": "t10[59|1]"
+            },
+            {
+              "id": "459",
+              "name": "A",
+              "path": "t10[65|1]"
+            },
+            {
+              "id": "460",
+              "path": "t10[69|1]"
+            }
+          ],
+          "deviceCount": 0,
+          "id": "423",
+          "name": "CAPTURE 23 MIDI",
+          "path": "t10",
+          "sessionClipCount": 0,
+          "type": "midi"
+        }
+      },
+      {
+        "text": "WARNING: param \"trackIndex\" is deprecated and will be removed; use \"path\" instead"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

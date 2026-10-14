@@ -1,0 +1,18 @@
+{
+  "arguments": {
+    "id": "434",
+    "toPath": "t10[49|1]"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "445",
+          "path": "t10[49|1]"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-clip"
+}

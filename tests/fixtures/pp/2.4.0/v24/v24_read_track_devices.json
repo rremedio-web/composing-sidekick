@@ -1,0 +1,37 @@
+{
+  "arguments": {
+    "include": [
+      "devices"
+    ],
+    "path": "t10"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 4,
+          "devices": [
+            {
+              "id": "567",
+              "path": "t10/d0",
+              "type": "audio-effect: Utility"
+            },
+            {
+              "id": "568",
+              "path": "t10/d1",
+              "type": "audio-effect: Compressor"
+            }
+          ],
+          "id": "529",
+          "name": "CAPTURE 24 A",
+          "path": "t10",
+          "sessionClipCount": 1,
+          "takeLaneCount": 1,
+          "type": "midi"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

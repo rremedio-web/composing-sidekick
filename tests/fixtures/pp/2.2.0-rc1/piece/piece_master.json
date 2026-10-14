@@ -1,0 +1,33 @@
+{
+  "arguments": {
+    "include": [
+      "devices",
+      "mixer"
+    ],
+    "trackType": "master"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "devices": [
+            {
+              "id": "816",
+              "path": "mt/d0",
+              "type": "audio-effect: soothe2"
+            }
+          ],
+          "gainDb": -0.3109999895095825,
+          "id": "304",
+          "name": "Main",
+          "pan": 0,
+          "sessionClipCount": 0,
+          "type": "master"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

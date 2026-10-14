@@ -1,0 +1,60 @@
+{
+  "arguments": {
+    "include": [
+      "arrangement-clips",
+      "notes",
+      "timing",
+      "sample",
+      "devices",
+      "routings",
+      "mixer"
+    ],
+    "trackIndex": 22
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClips": [],
+          "devices": [],
+          "gainDb": -6,
+          "id": "865",
+          "inputRoutingChannel": {
+            "inputId": "14",
+            "name": "USB 3-OsTIrus"
+          },
+          "inputRoutingType": {
+            "inputId": "13",
+            "name": "Voice FX"
+          },
+          "monitoringState": "in",
+          "name": "23-Audio",
+          "outputRoutingChannel": {
+            "name": "",
+            "outputId": "5"
+          },
+          "outputRoutingType": {
+            "name": "Main",
+            "outputId": "4"
+          },
+          "pan": 0,
+          "sends": [
+            {
+              "gainDb": -5,
+              "return": "A-ValhallaFutureVerb"
+            },
+            {
+              "gainDb": -17.799999237060547,
+              "return": "B-Delay"
+            }
+          ],
+          "sessionClipCount": 0,
+          "trackIndex": 22,
+          "type": "audio"
+        }
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}

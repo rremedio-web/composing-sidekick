@@ -1,0 +1,24 @@
+{
+  "arguments": {
+    "slot": "9/0"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "359",
+          "name": "10-Omnisphere 2",
+          "path": "t9/s0",
+          "playing": true,
+          "type": "midi",
+          "view": "session"
+        }
+      },
+      {
+        "text": "WARNING: ppal-read-clip param \"slot\" is deprecated and will be removed; use \"path\" instead"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-clip"
+}

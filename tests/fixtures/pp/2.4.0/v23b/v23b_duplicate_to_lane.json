@@ -1,0 +1,16 @@
+{
+  "arguments": {
+    "id": "470",
+    "toPath": "t10/l1",
+    "type": "clip"
+  },
+  "response": {
+    "content": [
+      {
+        "text": "Error: toPath \"t10/l1\" names a track but not a spot on it; add a position for its arrangement, as \"t10/l1[5|1]\", or use \"t10/s<scene>\" for a clip slot"
+      }
+    ],
+    "is_error": true
+  },
+  "tool": "ppal-duplicate"
+}

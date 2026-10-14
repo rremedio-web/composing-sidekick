@@ -1,0 +1,24 @@
+{
+  "arguments": {
+    "id": "558",
+    "split": "26|1"
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "id": "558",
+          "path": "t10[25|1]"
+        }
+      },
+      {
+        "text": "WARNING: split cut nothing: no split point falls inside any of the clips. Positions are relative to each clip's start (1|1), and must be before its end; the clips span 558 (1|1 to 3|1)."
+      },
+      {
+        "text": "WARNING: param \"split\" is deprecated and will be removed; use \"arrangementSplit\" instead. Positions are on the song timeline, not offsets from the clip's start."
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-update-clip"
+}

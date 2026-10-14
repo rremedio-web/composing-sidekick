@@ -1,0 +1,12 @@
+{
+  "arguments": {},
+  "response": {
+    "content": [
+      {
+        "text": "{content:\"EXAMPLE \\u2014 90 BPM, 4/4. Synthetic project context for tests: a minor-key sketch with a bass, a pad and a drum track. Key tracks: 1 \\\"Bass\\\", 2 \\\"Pad\\\", 3 \\\"Drums\\\".\"}"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-context"
+}

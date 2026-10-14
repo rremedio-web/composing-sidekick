@@ -1,0 +1,40 @@
+{
+  "arguments": {
+    "include": [
+      "session-clips",
+      "notes"
+    ],
+    "trackIndex": 9
+  },
+  "response": {
+    "content": [
+      {
+        "json": {
+          "arrangementClipCount": 0,
+          "deviceCount": 1,
+          "id": "358",
+          "instrument": "Omnisphere",
+          "isArmed": true,
+          "name": "10-Omnisphere",
+          "path": "t9",
+          "playingSlotIndex": 0,
+          "sessionClips": [
+            {
+              "id": "359",
+              "name": "10-Omnisphere 2",
+              "notes": "[{p:60,t:10.5585,d:3.3764,v:100},{p:62,t:0.7363,d:3.2325,v:100},{p:64,t:3.932,d:3.2607,v:100},{p:65,t:7.3349,d:213/64,v:100}]",
+              "path": "t9/s0",
+              "playing": true
+            }
+          ],
+          "type": "midi"
+        }
+      },
+      {
+        "text": "WARNING: param \"trackIndex\" is deprecated and will be removed; use \"path\" instead"
+      }
+    ],
+    "is_error": false
+  },
+  "tool": "ppal-read-track"
+}
