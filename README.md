@@ -9,7 +9,7 @@ The LLM client (Claude Code, Codex, Cursor, Gemini CLI…) is the composer. This
 repository is its instrument: an MCP server of composing tools, an analysis pipeline,
 and the operator docs that keep the loop honest.
 
-Built by Ricardo Remédio (LÖBO / RA) with LLM assistants, for his own practice. The
+Built by Ricardo Remédio with LLM assistants, for his own practice. The
 public repository ships **without** his catalogue, notes, judgments or reference
 library — see [What is personal](#what-is-personal-and-not-in-the-repo).
 
