@@ -153,7 +153,9 @@ class OutcomeTimestampAndRetryMarkerTests(unittest.TestCase):
     def test_pending_marker_write_skips_unchanged_value(self):
         from unittest import mock
         from mcp_server import ledger
-        with mock.patch.object(ledger, "LEDGER_PATH", "unused-ledger"), \
+        with tempfile.TemporaryDirectory() as td, \
+                mock.patch.object(ledger, "LEDGER_PATH",
+                                  str(Path(td) / "unused-ledger")), \
                 mock.patch.object(ledger, "_load_for_mutation", return_value={
                     "entries": [{"id": "e-marker", "outcome_op_pending": True}]}), \
                 mock.patch.object(ledger, "_save") as save:

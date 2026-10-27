@@ -104,6 +104,7 @@ class ListenableStagingTest(unittest.TestCase):
             self.assertEqual(read_wav_format(dst), (1, 2, 16))
 
     def test_ffmpeg_to_wav_requests_pcm_s16le_with_timeout(self) -> None:
+        require_ffmpeg(self)  # ffmpeg_to_wav checks PATH before the stubbed _run
         captured: dict = {}
 
         def fake_run(cmd: list[str], **kwargs):  # noqa: ANN001, ANN202

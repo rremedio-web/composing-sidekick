@@ -1,5 +1,7 @@
 # composing-sidekick
 
+![tests](https://github.com/rremedio-web/composing-sidekick/actions/workflows/tests.yml/badge.svg)
+
 An LLM composing **bandmate** for Ableton Live. It learns a composer's musical identity
 from their own Live catalogue (the MIDI inside `.als` files — symbolic, never audio),
 turns it into retrievable phrases, a style profile and critics, and works with the

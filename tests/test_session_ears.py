@@ -1578,6 +1578,7 @@ class TestTruthfulAudioRegionsAndIdentity(unittest.TestCase):
         self.assertEqual(take["clip_name"], "Path Vox")
         self.assertEqual(fake.read_clip_args["path"], "t0/s1")
 
+    @unittest.skipUnless(shutil.which("ffmpeg"), "needs ffmpeg on PATH")
     def test_real_wav_late_region_and_crop_args_f6(self):
         """F6: Audio staging crops the true late region [2.0, 5.0] rather than defaulting to [0, 45]."""
         take = {

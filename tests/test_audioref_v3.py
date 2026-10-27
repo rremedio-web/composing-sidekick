@@ -1,6 +1,8 @@
 """Lane B2 AUDIOREF-V3 regression tests (R1..R8, X1..X7). Synthetic only."""
 from __future__ import annotations
 
+import importlib.util
+import shutil
 import unittest
 from unittest import mock
 
@@ -9,6 +11,14 @@ from mcp_server import server as _server
 from tools import audio_ref as _ar
 from tests._stage_passthrough import passthrough_listenable_staging
 from tests._requires import requires_store
+
+needs_ffmpeg = unittest.skipUnless(shutil.which("ffmpeg"), "needs ffmpeg on PATH")
+needs_pretty_midi = unittest.skipUnless(
+    importlib.util.find_spec("pretty_midi"),
+    "needs pretty_midi (pip install -r requirements-test.txt)")
+needs_soundfile = unittest.skipUnless(
+    importlib.util.find_spec("soundfile"),
+    "needs soundfile (pip install -r requirements-test.txt)")
 
 
 def _four_on_floor_card():
@@ -2182,6 +2192,7 @@ def _sine_track(sr=22050, freq=440.0, seconds=5.0, amp=0.5):
 
 
 class TestX3MeasureFirst(unittest.TestCase):
+    @needs_soundfile
     def test_click_track_tempo_and_grid(self):
         import tempfile
         from pathlib import Path
@@ -2200,6 +2211,7 @@ class TestX3MeasureFirst(unittest.TestCase):
             self.assertTrue(measured["energy_per_bar"])
             self.assertAlmostEqual(measured["bar_len_s"], 2.0, delta=0.05)
 
+    @needs_soundfile
     def test_novelty_boundary_on_level_jump(self):
         import tempfile
         from pathlib import Path
@@ -2213,6 +2225,7 @@ class TestX3MeasureFirst(unittest.TestCase):
                                 for b in measured["novelty_boundaries_s"]),
                             measured["novelty_boundaries_s"])
 
+    @needs_soundfile
     def test_chroma_key_names_concert_a(self):
         import tempfile
         from pathlib import Path
@@ -2224,6 +2237,7 @@ class TestX3MeasureFirst(unittest.TestCase):
             key = (measured["chroma_key"] or {}).get("key") or ""
             self.assertEqual(key.split()[0], "A")
 
+    @needs_soundfile
     def test_silence_measures_nothing(self):
         import tempfile
         from pathlib import Path
@@ -2655,6 +2669,7 @@ def _make_midi(path, notes, is_drum=True):
 
 
 class TestX6StemsPerStemMidi(unittest.TestCase):
+    @needs_pretty_midi
     def test_midi_lanes_and_phase_steps(self):
         import tempfile
         from pathlib import Path
@@ -2678,6 +2693,7 @@ class TestX6StemsPerStemMidi(unittest.TestCase):
             _make_midi(pitched, [(60, 0.0, 0.5)], is_drum=False)
             self.assertIsNone(_ar.midi_drum_lanes(pitched, 120.0))
 
+    @needs_pretty_midi
     def test_long_jittered_offset_loop_resolves_to_card_grid(self):
         # Review fix: 3-min 138 BPM four-on-the-floor with jitter, a
         # downbeat offset and slightly-wrong (even half-time) measured
@@ -2729,6 +2745,8 @@ class TestX6StemsPerStemMidi(unittest.TestCase):
         self.assertIsNone(_ar.resolve_tempo_octave(None, 138.0))
         self.assertIsNone(_ar.resolve_tempo_octave(0.0, 138.0))
 
+    @needs_ffmpeg
+    @needs_pretty_midi
     def test_stems_winner_grids_and_tempo(self):
         import tempfile
         from pathlib import Path
@@ -3182,6 +3200,7 @@ class TestX5PassBWindows(unittest.TestCase):
             inspect.signature(_ar.analyze_audio_ref).parameters[
                 "pass_b"].default, False)
 
+    @needs_ffmpeg
     def test_run_cuts_listens_and_merges_with_fake_runner(self):
         import tempfile
         import wave
@@ -3518,6 +3537,8 @@ class TestM5MeasuredMidi(unittest.TestCase):
         self.assertNotIn("rough_tempo_bpm",
                          _ar.note_features([]))
 
+    @needs_ffmpeg
+    @needs_pretty_midi
     def test_nonstem_bp_uses_measured_octave_resolved_tempo(self):
         import tempfile
         from pathlib import Path
@@ -3550,6 +3571,7 @@ class TestM5MeasuredMidi(unittest.TestCase):
         self.assertEqual(tempos, [138.0])
         self.assertEqual(result["measured"]["tempo_bpm"], 138.0)
 
+    @needs_ffmpeg
     def test_windowed_analyze_skips_measure_audio(self):
         # Review fix (minors): a start/end window describes a clip slice, so
         # file-zero-based DSP (tempo, loudness windows) must not run on it.
@@ -3575,6 +3597,7 @@ class TestM5MeasuredMidi(unittest.TestCase):
         m_measure.assert_not_called()
         self.assertIsNone(result["measured"])
 
+    @needs_ffmpeg
     def test_full_analyze_still_measures(self):
         # Guard for the windowed skip above: without start/end the local
         # DSP measurement still runs.
@@ -3600,6 +3623,8 @@ class TestM5MeasuredMidi(unittest.TestCase):
         m_measure.assert_called_once()
         self.assertEqual(result["measured"], {"tempo_bpm": 100.0})
 
+    @needs_ffmpeg
+    @needs_pretty_midi
     def test_melodic_stem_wins_ref_mid_drums_kept_separately(self):
         import tempfile
         from pathlib import Path
@@ -3647,6 +3672,7 @@ class TestM5MeasuredMidi(unittest.TestCase):
             self.assertEqual(result["measured_drum_grid"]["method"],
                              "stem_midi_onsets")
 
+    @needs_pretty_midi
     def test_midi_pitch_classes_from_synthetic_mid(self):
         import tempfile
         from pathlib import Path

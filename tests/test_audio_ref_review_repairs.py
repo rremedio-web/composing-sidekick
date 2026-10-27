@@ -1,11 +1,15 @@
 """Reference review regressions: inherited flags and unprimed, faithful input."""
 import copy
+import importlib.util
 import json
 import shutil
 import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
+
+if importlib.util.find_spec("soundfile") is None:
+    raise unittest.SkipTest("needs soundfile (pip install -r requirements-test.txt)")
 
 import numpy as np
 import soundfile as sf
