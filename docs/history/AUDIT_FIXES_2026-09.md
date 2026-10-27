@@ -1,5 +1,7 @@
 # Durable KEEP audit repairs — 2026-09-05
 
+> Dated record: written on 5 Sep 2026, before the musical trial resumed. For current use, see the README Status section.
+
 Implementation and controller acceptance record for the five approved improvements.
 Controller decision: **GO for local delivery** of all five improvements.
 Physical bridge and Live API capture both passed scratch Live verification.

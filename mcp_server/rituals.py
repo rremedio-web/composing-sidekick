@@ -531,7 +531,7 @@ def three_endings(seed_notes: list[dict], key: str | None = None,
 
     endings = [
         {"name": "decay", "notes": _mk(decay),
-         "description": "thins and fades bar by bar, lands on a held tonic — the LÖBO default"},
+         "description": "thins and fades bar by bar, lands on a held tonic — the default ending"},
         {"name": "subtraction", "notes": _mk(subtraction),
          "description": "voices leave one stage at a time until one note remains"},
         {"name": "hard_stop", "notes": _mk(hard),

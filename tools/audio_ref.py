@@ -2839,7 +2839,7 @@ REF_AUTHORITY = (
     "it and say which one you skipped."
 )
 
-# His own records (Natureza Morta, LÖBO) are in this library too. For those the
+# His own records are in this library too. For those the
 # "aim at it, don't copy it" caution is simply wrong: it is his record, and he is
 # entitled to quote it. Confirmed by him 2026-09-03.
 REF_AUTHORITY_HIS = (

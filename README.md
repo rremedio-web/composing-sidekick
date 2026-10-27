@@ -203,7 +203,7 @@ structural remainder is named below:
 
 ## Status (2026-10-14)
 
-A working prototype, used in the author's real composing sessions since mid-2026.
+A working prototype, used in the author's real composing sessions.
 The current product arc is **durable KEEP**: fewer features, more suggestions that
 survive the session. Parked by design: a full SOMBRA Max for Live control surface
 (transport and OSC protocol exist, `docs/SOMBRA_DEVICE.md`), a `core`/`server` split,
