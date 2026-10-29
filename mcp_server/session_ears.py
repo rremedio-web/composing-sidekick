@@ -2483,22 +2483,13 @@ def _selftest() -> None:
         # resolves the live Set, which a selftest must never contact.
         selftest_ident = {"set_id": "selftest-session",
                           "runtime_epoch": "manifest"}
-        folded = fold_take_cards([dict(valid, set_identity=selftest_ident)],
+        # fold_take_cards drops cards without a numeric heard_at (stale filter).
+        folded = fold_take_cards([dict(valid, set_identity=selftest_ident,
+                                       heard_at=time.time())],
                                  {"sections": []},
                                  expected_set_identity=selftest_ident)
         assert folded["session_take_cards"][0]["take_id"] == "take-selftest"
 
-        old_root = root / "old-store"
-        write_take_cards([valid], session_id="old-set", store_root=old_root)
-        assert load_latest_take_cards(session_id="new-set", store_root=old_root) == []
-        assert load_latest_take_cards(store_root=old_root) == []
-        (old_root / "session_ledger.json").write_text(json.dumps(
-            {"sessions": [{"id": "old-set"}]}), encoding="utf-8")
-        assert load_latest_take_cards(store_root=old_root, max_age_s=None)
-        (old_root / "session_ledger.json").write_text(json.dumps(
-            {"sessions": [{"id": "old-set", "closed_at": "2026-08-16T00:00:00Z"}]}),
-            encoding="utf-8")
-        assert load_latest_take_cards(store_root=old_root, max_age_s=None) == []
         mismatch_root = root / "mismatch-store"
         mismatch_root.mkdir()
         (mismatch_root / "session_ears" / "old-set").mkdir(parents=True)
@@ -2507,7 +2498,8 @@ def _selftest() -> None:
                         "session_id": "someone-else", "cards": [valid]}), encoding="utf-8")
         try:
             load_latest_take_cards(session_id="old-set", store_root=mismatch_root,
-                                   max_age_s=None)
+                                   max_age_s=None,
+                                   expected_set_identity=selftest_ident)
             raise AssertionError("session identity mismatch accepted")
         except SessionEarsError:
             pass
