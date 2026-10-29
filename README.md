@@ -73,9 +73,7 @@ nearly the same, being served again (`clear_rejects` undoes that).
 - **AI coding agents wrote most of the code and the tests**, from my plans, and I
   reviewed their work. The plans, reviews and agent runbooks from the build are in
   [`docs/history/`](docs/history/README.md). <!-- Ricardo: confirm -->
-- <!-- Ricardo: confirm — add one or two specifics in your own words, e.g. a design
-  choice you made against an agent's suggestion, or a bug an agent introduced and how
-  you caught it. -->
+<!-- Ricardo: add one or two specifics here in your own words (a design choice you made against an agent, or a bug an agent introduced and how you caught it). -->
 
 ## Core tools
 
