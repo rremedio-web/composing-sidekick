@@ -2,50 +2,136 @@
 
 ![tests](https://github.com/rremedio-web/composing-sidekick/actions/workflows/tests.yml/badge.svg)
 
-An LLM composing **bandmate** for Ableton Live. It learns a composer's musical identity
-from their own Live catalogue (the MIDI inside `.als` files: symbolic, not audio),
-turns it into retrievable phrases, a style profile and critics, and works with the
-composer inside Live through the [Producer Pal](https://producer-pal.org) MCP device.
-The optional listening features do handle audio and send it to an outside model; see
+composing-sidekick lets an AI assistant compose *with* you inside Ableton Live, using
+your own past music as its main material. It reads the MIDI in your Live Sets, learns
+your phrases and habits, and answers what you are playing with ideas built from them.
+It writes those ideas only to tracks it owns, so you listen and keep or drop each one.
+
+It is for producers who work in Ableton Live and want a partner that plays back their
+own material rather than everyone's average. It is a personal tool by Ricardo Remédio,
+used in the author's real composing sessions. The public repository ships **without**
+his catalogue, notes, judgments or reference library; see
+[What is personal](#what-is-personal-and-not-in-the-repo).
+
+Learning from your catalogue is symbolic (MIDI notes, not audio). The optional listening
+features do handle audio and send it to an outside model; see
 [What leaves your machine](#what-leaves-your-machine).
 
-The LLM client (Claude Code, Codex, Cursor, Gemini CLI…) is the composer. This
-repository is its instrument: an MCP server of composing tools, an analysis pipeline,
-and the operator docs that keep the loop honest.
+## How it works
 
-Built by Ricardo Remédio with LLM assistants, for his own practice. The
-public repository ships **without** his catalogue, notes, judgments or reference
-library — see [What is personal](#what-is-personal-and-not-in-the-repo).
+Your AI client (Claude Code, Codex, Cursor, Gemini CLI…) is the composer. It talks to two
+[MCP](https://modelcontextprotocol.io) servers: this one, which holds your catalogue and
+the composing tools, and [Producer Pal](https://producer-pal.org), which drives Ableton
+Live.
+
+```mermaid
+flowchart LR
+    sets["Your past Live Sets (.als)"]
+    catalogue[("Your catalogue<br/>style profile, phrase index")]
+    client["AI client<br/>(the composer)"]
+    sidekick["composing-sidekick<br/>MCP server"]
+    pp["Producer Pal<br/>MCP + Live device"]
+    live["Ableton Live<br/>your open Set"]
+    ledger[("Session ledger<br/>every suggestion, KEEP / DROP")]
+
+    sets -- "pipeline, run once (ingest + analyze)" --> catalogue
+    client -- "tool calls" --> sidekick
+    sidekick -- "search, score" --> catalogue
+    sidekick -- "read the Set, write SIDEKICK tracks, read back" --> pp
+    pp <--> live
+    sidekick -- "stamp each write" --> ledger
+```
+
+A session runs as a loop. The score that matters is **survival**: how many of the
+suggestions you judged are still in the Set at the end of the night.
+
+```mermaid
+flowchart LR
+    hear["hear_the_room<br/>tempo, key, what is playing"]
+    answer["answer_my_loop<br/>an answer from your own phrases"]
+    write["write to SIDEKICK JAM<br/>read back, stamped in the ledger"]
+    judge["you listen<br/>judge_answer: KEEP or DROP"]
+    close["close_session<br/>which suggestions survived?"]
+
+    hear --> answer --> write --> judge
+    judge -- "next idea" --> hear
+    judge -. "end of the night" .-> close
+```
+
+`answer_my_loop` works in "gears", from plain recall up to composing: 1 returns your
+nearest phrase as it is, 2 (the default) transposes and voice-leads it to fit your loop,
+3 and 4 develop or extend it, and 5 and 6 let the AI compose under rules checked by the style
+critics. KEEP adds the source phrase to your "gold" favourites; DROP stops it, and phrases
+nearly the same, being served again (`clear_rejects` undoes that).
+
+## What I decided vs what the agents wrote
+
+- **I decided** what the tool is for and the rules it follows: my own material comes
+  first and the generator is only a critic; automatic writes go only to tracks named
+  `SIDEKICK …` and are read back; a night is scored by what survives, not by KEEP
+  clicks. I also judge every musical result myself. <!-- Ricardo: confirm -->
+- **AI coding agents wrote most of the code and the tests**, from my plans, and I
+  reviewed their work. The plans, reviews and agent runbooks from the build are in
+  [`docs/history/`](docs/history/README.md). <!-- Ricardo: confirm -->
+- <!-- Ricardo: confirm — add one or two specifics in your own words, e.g. a design
+  choice you made against an agent's suggestion, or a bug an agent introduced and how
+  you caught it. -->
+
+## Core tools
+
+The server has 77 tools. Profiles (`SIDEKICK_MCP_PROFILE`, see below) limit which ones
+the client sees, so it chooses among fewer: the default `compose` profile has 63, and a
+normal session uses a handful. Every tool: [`config/claude_mcp.md`](config/claude_mcp.md).
+
+| Tool | What it does |
+|---|---|
+| `hear_the_room` | Reads the open Set through Producer Pal: tempo, key, the MIDI of the clips playing. Also reports the judgment loop's state. |
+| `find_phrases` | Finds real phrases from your catalogue, by role (lead, bass, drums…) or by fit to the room. |
+| `answer_my_loop` | Answers your loop with your own material, through the gears above. `write=True` puts the answer on SIDEKICK JAM. |
+| `develop_my_loop` | Takes one real phrase from your catalogue and applies one named development move. Never writes to Live. |
+| `grow_my_loop` | Returns your loop untouched, each copy extended with a short continuation that grows out of it. |
+| `write_composed_to_jam` | Writes notes the AI composed (gears 5 and 6) to SIDEKICK JAM, only if the style critics pass them. |
+| `judge_answer` | Records your KEEP or DROP for a suggestion. |
+| `close_session` | End of the night: checks which suggestions are still in the Set and scores the session. |
+| `session_report` | Shows what the judgment ledger holds. |
+| `score_phrase` | Scores a phrase against your style (0 to 1, with a verdict). |
+| `export_midi` | Saves notes as a `.mid` file under `store/exports`. |
+| `listen_to_takes` | Opt-in: sends audio takes from the Set to an outside listener model and keeps what it heard. |
 
 ## What it does
 
-- **Learns from your catalogue.** `ingest/` parses every Live Set (arrangement, session
-  and take-lane clips, drum-aware), `analyze/` builds a phrase index, per-role melodic
-  grammar, harmony and structure statistics, motifs, velocity/timing feel and direction
-  axes under `store/`.
+- **Learns from your catalogue.** `ingest/` reads every MIDI clip in your Live Sets
+  (arrangement, session and take lanes, and it knows which clips are drums). `analyze/`
+  turns them into a phrase index and statistics about your melodies, harmony, song
+  structure, motifs and playing feel, under `store/`.
 - **Composes from your material first.** `answer_my_loop`, `find_phrases`,
   `develop_my_loop`, `grow_my_loop`: call-and-response, variation and growth from the
-  composer's own phrases. A seeded generator exists but is demoted to a critic
-  (`score_phrase`, `critique`, `validate_composed`).
+  composer's own phrases. A seeded note generator exists, but only as a critic that
+  scores ideas (`score_phrase`, `critique`, `validate_composed`).
 - **Hears the room.** `hear_the_room` reads the open Set through Producer Pal (tempo,
-  key, playing clips, roles); audio clips are reported as *named but unheard*. An opt-in
-  **session ears** pass (`inventory_session_audio` → `listen_to_takes`) can send takes to
-  an external listener model and fold validated cards back into context.
-- **Writes safely.** Automatic writes land only on tracks named `SIDEKICK JAM` and
-  `SIDEKICK BOOTH`; every write is read back and verified; everything else is a preview
-  or confirm-gated handoff.
+  key, playing clips, what role each plays). Audio clips are reported by name only, as
+  *named but unheard*. An opt-in **session ears** pass (`inventory_session_audio` →
+  `listen_to_takes`) can send takes to an outside listener model.
+- **Writes safely.** These tools write automatically only to tracks named
+  `SIDEKICK JAM` and `SIDEKICK BOOTH`. Every write is read back and checked; anything
+  else is a preview or needs your confirmation.
 - **Closes the judgment loop.** Every JAM write is stamped in a session ledger; the
-  composer judges KEEP/DROP; `close_session` inventories the Set and scores *session
+  composer judges KEEP/DROP; `close_session` checks the Set and scores *session
   survival* (suggestions still in the Set at the end of the night), the project's real
-  metric.
-- **Finishes songs.** `whats_missing` (dramaturg detectors on a Set), `lay_the_song`
-  (locator maps in the composer's measured proportions), `three_endings`,
-  `bury_or_marry`, `version_courage`, `one_hour_close`.
+  measure of success.
+- **Helps finish songs.** `whats_missing` reads a project and says what the song
+  still lacks; `lay_the_song` maps one scene into a full-song layout with locators, in
+  proportions measured from the catalogue; `three_endings` offers three ways to end
+  from the loop's last bar; `bury_or_marry` deals one of your saved ideas to keep or
+  retire; `one_hour_close` turns a project's top findings into short finishing tasks
+  for one hour that ends in a bounce.
 - **Uses references.** `analyze_audio_ref` files a local file or URL as a listening card
-  plus a Basic Pitch MIDI sketch; `find_audio_refs` / `apply_audio_ref` / `beat_from_ref`
-  let a reference steer *which of the composer's own* phrases and drum clips are used.
-- **Offline Mix Adviser** (separate, gated): DSP evidence on exported stems, at most three
-  bounded gain proposals, loudness-matched blind A/B, its own ledger.
+  plus a MIDI sketch (Basic Pitch); `find_audio_refs` / `apply_audio_ref` /
+  `beat_from_ref` let a reference steer *which of the composer's own* phrases and drum
+  clips are used.
+- **Offline mix adviser** (separate, in the `debug` profile): measurements on exported
+  stems, at most three small gain changes, a loudness-matched blind A/B, and its own
+  ledger.
 
 ## Requirements
 
@@ -236,8 +322,8 @@ structural remainder is named below:
 
 A working prototype, used in the author's real composing sessions.
 The current product arc is **durable KEEP**: fewer features, more suggestions that
-survive the session. Parked by design: a full SOMBRA Max for Live control surface
-(transport and OSC protocol exist, `docs/SOMBRA_DEVICE.md`), a `core`/`server` split,
+survive the session. Parked by design: SOMBRA, a full Max for Live pedalboard control
+surface (its transport and OSC protocol exist, `docs/SOMBRA_DEVICE.md`), a `core`/`server` split,
 stem separation, new note generators, automatic mixing. Ears-by-default is gated on a
 pre-registered blind round (`docs/EARS_PROMOTION.md`).
 
