@@ -1,4 +1,5 @@
-"""Run the Node tests for the Max for Live bridge script (skips without node)."""
+"""Run the Node tests for the Max for Live bridge script and the idea-pack panel
+(skips without node)."""
 from __future__ import annotations
 
 import os
@@ -18,6 +19,16 @@ class TestSidekickBridgeJs(unittest.TestCase):
             capture_output=True, text=True, timeout=60, cwd=ROOT)
         self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
         self.assertIn("sidekick bridge capture tests: OK", proc.stdout)
+
+
+@unittest.skipUnless(NODE, "needs node to run tools/ideapack_panel.test.mjs")
+class TestIdeaPackPanelJs(unittest.TestCase):
+    def test_panel_rating_contract_checks(self):
+        proc = subprocess.run(
+            [NODE, os.path.join(ROOT, "tools", "ideapack_panel.test.mjs")],
+            capture_output=True, text=True, timeout=60, cwd=ROOT)
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertIn("PASS", proc.stdout)
 
 
 if __name__ == "__main__":

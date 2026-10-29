@@ -397,7 +397,7 @@ def test_phrase_window_sustained_and_role() -> None:
     }
     data = {"path": "/tmp/phrase_window.als", "tempo": 120.0, "clips": [sustained_clip, role_clip]}
     phrases = list(iter_phrases(data))
-    pad_phrase = next(p for p in phrases if p["track"] == "Pad" and p["id"].endswith("|w0"))
+    pad_phrase = next(p for p in phrases if p["track"] == "Pad" and p["alias"].endswith("|w0"))
     sustained = [n for n in pad_phrase["notes"] if n["pitch"] == 60]
     assert sustained, pad_phrase["notes"]
     assert sustained[0]["start"] == 0.0
@@ -405,8 +405,8 @@ def test_phrase_window_sustained_and_role() -> None:
 
     all_notes = role_clip["notes"]
     assert clip_role(all_notes, False) == "lead"
-    bass_phrase = next(p for p in phrases if p["id"].endswith("|w0") and p["track"] == "Keys")
-    lead_phrase = next(p for p in phrases if p["id"].endswith("|w8") and p["track"] == "Keys")
+    bass_phrase = next(p for p in phrases if p["alias"].endswith("|w0") and p["track"] == "Keys")
+    lead_phrase = next(p for p in phrases if p["alias"].endswith("|w8") and p["track"] == "Keys")
     assert bass_phrase["role"] == "bass"
     assert lead_phrase["role"] == "lead"
     assert bass_phrase["role"] != clip_role(all_notes, False)
