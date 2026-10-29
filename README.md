@@ -3,9 +3,11 @@
 ![tests](https://github.com/rremedio-web/composing-sidekick/actions/workflows/tests.yml/badge.svg)
 
 An LLM composing **bandmate** for Ableton Live. It learns a composer's musical identity
-from their own Live catalogue (the MIDI inside `.als` files — symbolic, never audio),
+from their own Live catalogue (the MIDI inside `.als` files: symbolic, not audio),
 turns it into retrievable phrases, a style profile and critics, and works with the
 composer inside Live through the [Producer Pal](https://producer-pal.org) MCP device.
+The optional listening features do handle audio and send it to an outside model; see
+[What leaves your machine](#what-leaves-your-machine).
 
 The LLM client (Claude Code, Codex, Cursor, Gemini CLI…) is the composer. This
 repository is its instrument: an MCP server of composing tools, an analysis pipeline,
@@ -172,6 +174,26 @@ music inside them is synthetic: names are invented and the piece replay's notes 
 drawn over the captured arrangement skeleton (`tests/fixtures/pp/README.md`). The fakes in `tests/pp_fakes.py` validate every call against that build's tool
 schemas. Adding a build means capturing it on a disposable scratch Set first — see
 `docs/PRODUCER_PAL_VERSIONS.md`.
+
+## What leaves your machine
+
+Learning from your catalogue is symbolic and local: the pipeline reads the MIDI inside
+your `.als` files and writes its results under `store/`. Three optional features work
+with audio, and each one sends audio to Google's Gemini model through the `agy` CLI:
+
+- **Audio references** (`analyze_audio_ref`, `analyze_audio_refs_batch`). Given a
+  YouTube URL, the tool downloads the audio with `yt-dlp`. The `describe` mode (on by
+  default) then sends that audio, or a local file you name, to Gemini for a listening
+  card. The `midi` (Basic Pitch) and `features` modes run locally. Only use recordings
+  you have the right to use.
+- **Session ears** (`listen_to_takes`, opt-in). Sends audio takes from your open Set,
+  one at a time and cut to at most 45 seconds, to Gemini.
+- **Mix witness** (`analyze_mix_pass(listener=True)`, off by default). Sends the
+  exported master and group stems to Gemini.
+
+Without `agy` installed, no audio is sent and the rest keeps working. Like any MCP
+server, the sidekick's tool results (notes, phrases, style facts) also go to the LLM
+client you connect, so your client's provider sees them.
 
 ## What is personal and not in the repo
 
