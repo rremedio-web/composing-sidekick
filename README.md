@@ -66,13 +66,14 @@ nearly the same, being served again (`clear_rejects` undoes that).
 
 ## What I decided vs what the agents wrote
 
-- **I decided** what the tool is for and the rules it follows: my own material comes
-  first and the generator is only a critic; automatic writes go only to tracks named
-  `SIDEKICK …` and are read back; a night is scored by what survives, not by KEEP
-  clicks. I also judge every musical result myself. <!-- Ricardo: confirm -->
+- **The idea, the rules and the judging are mine.** I came up with the tool and keep
+  refining it: what it's for and the rules it follows. My own material comes first and
+  the generator is only a critic; automatic writes go only to tracks named `SIDEKICK …`
+  and are read back; a night is scored by what survives, not by KEEP clicks. I judge
+  every musical result myself.
 - **AI coding agents wrote most of the code and the tests**, from my plans, and I
   reviewed their work. The plans, reviews and agent runbooks from the build are in
-  [`docs/history/`](docs/history/README.md). <!-- Ricardo: confirm -->
+  [`docs/history/`](docs/history/README.md).
 <!-- Ricardo: add one or two specifics here in your own words (a design choice you made against an agent, or a bug an agent introduced and how you caught it). -->
 
 ## Core tools
