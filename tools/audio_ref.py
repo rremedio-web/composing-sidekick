@@ -3332,7 +3332,9 @@ def _resolve_model(model: str | None) -> str:
 # M3 listener hardening: the auto-approve flag is a single constant,
 # default OFF. A no-tool structured print turn should not need it; the
 # orchestrator verifies that with a real call — flip to True only if that
-# verification fails.
+# verification fails. Session ears keeps it ON (session_ears.
+# EARS_AGY_SKIP_PERMISSIONS) because its listener writes a card file; this
+# listener only views the audio and answers on stdout.
 AGY_SKIP_PERMISSIONS = False
 
 

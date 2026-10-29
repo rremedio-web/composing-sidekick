@@ -81,7 +81,7 @@ Each card has `take_id`, `track`, `clip_name`, `role_guess`, `vibe`, `register`,
 
 - Default model: `gemini-3.8-flash-medium`. The `model` argument wins when provided; `SESSION_EARS_MODEL` is consulted only when the internal Python caller passes `model=None` (the MCP wire default is explicit, not env-driven).
 - Each take gets one `agy` call. Audio is staged into a temporary sandbox grant and clipped to the true analyzed region (up to 45 seconds), matching the posture used by `tools/audio_ref.py`. `focus` uses its own take-card vocabulary (`full`, `groove`, `melody`, `composition` — `TAKE_FOCUS_OVERLAYS` in `mcp_server/session_ears.py`), not the audio-ref card `FOCUS_OVERLAYS`.
-- The subprocess uses the established minimal environment allowlist, `--dangerously-skip-permissions`, `--sandbox`, timeouts, and stdout recovery. Invalid or missing output raises an explicit error; no card is fabricated.
+- The subprocess uses the established minimal environment allowlist, `--sandbox`, timeouts, and stdout recovery. It also passes `--dangerously-skip-permissions`, unlike audio-reference card listens: the ears listener is asked to write its card to `take_card.json` in the staging directory, and a non-interactive print turn cannot approve that write (`EARS_AGY_SKIP_PERMISSIONS` in `mcp_server/session_ears.py`). Invalid or missing output raises an explicit error; no card is fabricated.
 - Staging directories are always cleaned up; source paths never appear in MCP responses, errors, persisted cards, or normal logs.
 
 ## Offline / Test Helper

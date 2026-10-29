@@ -155,7 +155,9 @@ When `--listener` is set on `analyze`:
 
 1. Discovers `agy` on `PATH` (same as audio refs).
 2. Runs with **sanitized environment** (whitelist: `PATH`, `HOME`, `TMPDIR`, …).
-3. Passes **`--sandbox`** unless `AUDIO_REF_AGY_SANDBOX=0`.
+3. Always passes **`--sandbox`** (no environment override), plus
+   `--dangerously-skip-permissions` because the listener writes `witness.txt` in the
+   staging directory.
 4. Copies only the selected inputs into one temporary directory, names every file in the
    prompt, and uses that same directory for `--add-dir` and witness output.
 5. Requires strict markdown headings:

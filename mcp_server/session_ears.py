@@ -6,8 +6,10 @@ returns opaque, short-lived inventory capabilities and sanitized take
 descriptors; canonical filesystem paths live only in a process-local registry
 until a caller selects inventoried takes.
 
-``listen_to_takes`` stages one local audio file at a time for the same
-sandboxed ``agy`` posture used by ``tools/mix_witness.py`` and ``tools/audio_ref.py``.
+``listen_to_takes`` stages one local audio file at a time for a sandboxed ``agy``
+listener turn. The environment allowlist and ``--sandbox`` match
+``tools/audio_ref.py``; the permission flag does not, on purpose — see
+``EARS_AGY_SKIP_PERMISSIONS`` below.
 
 Audio is untrusted input.  A listener failure is an error, never a synthetic card.
 All selftest audio and persistence use temporary directories; no selftest writes to
@@ -102,6 +104,17 @@ _AGY_ENV_ALLOW = (
     "PATH", "HOME", "USER", "TMPDIR", "TEMP", "TMP", "LANG", "LC_ALL",
     "LC_CTYPE", "SYSTEMROOT", "COMSPEC", "PATHEXT",
 )
+# Why ears passes --dangerously-skip-permissions and audio-ref card listens
+# do not (tools/audio_ref.py AGY_SKIP_PERMISSIONS = False): the ears prompt
+# asks the listener to WRITE its card to take_card.json in the staging dir
+# (_build_agy_cmd; the file is read first, stdout is only the fallback), and
+# a non-interactive --print turn has no one to approve that write. An
+# audio-ref card listen only views the staged file and returns the card on
+# stdout under --json-schema, so it needs no write. tools/mix_witness.py
+# writes witness.txt and passes the flag for the same reason. In all three,
+# --sandbox stays unconditional, --add-dir is a temp dir holding only the
+# staged audio, and the environment is _AGY_ENV_ALLOW.
+EARS_AGY_SKIP_PERMISSIONS = True
 _ROLE_CHOICES = {"lead", "bass", "pad", "drum", "texture", "unknown"}
 _DENSITY_CHOICES = {"sparse", "medium", "dense"}
 _CONFIDENCE_CHOICES = {"low", "med", "high"}
@@ -415,12 +428,6 @@ def _resolve_current_set_identity(
 
 def _which(name: str) -> str | None:
     return shutil.which(name)
-
-
-def _agy_sandbox_enabled() -> bool:
-    return os.environ.get("AUDIO_REF_AGY_SANDBOX", "1").strip().lower() not in (
-        "0", "false", "no", "off",
-    )
 
 
 def _agy_subprocess_env() -> dict[str, str]:
@@ -1545,10 +1552,9 @@ Honesty rules: use register null when pitch is not honestly determinable; use an
 pitch_claims list instead of guessing; timestamps are only concrete MM:SS references.
 {overlay}Return no markdown commentary outside the JSON object.
 """
-    cmd = [
-        agy, "--model", model, "--print-timeout",
-        f"{max(1, timeout_s // 60)}m", "--dangerously-skip-permissions",
-    ]
+    cmd = [agy, "--model", model, "--print-timeout", f"{max(1, timeout_s // 60)}m"]
+    if EARS_AGY_SKIP_PERMISSIONS:
+        cmd.append("--dangerously-skip-permissions")
     if "-medium" not in model and "-low" not in model and "-high" not in model:
         cmd.extend(["--effort", "high"])
     cmd.append("--sandbox")
@@ -2536,7 +2542,9 @@ def _selftest() -> None:
             assert cards[0]["contract_version"] == CONTRACT_VERSION
             assert captured["cmd"][captured["cmd"].index("--model") + 1] == "explicit-model"
             assert "--sandbox" in captured["cmd"]
-            assert "--dangerously-skip-permissions" in captured["cmd"]
+            # the listener writes take_card.json: see EARS_AGY_SKIP_PERMISSIONS
+            assert ("--dangerously-skip-permissions" in captured["cmd"]) \
+                is EARS_AGY_SKIP_PERMISSIONS
             assert all(key in _AGY_ENV_ALLOW for key in captured["env"])
             os.environ["UNTRUSTED_SESSION_EARS_TEST"] = "must-not-pass"
             assert "UNTRUSTED_SESSION_EARS_TEST" not in _agy_subprocess_env()

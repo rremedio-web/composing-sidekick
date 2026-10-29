@@ -87,12 +87,6 @@ def _which(name: str) -> str | None:
     return shutil.which(name)
 
 
-def _agy_sandbox_enabled() -> bool:
-    return os.environ.get("AUDIO_REF_AGY_SANDBOX", "1").strip().lower() not in (
-        "0", "false", "no", "off",
-    )
-
-
 def _resolve_listener_model(model: str | None) -> str:
     """explicit argument -> MIX_WITNESS_MODEL -> DEFAULT_AGY_MODEL; blanks fall through."""
     for candidate in (model, os.environ.get("MIX_WITNESS_MODEL"), DEFAULT_AGY_MODEL):
