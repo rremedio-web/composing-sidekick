@@ -17,6 +17,12 @@ CORE_TOOLS = (
     "score_phrase", "export_midi", "write_midi_clip", "write_composed_to_jam",
     "close_session", "session_report",
 )
+# Further tools whose parameters are all described (no annotations yet).
+DESCRIBED_TOOLS = (
+    "capture_loop", "inventory_session_audio", "audition_leads", "rate_candidates",
+    "read_clip", "surgery_clip", "audition_in_lanes", "bury_or_marry",
+    "no_new_notes", "clear_rejects",
+)
 READ_ONLY = {"get_style", "find_phrases", "grow_my_loop", "develop_my_loop",
              "score_phrase"}
 # may delete or overwrite: judge_answer(confirm) deletes a JAM clip on DROP,
@@ -57,7 +63,7 @@ class TestCoreToolSchemas(unittest.TestCase):
         cls.tools = _tools()
 
     def test_every_core_parameter_has_a_description(self):
-        for name in CORE_TOOLS:
+        for name in CORE_TOOLS + DESCRIBED_TOOLS:
             props = self.tools[name].parameters.get("properties", {})
             for param, schema in props.items():
                 with self.subTest(tool=name, param=param):

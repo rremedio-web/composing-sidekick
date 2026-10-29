@@ -313,8 +313,8 @@ def hear_the_room(
 
 @mcp.tool()
 async def inventory_session_audio(
-    track_indices: list[int] | None = None,
-    views: list[Literal["session", "arrangement"]] | None = None,
+    track_indices: Annotated[list[int] | None, Field(description="0-based indices of regular tracks to inventory. Omit for every regular track.")] = None,
+    views: Annotated[list[Literal["session", "arrangement"]] | None, Field(description="Views to read: 'session', 'arrangement' or both. Omit for both; an empty list is refused.")] = None,
 ) -> dict:
     """Inventory current Set audio takes via Producer Pal and return a capability envelope.
 
@@ -331,11 +331,11 @@ async def inventory_session_audio(
 
 @mcp.tool()
 async def capture_loop(
-    bars: int = 8,
-    source_scene_index: int | None = None,
-    surface: Literal["auto", "live_api", "bridge"] = "auto",
-    listen: bool = False,
-    confirm: bool = False,
+    bars: Annotated[int, Field(description="Capture length in bars (a whole number up to 1024), converted to seconds from the Set's time signature and tempo.")] = 8,
+    source_scene_index: Annotated[int | None, Field(description="0-based scene to launch before recording. Omit to record what is already playing.")] = None,
+    surface: Annotated[Literal["auto", "live_api", "bridge"], Field(description="'auto' uses the Producer Pal Live API capability when it validates, else the SIDEKICK BRIDGE device; 'live_api' or 'bridge' forces one ('live_api' fails when the capability is unavailable).")] = "auto",
+    listen: Annotated[bool, Field(description="After a validated recording, send the take to listen_to_takes for a take card. A listening failure keeps the recording and says how to retry.")] = False,
+    confirm: Annotated[bool, Field(description="False previews: checks the target slot and timing and records nothing. True records.")] = False,
 ) -> dict:
     """Preview or record what is playing into an empty SIDEKICK EARS slot.
 
@@ -407,10 +407,13 @@ def arrange_song(
 
 
 @mcp.tool()
-def audition_leads(bars: int = 8, key: str | None = None, density: str = "mid",
-                   n: int = 4, seed: int = 0,
-                   use_ears: bool | None = None,
-                   direction: str | None = None) -> dict:
+def audition_leads(bars: Annotated[int, Field(description="Length of each candidate in bars (values below 1 become 1).")] = 8,
+                   key: Annotated[str | None, Field(description="Key such as 'D minor'. Omit to use the profile's most common key in its dominant mode.")] = None,
+                   density: Annotated[str, Field(description="'minimal', 'mid' or 'full' (notes per bar and rest ratio). Words such as 'space', 'minimal' or 'sparse' in store/NOTES.md lower it one step.")] = "mid",
+                   n: Annotated[int, Field(description="How many candidates to ask for (values below 2 become 2).")] = 4,
+                   seed: Annotated[int, Field(description=_SEED)] = 0,
+                   use_ears: Annotated[bool | None, Field(description=_USE_EARS)] = None,
+                   direction: Annotated[str | None, Field(description=_DIRECTION)] = None) -> dict:
     """Generate N interval-band sampled lead candidates to audition and rate.
 
     Returns each candidate's notes, base style score, and current taste score. Write
@@ -421,13 +424,16 @@ def audition_leads(bars: int = 8, key: str | None = None, density: str = "mid",
 
 
 @mcp.tool()
-def rate_candidates(candidates: list[Any], best: int,
-                    worst: int | None = None, reason: str | None = None,
-                    key: str | None = None, role: str = "lead",
-                    contrast_axis: str | None = None,
-                    rating_scope: str | None = None,
-                    trainable_model: str | None = None,
-                    idempotency_key: str | None = None) -> dict:
+def rate_candidates(candidates: Annotated[list[Any], Field(description="The candidates exactly as audition_leads (or another candidate tool) returned them: dicts with notes (and key, role, source), or bare note lists.")],
+                    best: Annotated[int, Field(description="0-based index of the best candidate.")],
+                    worst: Annotated[int | None, Field(description="0-based index of the worst candidate; must differ from best. Omit to record only the best.")] = None,
+                    reason: Annotated[str | None, Field(description="Free one-word tag such as 'static', 'flowing', 'jumpy' or 'good-landing' (stored lower-cased).")] = None,
+                    key: Annotated[str | None, Field(description="The round's key, e.g. 'D minor', as the candidates' tool returned it. Omit to take it from the candidates when they all carry the same key (refused otherwise); 'auto' detects it from their notes.")] = None,
+                    role: Annotated[str, Field(description="Role recorded for candidates that carry none; pass it straight from the audition result.")] = "lead",
+                    contrast_axis: Annotated[str | None, Field(description="What the candidates differ on: 'lead', 'harmony', 'groove', 'arrangement' or 'mixed'. For IdeaPacks pass pack['contrast_axis']. Omit to derive it from the candidates' shared source, else 'mixed'.")] = None,
+                    rating_scope: Annotated[str | None, Field(description="Override for the round's rating scope (same values as contrast_axis). Omit to use the contrast axis.")] = None,
+                    trainable_model: Annotated[str | None, Field(description="Override for the model this round trains. Omit to derive it from the scope: lead trains lead_taste, harmony is kept for harmony_future, the others train none.")] = None,
+                    idempotency_key: Annotated[str | None, Field(description="Stable key for this round, e.g. 'session:<date>:round:<n>', so a retry never counts twice. Omit to derive one from the round's content; a deliberate repeat of an identical round needs a new key.")] = None) -> dict:
     """Record a best/worst judgment over auditioned candidates and retrain the taste
     model only when the round is scoped to a supported trainable axis.
 
@@ -832,8 +838,10 @@ def lay_the_song(scene_index: int = 0, parts: list[dict] | None = None,
 
 
 @mcp.tool()
-def audition_in_lanes(source_path: str, n: int = 3, seed: int = 0,
-                      confirm: bool = False) -> dict:
+def audition_in_lanes(source_path: Annotated[str, Field(description="Producer Pal path of the source MIDI session clip, 't<track>/s<scene>' (0-based).")],
+                      n: Annotated[int, Field(description="How many candidate lanes to stage, 1 to 8.")] = 3,
+                      seed: Annotated[int, Field(description="Picks which of the fixed velocity, octave and duration transforms the candidates start from.")] = 0,
+                      confirm: Annotated[bool, Field(description="False inspects only. True creates a fresh SIDEKICK audition track with the take lanes; a confirmed run that fails partway deletes that track.")] = False) -> dict:
     """Preview or create a fresh SIDEKICK audition track with up to eight take lanes.
 
     Requires Producer Pal 2.2 and a MIDI session clip at ``source_path``.
@@ -915,8 +923,10 @@ def three_endings(seed_notes: list[dict] | None = None, slot: str | None = None,
 
 
 @mcp.tool()
-def bury_or_marry(action: str = "deal", project: str | None = None,
-                  eulogy: str | None = None, deadline: str | None = None) -> dict:
+def bury_or_marry(action: Annotated[str, Field(description="'deal' serves one unresolved project (most take-lane debris first); 'bury' retires a project (needs project and eulogy); 'marry' commits to finishing one (needs project). Case-insensitive.")] = "deal",
+                  project: Annotated[str | None, Field(description="Catalogue project name, id or Set path, or 'live' for the open saved Set. Needed for bury and marry.")] = None,
+                  eulogy: Annotated[str | None, Field(description="Bury only: a one-line eulogy, written into the Graveyard section of store/NOTES.md.")] = None,
+                  deadline: Annotated[str | None, Field(description="Marry only: optional deadline, stored as given.")] = None) -> dict:
     """REVISIT — deal one of your saved ideas: keep it in play or retire it.
     action='deal' serves ONE unresolved project (most deferred decisions first);
     'bury' needs project+eulogy (one line into NOTES.md's Graveyard; material stays
@@ -985,7 +995,7 @@ def sombra_status() -> dict:
 
 
 @mcp.tool()
-def no_new_notes(minutes: int = 60) -> dict:
+def no_new_notes(minutes: Annotated[int, Field(description="How long the mode lasts, in minutes. 0 or less lifts it.")] = 60) -> dict:
     """NO_NEW_NOTES: session-mode contract — arrangement, muting, automation,
     deletion, transposition of EXISTING material only; gears above 3 refuse for the
     duration. Arrangement is composition."""
@@ -1356,8 +1366,9 @@ def assign_groove(slot: str, role: str = "lead", confirm: bool = False) -> dict:
 
 
 @mcp.tool()
-def read_clip(track_index: int, scene_index: int = 0,
-              arrangement: bool = False) -> dict:
+def read_clip(track_index: Annotated[int, Field(description="0-based track index.")],
+              scene_index: Annotated[int, Field(description="0-based scene (session slot) to read; with arrangement=True, the 0-based index of the clip in that track's arrangement.")] = 0,
+              arrangement: Annotated[bool, Field(description="Read an arrangement clip instead of a session slot.")] = False) -> dict:
     """Read a Producer Pal clip by explicit track/scene slot, or arrangement clip index."""
     from mcp_server import live_write as _live_write
 
@@ -1772,8 +1783,10 @@ def write_composed_to_jam(notes: Annotated[list[dict], Field(description='The co
 
 
 @mcp.tool()
-def surgery_clip(path: str, bar: int, surgery: dict,
-                 confirm: bool = False) -> dict:
+def surgery_clip(path: Annotated[str, Field(description="Producer Pal path of the session clip, 't<track>/s<scene>' (0-based). It must be a Sidekick-owned MIDI clip.")],
+                 bar: Annotated[int, Field(description="1-based bar of the clip to replace.")],
+                 surgery: Annotated[dict, Field(description='{"notes": [...]} and nothing else: the bar\'s new notes (pitch, start_beats, duration_beats, velocity), starts measured from the start of that bar, each note wholly inside it.')],
+                 confirm: Annotated[bool, Field(description="False previews and changes nothing. True replaces the bar, then rereads the clip to prove every other bar and the loop bounds are unchanged.")] = False) -> dict:
     """Replace exactly one bar of a Sidekick-owned MIDI session clip.
 
     ``surgery`` is ``{"notes": [...]}``; note starts are relative to the chosen
@@ -2758,7 +2771,8 @@ def _close_experiments(present: dict, session_id: str | None,
 
 
 @mcp.tool()
-def clear_rejects(phrase_id: str | None = None, confirm: bool = False) -> dict:
+def clear_rejects(phrase_id: Annotated[str | None, Field(description="Phrase identity (or phrase id) to put back. Omit to clear every rejected phrase.")] = None,
+                  confirm: Annotated[bool, Field(description="False previews what would be cleared. True writes the append-only clear records.")] = False) -> dict:
     """Put back phrases you dropped, so they can be served again.
 
     A DROP suppresses that phrase (and its near-duplicates) from every future
