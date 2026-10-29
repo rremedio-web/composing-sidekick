@@ -54,7 +54,7 @@ Take-lane phrases feed retrieval only, never the style profile. A blocklist
 
 Every generated artifact (`style_profile`, `phrase_index`, `harmony`, `structure`,
 `motifs`) has a top-level `meta` with `schema_version`, `built_at`, `code_rev` and
-corpus counts. `core._load_artifact` validates it: a schema mismatch or a missing block
+corpus counts. `_load_artifact` (in `core_shared.py`, used by `core`) validates it: a schema mismatch or a missing block
 raises with the regeneration instruction (strict mode; the legacy tolerance exists only
 for migration). `corpus_keys.py` gives phrases stable identities across rebuilds and
 reports a stale corpus (older than six weeks, or the open Set missing from the manifest).
@@ -81,11 +81,18 @@ needs the built catalogue; without `store/style_profile.json` and
 | Judgment | `ledger.py`, `experiments.py`, `piece_context.py`, `piece_continuity.py`, `piece_snapshot.py` | Session ledger, arrangement experiments and effect trials, piece ↔ Set identity, proposals / reactions / observations, Set snapshots and digests |
 | Mix | `mix_contracts.py`, `mix_trials.py` (+ `tools/mix_check.py`, `mix_dsp.py`, `mix_witness.py`) | Offline Mix Adviser: contracts, separate trial ledger, DSP, optional witness |
 | Device | `sombra_listener.py`, `device_readout.py` (+ `tools/m4l/`) | OSC listener for the SOMBRA pedal/device, presence heartbeat, readout contract |
-| Export | `export_bridge.py` | Standard MIDI File writing (the one `mido` dependency) |
+| Export | `export_bridge.py` | Standard MIDI File writing (the server's `mido` use; `tools/audio_ref.py` and `selftest.py` also read MIDI with it) |
 
-Rule of the module universe: `core`, `live_write`, `gears`, `finisher` and `rituals`
-self-alias in `sys.modules` so `core` and `mcp_server.core` are one module. Removing that
-forks caches.
+Rule of the module universe: any `mcp_server` module that is imported both as `x` and
+as `mcp_server.x` registers itself under both names in `sys.modules` (the
+`for _alias in (...)` loop near the top of the file; 18 modules do it today, among them
+`core`, `live_write`, `gears`, `ledger` and `session_ears`). Without it each import style
+would load a second copy with its own caches and test overrides.
+
+Known debt: modules run both as scripts and as a package, so many files insert the repo,
+`mcp_server/` or `tools/` into `sys.path` and rely on the double registration above. A
+`pyproject.toml` with package imports would remove both; that change is deferred because
+it touches every import and the tests' patch targets.
 
 ## 4. Producer Pal transport
 

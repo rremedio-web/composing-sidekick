@@ -74,7 +74,6 @@ nearly the same, being served again (`clear_rejects` undoes that).
 - **AI coding agents wrote most of the code and the tests**, from my plans, and I
   reviewed their work. The plans, reviews and agent runbooks from the build are in
   [`docs/history/`](docs/history/README.md).
-<!-- Ricardo: add one or two specifics here in your own words (a design choice you made against an agent, or a bug an agent introduced and how you caught it). -->
 
 ## Core tools
 
@@ -106,7 +105,8 @@ normal session uses a handful. Every tool: [`config/claude_mcp.md`](config/claud
 - **Composes from your material first.** `answer_my_loop`, `find_phrases`,
   `develop_my_loop`, `grow_my_loop`: call-and-response, variation and growth from the
   composer's own phrases. A seeded note generator exists, but only as a critic that
-  scores ideas (`score_phrase`, `critique`, `validate_composed`).
+  scores ideas (`score_phrase`, `critique`, and the internal `validate_composed` check
+  that `write_composed_to_jam` runs).
 - **Hears the room.** `hear_the_room` reads the open Set through Producer Pal (tempo,
   key, playing clips, what role each plays). Audio clips are reported by name only, as
   *named but unheard*. An opt-in **session ears** pass (`inventory_session_audio` →
@@ -136,10 +136,10 @@ normal session uses a handful. Every tool: [`config/claude_mcp.md`](config/claud
 
 | Need | Notes |
 |---|---|
-| macOS | Developed and tested on macOS only (POSIX file locking, Darwin fsync path, Max for Live). |
+| macOS | Developed on macOS, where it runs with Live and Max for Live (the store code uses POSIX file locking and the Darwin fsync path). CI also runs the test suite on Ubuntu. |
 | Python 3.12 | In a virtualenv at `.venv/` — the MCP config and every doc assume that path. |
 | Ableton Live 12 | Captures were made on Live 12.4.6. The optional envelope bridge needs Live 12.2+ (`v8` object). |
-| Producer Pal | The `.amxd` device in your Set **and** the npm client. `.mcp.json` pins `producer-pal@2.3.0`; the code speaks `2.2.0-rc1`, `2.3.0` and `2.4.0` from captured fixtures (`docs/PRODUCER_PAL_VERSIONS.md`). Keep the client pin equal to the device build in the Set. |
+| Producer Pal | The `.amxd` device in your Set **and** the npm client. `.mcp.example.json` pins `producer-pal@2.3.0`; the code speaks `2.2.0-rc1`, `2.3.0` and `2.4.0` from captured fixtures (`docs/PRODUCER_PAL_VERSIONS.md`). Keep the client pin equal to the device build in the Set. |
 | Node.js / `npx` | Runs the Producer Pal client. |
 | `ffmpeg` (optional) | Session-ears staging, audio-reference cuts; related tests skip without it. |
 | `agy` CLI (optional) | External listener used by session ears, audio references and the mix witness (default model `gemini-3.8-flash-medium`, override with `SESSION_EARS_MODEL` / `AUDIO_REF_MODEL` / `MIX_WITNESS_MODEL`). Nothing listens without it; nothing breaks without it. |
@@ -162,13 +162,16 @@ clean clone it stops with one line naming the missing files.
 
 ## Build your catalogue
 
-The store is empty on a clean clone. Point the scanner at the folders that hold your
-Live Sets, then run the pipeline **in this order** (each stage reads the previous one's
-artifacts):
+The store is empty on a clean clone. By default the scanner reads every Live Set under
+`~/Desktop`, `~/Documents` and `~/Music`. `SIDEKICK_CATALOG_ROOTS` (separated by `:`)
+**adds** folders to those three, for example an external drive; only `--roots` replaces
+them, so use `--roots` to limit the scan to the folders you choose. Then run the pipeline
+**in this order** (each stage reads the previous one's artifacts):
 
 ```bash
-export SIDEKICK_CATALOG_ROOTS="$HOME/Music/Ableton:/path/to/other/projects"
+export SIDEKICK_CATALOG_ROOTS="/Volumes/Drive/Ableton:/path/to/other/projects"   # adds to the defaults
 python3 ingest/scan_catalog.py                # → store/catalog_manifest.json
+# or scan only these folders: python3 ingest/scan_catalog.py --roots ~/Music/Ableton /path/to/projects
 python3 ingest/materialize.py                 # → store/projects/*.json (one parse of the drive)
 .venv/bin/python analyze/harmony.py           # music21 → store/harmony.json
 python3 analyze/structure.py                  # → store/structure.json
@@ -192,8 +195,10 @@ read by the assistants and by `style_profile.py`.
 
 ## MCP setup
 
-Add to `.mcp.json` at the repo root (Claude Code) or to your client's MCP config; use the
-absolute path of your clone, MCP hosts do not expand `~`:
+Start from the example: `cp .mcp.example.json .mcp.json` (`.mcp.json` is gitignored), then
+fill in the absolute path of your clone (MCP hosts do not expand `~`). For another client,
+put the same block in its MCP config. The server registers as `style-sidekick`, its
+original name, so its tools show up as `mcp__style-sidekick__*`.
 
 ```json
 {

@@ -2,8 +2,9 @@
 
 Everything on this page is gated on flipping `store/ears_default.json` to
 `{"use_ears_default": true, ...}` — the one human act that turns `use_ears`
-on by default across every serving surface (spec:
-`docs/history/plans/2026-07-10-ears-context-layer-design.md`, §6). The
+on by default across every serving surface (the design spec is not
+published; the implementation plan is
+`docs/history/plans/2026-07-10-ears-context-layer.md`). The
 flag stays absent (OFF) until a pre-registered `build_ears_booth.py` round
 qualifies under the scoreboard rule (`tools/ingest_booth_votes.py`,
 `promotion_status`). Read this list before flipping it.

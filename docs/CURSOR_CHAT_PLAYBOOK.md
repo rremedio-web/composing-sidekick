@@ -8,7 +8,7 @@ registered notes directly; generated summaries can be stale or incomplete.
 ## Read this when
 
 - the owner asks for an answer, develop, finish, booth, ears, or anything in Live
-- Not for pure repo engineering (use `docs/agents/*`)
+- Not for pure repo engineering (use `docs/ARCHITECTURE.md`; past agent runbooks are in `docs/history/agents/`)
 
 ## Current arc — durable KEEP (2026-07-30)
 
@@ -286,8 +286,8 @@ Details: `config/claude_mcp.md` → **Audio references**.
 
 ## After an answer
 
-- **KEEP / DROP** via `judge_answer` — JAM track only; leave nothing unjudged without
-  labeling it `abandoned` / `unjudged`. Prefer `answer_notes=` (what he heard) so
+- **KEEP / DROP** via `judge_answer` — JAM track only; judge every write KEEP or DROP,
+  and `close_session()` labels the rest `abandoned` / `unjudged`. Prefer `answer_notes=` (what he heard) so
   ears session memory buckets the served register/density, not only the source id
 - **DROP** is confirm-gated and deletes jam-track clips only
 - **Arrangement / effect route** (material already on SIDEKICK tracks, devices on
