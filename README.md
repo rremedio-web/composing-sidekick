@@ -129,6 +129,15 @@ client, and start with a read-only `ppal-connect`: the sidekick checks the repor
 `producerPalVersion` against its captured builds before any write. The Live endpoint is
 `http://localhost:3350/mcp` (`PRODUCER_PAL_URL` overrides it).
 
+### Ask before raw Producer Pal writes
+
+The sidekick's own tools only write to `SIDEKICK …` tracks, but the same client also
+has the full `producer-pal` server, which can create, change or delete anything in the
+Set. In Claude Code, copy [`docs/examples/claude-settings.json`](docs/examples/claude-settings.json)
+to `.claude/settings.json` (or merge its `permissions.ask` list into yours). It makes
+Claude ask you before every Producer Pal create, update, duplicate or delete call, and
+before `ppal-live-api`. Reads and playback stay unprompted.
+
 ### Profiles (`SIDEKICK_MCP_PROFILE`)
 
 | Profile | Tools | Focus |

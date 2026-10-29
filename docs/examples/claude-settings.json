@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "ask": [
+      "mcp__producer-pal__ppal-delete",
+      "mcp__producer-pal__ppal-duplicate",
+      "mcp__producer-pal__ppal-live-api",
+      "mcp__producer-pal__ppal-create-clip",
+      "mcp__producer-pal__ppal-create-device",
+      "mcp__producer-pal__ppal-create-scene",
+      "mcp__producer-pal__ppal-create-track",
+      "mcp__producer-pal__ppal-update-clip",
+      "mcp__producer-pal__ppal-update-device",
+      "mcp__producer-pal__ppal-update-live-set",
+      "mcp__producer-pal__ppal-update-scene",
+      "mcp__producer-pal__ppal-update-track"
+    ]
+  }
+}
