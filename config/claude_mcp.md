@@ -562,8 +562,15 @@ enable Live API access). `probe_envelope_surface` reports whether it supports fu
 calls; if not (expected), the v8 bridge is required for envelopes + groove assignment.
 
 Safety: every op batch begins with `assert_track_name(track, "SIDEKICK JAM")` executed
-inside the device — envelopes and grooves can only ever land on the sidekick's own
-track. Undo per clip: `clear_envelopes`; global undo: delete the track or the device.
+inside the device, and the device itself refuses `create_envelope`, `clear_envelopes`,
+`set_clip_groove` and `clear_clip_groove` for any clip id whose clip is not on a track
+named `SIDEKICK` or `SIDEKICK …`. Undo per clip: `clear_envelopes`; global undo: delete
+the track or the device.
+
+Network: the bridge has no authentication. Anything that can send UDP to port 3351 on
+this machine can run its ops, and Max's `[udpreceive]` listens on all network
+interfaces (the bridge script cannot change that). **Do not load the device on a shared
+or untrusted network.**
 
 ### Session Ears capture surfaces
 

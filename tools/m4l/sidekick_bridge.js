@@ -8,6 +8,16 @@
 // Transport: OSC message "/sk <base64url(JSON)>"; reply mirrors the shape.
 // Batch aborts on first error. insert_steps_last targets the envelope created by
 // the most recent create_envelope (state survives across datagrams).
+//
+// Policy: writes are limited to SIDEKICK tracks. Clip ops that take a raw Live
+// clip id (create_envelope, clear_envelopes, set_clip_groove, clear_clip_groove)
+// resolve the clip's owning track and refuse unless its name is "SIDEKICK" or
+// starts with "SIDEKICK " (the same rule as clip_mutation._is_sidekick_name).
+//
+// Network: the bridge has no authentication. Whoever can send a UDP datagram to
+// port 3351 can run these ops. The listening address is set by [udpreceive] in
+// the .amxd patcher, not by this script, and Max's udpreceive listens on all
+// interfaces. Do not load the device on a shared or untrusted network.
 
 autowatch = 1;
 
@@ -247,6 +257,21 @@ function idOf(api) {
     return parseInt(String(api.id).replace(/\D/g, ""), 10);
 }
 
+// Resolve a raw clip id to a LiveAPI clip that lives on a SIDEKICK track, or throw.
+function sidekickClip(clipId) {
+    var raw = String(clipId);
+    if (!/^[0-9]+$/.test(raw) || parseInt(raw, 10) <= 0) throw new Error("policy: invalid clip id");
+    var clip = new LiveAPI("id " + raw);
+    var path = String(clip.unquotedpath || clip.path || "").replace(/^"|"$/g, "");
+    var m = /^live_set tracks ([0-9]+) (?:clip_slots [0-9]+ clip|arrangement_clips [0-9]+)$/.exec(path);
+    if (!m) throw new Error("policy: clip " + raw + " is not a clip on a track");
+    var name = String(new LiveAPI("live_set tracks " + m[1]).get("name"));
+    if (name !== "SIDEKICK" && name.indexOf("SIDEKICK ") !== 0) {
+        throw new Error("policy: clip " + raw + " is not on a SIDEKICK track");
+    }
+    return clip;
+}
+
 function doOp(op) {
     switch (op.op) {
         case "capture_start": return captureStart(op);
@@ -302,7 +327,7 @@ function doOp(op) {
             return { devices: out };
         }
         case "create_envelope": {
-            var clip = new LiveAPI("id " + op.clip_id);
+            var clip = sidekickClip(op.clip_id);
             var envId = clip.call("create_automation_envelope", "id " + op.param_id);
             lastEnvelopeId = parseInt(String(envId).replace(/\D/g, ""), 10);
             if (!lastEnvelopeId) throw new Error("create_automation_envelope returned " + envId + " (arrangement clip or bad param?)");
@@ -318,7 +343,7 @@ function doOp(op) {
             return { inserted: op.points.length, envelope_id: lastEnvelopeId, label: op.label || "" };
         }
         case "clear_envelopes": {
-            var c = new LiveAPI("id " + op.clip_id);
+            var c = sidekickClip(op.clip_id);
             c.call("clear_all_envelopes");
             return { cleared: true };
         }
@@ -333,12 +358,12 @@ function doOp(op) {
             return { grooves: grooves };
         }
         case "set_clip_groove": {
-            var c2 = new LiveAPI("id " + op.clip_id);
+            var c2 = sidekickClip(op.clip_id);
             c2.set("groove", ["id", op.groove_id]);
             return { set: true };
         }
         case "clear_clip_groove": {
-            var c3 = new LiveAPI("id " + op.clip_id);
+            var c3 = sidekickClip(op.clip_id);
             c3.set("groove", ["id", 0]);
             return { cleared: true };
         }

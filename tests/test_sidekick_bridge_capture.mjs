@@ -4,13 +4,25 @@ import vm from "node:vm";
 
 const source = fs.readFileSync(new URL("../tools/m4l/sidekick_bridge.js", import.meta.url), "utf8");
 
+// Live object paths the fake resolves for "id N" (what LiveAPI.unquotedpath gives).
+const ID_PATHS = {
+  "id 1": "live_set tracks 9 clip_slots 2 clip",     // SIDEKICK EARS, session
+  "id 3": "live_set tracks 9 arrangement_clips 0",   // SIDEKICK EARS, arrangement
+  "id 7": "live_set tracks 4 clip_slots 2 clip",     // SOURCE: not a SIDEKICK track
+  "id 8": "live_set tracks 4",                       // a track, not a clip
+};
+
 function load({occupied = false, clipId = 901, initialArm = 0} = {}) {
   const calls = [];
   const tasks = [];
   let hasClip = occupied;
   let trackArm = initialArm;
   class LiveAPI {
-    constructor(path) { this.path = String(path); this.id = this.path; calls.push(["construct", this.path]); }
+    constructor(path) {
+      this.path = String(path); this.id = this.path;
+      this.unquotedpath = ID_PATHS[this.path] || (this.path.startsWith("id ") ? "" : this.path);
+      calls.push(["construct", this.path]);
+    }
     get(prop) {
       calls.push(["get", this.path, prop]);
       if (this.path === "live_app" && prop === "name") return "Live";
@@ -145,6 +157,24 @@ function load({occupied = false, clipId = 901, initialArm = 0} = {}) {
     {op: "list_grooves"}, {op: "set_clip_groove", clip_id: 1, groove_id: 2},
     {op: "clear_clip_groove", clip_id: 1},
   ]) assert.doesNotThrow(() => c.doOp(op));
+}
+
+// Clip-id ops act only on clips that live on a SIDEKICK track.
+{
+  const c = load();
+  for (const clipOp of [
+    {op: "create_envelope", param_id: 2}, {op: "clear_envelopes"},
+    {op: "set_clip_groove", groove_id: 2}, {op: "clear_clip_groove"},
+  ]) {
+    assert.doesNotThrow(() => c.doOp({...clipOp, clip_id: 1}), clipOp.op);
+    assert.doesNotThrow(() => c.doOp({...clipOp, clip_id: "3"}), clipOp.op + " arrangement");
+    for (const bad of [7, 8, 99, 0, -1, "1 or 2", "abc", undefined, null]) {
+      const before = c.calls.filter((x) => x[0] === "call" || x[0] === "set").length;
+      assert.throws(() => c.doOp({...clipOp, clip_id: bad}), /policy/, `${clipOp.op} clip_id=${bad}`);
+      const after = c.calls.filter((x) => x[0] === "call" || x[0] === "set").length;
+      assert.equal(after, before, `${clipOp.op} clip_id=${bad} must not touch Live`);
+    }
+  }
 }
 
 console.log("sidekick bridge capture tests: OK");
