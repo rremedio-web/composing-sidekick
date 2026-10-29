@@ -568,9 +568,10 @@ named `SIDEKICK` or `SIDEKICK …`. Undo per clip: `clear_envelopes`; global und
 the track or the device.
 
 Network: the bridge has no authentication. Anything that can send UDP to port 3351 on
-this machine can run its ops, and Max's `[udpreceive]` listens on all network
-interfaces (the bridge script cannot change that). **Do not load the device on a shared
-or untrusted network.**
+this machine can run its ops. The listening address is set by `[udpreceive]` in your
+patcher, not by the bridge script, and nothing in this repo limits it to localhost, so
+treat it as reachable from the network. **Do not load the device on a shared or
+untrusted network.**
 
 ### Session Ears capture surfaces
 

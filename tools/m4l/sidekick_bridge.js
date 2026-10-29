@@ -16,8 +16,9 @@
 //
 // Network: the bridge has no authentication. Whoever can send a UDP datagram to
 // port 3351 can run these ops. The listening address is set by [udpreceive] in
-// the .amxd patcher, not by this script, and Max's udpreceive listens on all
-// interfaces. Do not load the device on a shared or untrusted network.
+// the .amxd patcher, not by this script, and nothing in this repo limits it to
+// localhost: treat it as reachable from the network. Do not load the device on
+// a shared or untrusted network.
 
 autowatch = 1;
 

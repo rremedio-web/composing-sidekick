@@ -11,8 +11,8 @@ The versioned implementation is:
   It receives pedal events on UDP 3353 and emits `/alive` heartbeats to UDP 3354.
 - `tools/m4l/sidekick_bridge.js`: the LiveAPI executor used by
   `SIDEKICK_BRIDGE.amxd`. It receives `/sk <base64url(JSON)>` on UDP 3351 and
-  replies on UDP 3352. It has no authentication and `[udpreceive]` listens on all
-  interfaces, so do not load it on a shared or untrusted network. Clip-id ops
+  replies on UDP 3352. It has no authentication, and nothing in this repo limits
+  `[udpreceive]` to localhost, so do not load it on a shared or untrusted network. Clip-id ops
   (envelopes, groove) are refused unless the clip is on a SIDEKICK track.
 - `mcp_server/server.py`: starts the listener only in normal MCP-server mode;
   self-tests use the pure parse/dispatch paths only.
