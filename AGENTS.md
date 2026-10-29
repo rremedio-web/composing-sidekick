@@ -28,7 +28,10 @@ not code.
 
 - Verify with `.venv/bin/python -m unittest discover -s tests -t .` and
   `.venv/bin/python mcp_server/server.py --selftest`. Tests never contact Live
-  (`tests/_guard.py`) and never write the real store.
+  (`tests/_guard.py`) and never write the real store. Six modules also carry their
+  own `--selftest` (session_ears, mix_trials, mix_contracts, mix_witness, mix_dsp,
+  mix_check); `tests/test_module_selftests.py` runs them all, e.g.
+  `.venv/bin/python -m unittest tests.test_module_selftests`.
 - Producer Pal behaviour comes from captures (`tests/fixtures/pp/`), never from a
   migration guide. Mutation captures run only in a disposable scratch Set.
 - Several tests assert on `config/claude_mcp.md`, `docs/CURSOR_CHAT_PLAYBOOK.md` and

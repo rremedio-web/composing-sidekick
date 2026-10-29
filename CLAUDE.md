@@ -28,6 +28,7 @@ composing session, [`docs/CURSOR_CHAT_PLAYBOOK.md`](docs/CURSOR_CHAT_PLAYBOOK.md
 ```bash
 .venv/bin/python -m unittest discover -s tests -t .   # stdlib unittest; pytest is not installed
 .venv/bin/python mcp_server/server.py --selftest
+.venv/bin/python -m unittest tests.test_module_selftests   # each module's own --selftest
 ```
 
 Skills under `.claude/skills/` (`sombra-brain`, `challenge-deck`) are shared musical
