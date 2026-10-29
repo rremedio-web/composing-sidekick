@@ -149,11 +149,18 @@ normal session uses a handful. Every tool: [`config/claude_mcp.md`](config/claud
 ```bash
 git clone <this repo> composing-sidekick && cd composing-sidekick
 python3.12 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-# optional: basic-pitch pulls a TensorFlow stack on macOS that the code never imports (it runs on ONNX).
+.venv/bin/pip install -r requirements.txt        # core: MCP server, pipeline, composing tools
+.venv/bin/pip install -r requirements-test.txt   # what the test suite imports (CI installs this)
+.venv/bin/python -m unittest discover -s tests -t .   # works on a clean clone (skips what needs your catalogue)
+```
+
+Optional, for audio references (`analyze_audio_ref`, Basic Pitch, YouTube fetch):
+
+```bash
+.venv/bin/pip install -r requirements-audio.txt
+# basic-pitch pulls a TensorFlow stack on macOS that the code never imports (it runs on ONNX).
 # Removing it saves space; afterwards `pip check` warns about basic-pitch, which is expected.
 .venv/bin/pip uninstall -y tensorflow tensorflow-macos keras tensorboard
-.venv/bin/python -m unittest discover -s tests -t .   # works on a clean clone (skips what needs your catalogue)
 ```
 
 The server selftest (`mcp_server/server.py --selftest`, code in `mcp_server/selftest.py`)

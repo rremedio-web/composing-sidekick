@@ -1,12 +1,5 @@
+# Core: the MCP server, catalogue pipeline and composing tools.
+# Audio references (analyze_audio_ref etc.) need requirements-audio.txt too.
 mcp==1.27.2
 mido==1.3.3
 music21==10.3.0
-# audio_ref.py uses ONNX (nmp.onnx), not TensorFlow.
-# basic-pitch 0.3.0 still *declares* tensorflow-macos on Darwin/py3.12.
-# After a fresh pip install, uninstall tensorflow tensorflow-macos keras
-# (and the TF stack). Runtime is onnxruntime. `pip check` will warn; ignore it.
-basic-pitch[onnx]==0.3.0
-onnxruntime>=1.16
-scipy>=1.10,<1.13
-yt-dlp>=2024.1.0
-setuptools>=70,<81

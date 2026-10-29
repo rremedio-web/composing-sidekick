@@ -1,0 +1,19 @@
+# Optional: audio references (tools/audio_ref.py: analyze_audio_ref, Basic Pitch
+# transcription, YouTube fetch). Install after the core:
+#   .venv/bin/pip install -r requirements-audio.txt
+-r requirements.txt
+# audio_ref.py runs Basic Pitch on ONNX (nmp.onnx), not TensorFlow.
+# basic-pitch 0.3.0 still *declares* tensorflow-macos on Darwin/py3.12.
+# After a fresh pip install, uninstall tensorflow tensorflow-macos keras
+# (and the TF stack). Runtime is onnxruntime. `pip check` will warn; ignore it.
+basic-pitch[onnx]==0.3.0
+onnxruntime>=1.16
+scipy>=1.10,<1.13
+# Imported directly by audio_ref.py (basic-pitch pulls them in as well).
+numpy
+soundfile
+pretty_midi
+yt-dlp>=2024.1.0
+# basic-pitch pins resampy<0.4.3, whose filters.py imports pkg_resources;
+# keep a setuptools that still ships it.
+setuptools>=70,<81

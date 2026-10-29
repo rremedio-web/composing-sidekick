@@ -20,6 +20,7 @@ Install MCP server deps (already in `.venv` if you ran setup):
 ```bash
 cd ~/composing-sidekick
 .venv/bin/pip install -r requirements.txt
+.venv/bin/pip install -r requirements-audio.txt   # optional: audio references
 ```
 
 Verify tools without a live MCP client:
