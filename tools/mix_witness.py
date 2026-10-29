@@ -456,6 +456,27 @@ _SELFTEST_UNVERIFIED = {"allow_unverified_listen": True}
 
 
 def _selftest() -> None:
+    """Run the selftest without needing a real agy binary.
+
+    Every listener call in the selftest uses a fake runner, but run_mix_listener
+    still checks that agy is on PATH first. CI machines don't have agy, so the
+    lookup is faked for the whole selftest and restored afterwards.
+    """
+    real_which = shutil.which
+
+    def _agy_present(name, *args, **kwargs):
+        if name == "agy":
+            return "/fake/agy"
+        return real_which(name, *args, **kwargs)
+
+    shutil.which = _agy_present
+    try:
+        _selftest_body()
+    finally:
+        shutil.which = real_which
+
+
+def _selftest_body() -> None:
     source_temp = tempfile.TemporaryDirectory(prefix="mix-witness-inputs-")
     source_root = Path(source_temp.name)
     source_master = source_root / "master source" / "master.wav"
