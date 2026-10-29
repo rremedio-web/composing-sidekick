@@ -154,6 +154,8 @@ byte-identical retrieval and answers.
 
 ## Tools exposed
 
+`ref` means the `reference` profile; `all` means every profile.
+
 | Tool | Profile(s) | Purpose |
 |------|------------|---------|
 | `get_style` | `compose`, `ref`, `debug` | Full `STYLE.md` + structured facts (keys, tempo, groove, harmony, arrangement) |
@@ -161,6 +163,7 @@ byte-identical retrieval and answers.
 | `hear_the_room` | `all` | Read the room via Producer Pal: tempo/key, MIDI roles in actual playing Session/Arrangement context, plus `unheard` cards for audio/ambiguous clips, `unread` cards for MIDI clips whose notes were not read, and `hidden` cards for notes behind a loop brace. Arrangement reads 32 regular tracks by default. Ask what unheard material is doing — do not invent content from names. Blind when Live is unreachable |
 | `inventory_session_audio` | `compose`, `session`, `debug` | Opt-in session-ears pass, step 1: discover audio takes in current Live Set via Producer Pal and return capability envelope (`inventory_id`, sanitized take descriptors — no paths). Fail-closed without Live: `live_inventory_unavailable` |
 | `listen_to_takes` | `compose`, `session`, `debug` | Opt-in session-ears pass, step 2: consume `inventory_id` capability and selected `take_ids` → validated listener take-cards (role_guess, vibe, register, density, pitch_claims — null when uncertain). The owner picks `focus=full\|groove\|melody\|composition`. Single-use capability; cards persist atomically under `store/session_ears/<session_id>/` |
+| `capture_loop` | `compose`, `session` | Preview, or with `confirm=True` record, what is playing into an empty `SIDEKICK EARS` slot (`surface=auto` prefers a validated Producer Pal Live API capability, else SIDEKICK BRIDGE); `listen=True` hands the take to `listen_to_takes` |
 | `reset_ears` | `compose`, `session`, `debug` | Clear this session's keep/reject demotions (the "reset ears" gesture) |
 | `suggest_structure` | `compose` | Section skeleton from your arrangement templates |
 | `develop_idea` | `compose` | Turn a seed phrase into theme/variation transforms |
@@ -183,7 +186,7 @@ byte-identical retrieval and answers.
 | `sombra_status` | `compose`, `session`, `debug` | Query active SOMBRA Max for Live device state, connection, and parameters |
 | `no_new_notes` | `compose`, `session` | Session constraint ritual: work only with existing recorded notes |
 | `sticky_develop` | `compose`, `session` | Develop ideas using sticky thematic constraints |
-| `judge_answer` | `compose`, `session`, `ref` | Record human judgment on a generated answer (`keep`, `drop`, `iterate`) |
+| `judge_answer` | `compose`, `session`, `ref` | Record human judgment on a generated answer (`keep` or `drop`) |
 | `whats_missing` | `compose` | Analyze current arrangement/roles and identify missing textural/frequency functions. `project="live"` reads the Set open in Ableton (arrangement clips, take lanes as debris, `silent_gap` / `unison_wall`). Note-based findings over bars whose MIDI notes were not read (unread clips) are withheld into `suppressed` with a reason, never reported as facts; an ending over an unread clip ships no `three_endings` seed notes |
 | `probe_envelope_surface` | `debug` | Diagnostic probe of clip parameter and volume envelopes |
 | `phrase_envelopes` | `debug` | Extract and inspect velocity/timing curves for phrases |
@@ -199,12 +202,12 @@ byte-identical retrieval and answers.
 | `finish_my_idea` | `compose` | Bundle seed critique, continuation brief, and structure |
 | `rate` | `compose`, `session`, `ref` | Rate a single clip or phrase (1-5 or keep/drop) and update taste ledger |
 | `get_ratings` | `compose`, `session`, `debug` | View historical rating ledger summary and candidate statistics |
+| `clear_rejects` | `compose`, `session`, `ref` | Undo DROP suppression so a phrase can be served again: `phrase_id` clears one, omit it to clear all; append-only record; `confirm=False` previews |
 | `get_gold_phrases` | `compose` | Retrieve phrases curated as gold exemplars |
 | `compose_brief` | `compose` | One-shot context bundle for composing |
 | `compose_from_profile` | `compose` | Deterministically generate pad/bass/lead/drums from the profile |
 | `humanize` | `compose` | Apply microtiming and velocity humanization based on catalog distributions |
 | `export_midi` | `compose`, `ref` | Write notes to `store/exports` by default; outside paths require opt-in |
-
 | `send_to_ableton` | `compose`, `ref` | Build Producer Pal MCP payload for live Ableton write-back (handoff only) |
 | `write_midi_clip` | `compose`, `session` | Direct verified write of MIDI notes to a named clip on SIDEKICK tracks |
 | `write_composed_to_jam` | `compose` | Gear 5/6 material: `validate_composed` gates it, then a verified, ledger-stamped write to SIDEKICK JAM (`confirm=False` previews) |
@@ -220,11 +223,12 @@ byte-identical retrieval and answers.
 | `clip_audio_ref_moments` | `ref` | Cut jam-sized mini-refs from parent `# Moments` timestamps (no Gemini) |
 | `analyze_audio_refs_batch` | `ref` | Batch-analyze many URLs/files sequentially with resume |
 | `reindex_audio_refs` | `ref` | Rebuild `store/audio_ref_index.json` from `store/audio_refs/*/` on disk (also refreshes parsed `structure`) |
+| `restore_audio_ref_ownership` | `ref` | Restore the operator ownership registry (`tools/data/audio_ref_ownership.json`) into the audio-ref index and metadata by exact `ref_id`; refuses a partial or mismatched library |
 | `apply_audio_ref` | `compose`, `ref` | Load filed ref into jam-ready handoff (imitation rules + role-filtered `ref.mid` notes); `write=True` lands on SIDEKICK JAM only |
 | `beat_from_ref` | `compose`, `ref` | Beat from **his own drum clips**, matched to reference's written drum grid. Nothing generated; Basic Pitch not involved |
 | `close_session` | `compose`, `session`, `ref` | **End of night** — inventory this Set across Session/Arrangement, resolve identities, report survival by source × role × gear. Partial/ambiguous evidence remains unresolved. The `arrangement` / `effect_trials` lines publish their rate only with every verdict resolved (`rate_status`, `coverage`); `kept` on an effect trial is presence, never audible ducking |
 | `session_report` | `all` | Ledger outcomes and unresolved coverage; `refresh=True` gathers next-session evidence from Live |
-| `adopt_answer` | `compose`, `session`, `ref` | Link a suggestion to a verified destination clip in the song |
+| `adopt_answer` | `compose`, `session` | Link a suggestion to a verified destination clip in the song |
 | `register_arrangement_candidates` | `compose`, `session` | Register already-written arrangement experiments (SIDEKICK line variants, a whole SIDEKICK drum track) and effect trials (devices added to his tracks) as **recovered** judgment rows: journal or `items`, exact Set identity, every id re-read from the Set (clip content digest, placement, mutes; device params). Effect evidence must bind (track/device/parent identity) or the candidate is refused. Preview by default; `confirm=True` writes rows, never Live. The same content as a closed row (another Live run, or new ids) is `observed` on that row, never a second judged row. Judged with `judge_answer(entry_id=…)`, closed by `close_session` in their own subtotal |
 | `declare_piece_version` | `compose`, `session` | Bind a Set (exact `.als` path) to a **piece** on the owner's confirmation — never inferred from a similar filename; one piece per Set. Preview by default, `confirm=True` writes `store/pieces.json` (`confirmed_by: owner`). Piece-level records then resolve for every confirmed version; Set-level facts stay bound to the exact Set |
 | `record_proposal` | `compose`, `session` | File one proposal → `proposal_id`: the musical question, his source gesture (clip/phrase/cell ids), the reference and its JOB (`{ref, job, evidence}`), what stays, what varied, candidate handles in that Set, seeds. Refuses a Set the owner has not confirmed. `register_arrangement_candidates` items may carry the `proposal_id`; the ledger row stores it |
@@ -256,8 +260,8 @@ The tools never change Live or Producer Pal, and the separate
 
 ## The judgment ledger (durable KEEP)
 
-Every JAM write is stamped automatically into `store/session_ledger.json` (tracked,
-same standing as `ratings.json`) with session, source (`catalogue` / `ref:<id>`),
+Every JAM write is stamped automatically into `store/session_ledger.json` (local and
+gitignored, like `ratings.json`) with session, source (`catalogue` / `ref:<id>`),
 role, gear and ears. `judge_answer` attaches the immediate verdict.
 
 `close_session()` requires the intended Set to be open and a complete inventory
@@ -407,7 +411,8 @@ a reaction, an observation or a brief never creates one.
 ## Audio references (external refs → composing fuel)
 
 **You (the composer / agent) choose `focus`** — do not invent one for the owner.
-`full` | `groove` | `melody` | `composition`; freeform `prompt_extra` when he gives a note.
+`full` | `groove` | `harmony` | `melody`; freeform `prompt_extra` when he gives a note.
+(Session take cards from `listen_to_takes` use `composition` in place of `harmony`.)
 
 `analyze_audio_ref` turns a local audio file or YouTube URL into a folder under
 `store/audio_refs/<stem>_<timestamp>/` (gitignored): `source.wav`, `features.json`,
@@ -427,7 +432,7 @@ existing `describe.txt` into `structure` (no re-listen). `clip_audio_ref_moments
 **Reference Live hour:** `hear_the_room` → `find_audio_refs(project="<your label>")` →
 `apply_audio_ref` → KEEP/DROP (terminal judgment) → `tag_audio_ref(note=…, verdict=…)`.
 Score **session survival**, not the KEEP click alone — see
-`docs/CURSOR_CHAT_PLAYBOOK.md` and `ROADMAP.md` → Current arc.
+`docs/CURSOR_CHAT_PLAYBOOK.md` and `docs/history/ROADMAP_2026-09.md` → Current arc.
 
 Typical flow: ask the owner for focus → `analyze_audio_ref(url, focus=...)` → while on a
 track, `find_audio_refs(query=...)` → `apply_audio_ref(ref_id, role="bass"|"lead"|…)` for
@@ -470,7 +475,7 @@ Rating rule: pass `contrast_axis=pack["contrast_axis"]` to `rate_candidates`.
 `lead` trains `lead_taste`; `harmony` is preserved for a future harmony model;
 `mixed`/`groove`/`arrangement` are stored but do not train the current lead model.
 
-## Phase 2b — Ableton write-back via Producer Pal
+## Writing to Live through Producer Pal
 
 `send_to_ableton()` does **not** talk to Ableton. It translates your note list into
 the exact **Producer Pal** MCP tool-call payload(s) Claude should run next.
