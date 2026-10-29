@@ -62,8 +62,10 @@ reports a stale corpus (older than six weeks, or the open Set missing from the m
 ## 3. MCP server (`mcp_server/`)
 
 `server.py` is the only FastMCP surface: thin wrappers that forward to the modules
-below, plus `--selftest`, an offline suite of titled blocks that must end with
-`=== all selftests passed ===`. `profiles.py` declares which tools each
+below, plus a `--selftest` entry. The selftest itself lives in `selftest.py`: an
+offline suite of titled blocks that must end with `=== all selftests passed ===`. It
+needs the built catalogue; without `store/style_profile.json` and
+`store/phrase_index.json` it prints one line and exits with status 2. `profiles.py` declares which tools each
 `SIDEKICK_MCP_PROFILE` exposes (`compose` 63, `session` 37, `reference` 18, `debug`
 19, `all` 77) and the instructions the client receives.
 

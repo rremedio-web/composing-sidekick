@@ -157,8 +157,9 @@ python3.12 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -t .   # works on a clean clone (skips what needs your catalogue)
 ```
 
-The server selftest (`mcp_server/server.py --selftest`) reads the generated style
-profile, so run it after **Build your catalogue** below.
+The server selftest (`mcp_server/server.py --selftest`, code in `mcp_server/selftest.py`)
+reads the generated style profile, so run it after **Build your catalogue** below. On a
+clean clone it stops with one line naming the missing files.
 
 ## Build your catalogue
 
