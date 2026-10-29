@@ -468,8 +468,7 @@ class TestSurgeryClip(unittest.TestCase):
         self.assertEqual(
             list(inspect.signature(server.write_midi_clip).parameters),
             ["track_name", "scene_index", "notes", "name", "loop_start",
-             "loop_length", "replace", "confirm", "source", "role", "gear",
-             "metadata"],
+             "loop_length", "replace", "confirm"],
         )
         self.assertEqual(
             list(inspect.signature(server.surgery_clip).parameters),

@@ -17,12 +17,14 @@ import os
 import sys
 import threading
 from datetime import datetime, timezone
-from typing import Any, Literal
+from typing import Annotated, Any, Literal
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
+from pydantic import Field
 
 from mcp_server import core as _core
 from mcp_server import core_shared
@@ -37,30 +39,57 @@ mcp = FastMCP(
 )
 
 
+# Parameter descriptions and tool hints reach the client in each tool's schema
+# (Annotated[..., Field(description=...)] is what FastMCP reads). They are
+# written from the code each parameter feeds; keep them in step with it.
+_NOTES = ("MIDI notes, each {pitch: 0-127, start_beats: position from the clip start "
+          "in beats, duration_beats (default 0.25), velocity (default 80)}. "
+          "start/duration are accepted as aliases.")
+_SEED_FROM_LIVE = (_NOTES + " Omit to use the MIDI clip currently selected in Live "
+                   "(read through Producer Pal).")
+_KEY = "Key such as 'D minor'. Omit to detect it from the notes."
+_ROLE = "Musical role whose grammar and register apply, e.g. 'lead' or 'bass'."
+_SEED = "Random seed; the same inputs and seed give the same result."
+_USE_EARS = ("Fit the pick to the room read by hear_the_room (tempo world, key, "
+             "register, density, role gates). Omit to use the promoted default in "
+             "store/ears_default.json (off when the file is absent).")
+_DIRECTION = ("Ears gate modifier (needs use_ears): 'darker', 'clubbier', 'sparser' "
+              "or 'weirder'.")
+_MOMENT = ("A room dict returned by hear_the_room, to reuse it instead of reading "
+           "Live again (ears only).")
+_RELAX = ("Accept a relaxation the ears offered after a no_fit: 'auto', or one gate: "
+          "tempo_world, key, register, density, role. Needs use_ears.")
+
+# Tool hints (MCP ToolAnnotations). Only set where the code shows the behaviour.
+_READ_ONLY = ToolAnnotations(readOnlyHint=True, openWorldHint=False)
+_WRITES = ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=False)
+_MAY_REPLACE = ToolAnnotations(readOnlyHint=False, destructiveHint=True, openWorldHint=False)
+
+
 def _run_async(coro):
     from mcp_server import pp_session as _pp_session
     return _pp_session.run_coro_blocking(coro)
 
 
-@mcp.tool()
+@mcp.tool(annotations=_READ_ONLY)
 def get_style() -> dict:
     """Return Ricardo's style profile: STYLE.md text + structured facts."""
     return _core.get_style()
 
 
-@mcp.tool()
+@mcp.tool(annotations=_READ_ONLY)
 def find_phrases(
-    seed_notes: list[dict] | None = None,
-    kind: str | None = None,
-    k: int = 6,
-    key: str | None = None,
-    tempo: float | None = None,
-    prefer_liked: bool = False,
-    role: str | None = None,
-    use_ears: bool | None = None,
-    direction: str | None = None,
-    moment: dict | None = None,
-    relax: str | None = None,
+    seed_notes: Annotated[list[dict] | None, Field(description=_NOTES + ' Optional query: phrases nearest to these notes come first; omit for a varied spread.')] = None,
+    kind: Annotated[str | None, Field(description="'melodic'/'harmonic' (pitched) or 'drum'. Omit to infer it from role (drum for role='drum', else pitched).")] = None,
+    k: Annotated[int, Field(description='How many phrases to return.')] = 6,
+    key: Annotated[str | None, Field(description="Keep only phrases from projects in this key, e.g. 'D minor'.")] = None,
+    tempo: Annotated[float | None, Field(description='Keep only phrases within 20 BPM of this tempo.')] = None,
+    prefer_liked: Annotated[bool, Field(description='Rerank the results by your past ratings.')] = False,
+    role: Annotated[str | None, Field(description="Restrict to one role's phrases, e.g. 'lead', 'bass', 'drum'.")] = None,
+    use_ears: Annotated[bool | None, Field(description=_USE_EARS)] = None,
+    direction: Annotated[str | None, Field(description=_DIRECTION)] = None,
+    moment: Annotated[dict | None, Field(description=_MOMENT)] = None,
+    relax: Annotated[str | None, Field(description=_RELAX)] = None,
 ) -> list[dict] | dict:
     """Find diverse REAL phrases from Ricardo's catalog (his actual playing, not generated).
 
@@ -214,8 +243,11 @@ def _scoring_readiness_cached(current_set: str | None) -> dict:
     return result
 
 
-@mcp.tool()
-def hear_the_room(where: str = "session", bar: int | None = None) -> dict:
+@mcp.tool(annotations=_WRITES)
+def hear_the_room(
+    where: Annotated[str, Field(description="'session' (default): the Session clips playing now. 'arrangement': the Arrangement clips at `bar` on every regular track.")] = "session",
+    bar: Annotated[int | None, Field(description="1-based Arrangement bar to hear (where='arrangement' only). Omit to use the transport playhead from the Live API; without the Live API, pass it or the room reads as blind.")] = None,
+) -> dict:
     """Read the room through Producer Pal: tempo world, key (Live's own scale
     setting when it carries one, with the heard estimate beside it), the MIDI of
     the Session clips actually PLAYING on the first MOMENT_MAX_TRACKS (12)
@@ -228,13 +260,14 @@ def hear_the_room(where: str = "session", bar: int | None = None) -> dict:
     clips whose notes were not read (Producer Pal returns notes only in
     [-L, 2L) of a clip; the Live API reads them all, or its read of that clip
     failed) — never an empty room; moment.hidden lists heard clips with notes
-    behind the loop brace that do not play. Read-only; if Live is unreachable
-    this declares blind mode. Unheard names are conversational evidence only —
+    behind the loop brace that do not play. It never writes to Live; if Live
+    is unreachable this declares blind mode. Unheard names are conversational evidence only —
     ask what they are doing; never infer musical content from the name. The
     result also carries the judgment loop state (open session,
     pending judgments, unswept nights, next action), a scoring-readiness probe
-    for new writes, and the store disk's free space. Ended-but-unswept nights
-    of the open Set are swept automatically and listed under auto_closed
+    for new writes, and the store disk's free space. Not read-only: ended-but-
+    unswept nights of the open Set are swept automatically (their outcomes
+    are written to the local ledger) and listed under auto_closed
     (nights that actually closed) or auto_swept_partial (scored what they
     could, still waiting) — never the currently open session."""
     import ears as _ears
@@ -317,12 +350,12 @@ async def capture_loop(
     )
 
 
-@mcp.tool()
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=True))
 async def listen_to_takes(
-    inventory_id: str,
-    take_ids: list[str],
-    focus: str = "full",
-    model: str = DEFAULT_AGY_MODEL,
+    inventory_id: Annotated[str, Field(description='The inventory_id returned by inventory_session_audio (short-lived).')],
+    take_ids: Annotated[list[str], Field(description='take_id values from that inventory to listen to.')],
+    focus: Annotated[str, Field(description="What the listener should attend to: 'full', 'groove', 'melody' or 'composition'.")] = "full",
+    model: Annotated[str, Field(description="agy listener model name. Each take's audio is sent to this outside model.")] = DEFAULT_AGY_MODEL,
 ) -> dict:
     """Consume an inventory capability and persist validated session take cards.
 
@@ -433,11 +466,15 @@ def suggest_growth(n: int = 3, key: str | None = None, seed: int = 0,
                                 use_ears=use_ears, direction=direction)
 
 
-@mcp.tool()
-def grow_my_loop(seed_notes: list[dict], n: int = 3, key: str | None = None,
-                 tempo: float = 120.0, cont_bars: int = 4, seed: int = 0,
-                 humanize: bool = False,
-                 use_ears: bool | None = None) -> dict:
+@mcp.tool(annotations=_READ_ONLY)
+def grow_my_loop(seed_notes: Annotated[list[dict], Field(description='Your loop. ' + _NOTES)],
+                 n: Annotated[int, Field(description='How many extended versions to return.')] = 3,
+                 key: Annotated[str | None, Field(description=_KEY)] = None,
+                 tempo: Annotated[float, Field(description='Tempo in BPM, used for humanize timing and reported in the result.')] = 120.0,
+                 cont_bars: Annotated[int, Field(description='Length of each continuation in bars.')] = 4,
+                 seed: Annotated[int, Field(description=_SEED)] = 0,
+                 humanize: Annotated[bool, Field(description='Apply your learned velocity/timing feel to the continuations only; your loop is never changed.')] = False,
+                 use_ears: Annotated[bool | None, Field(description=_USE_EARS)] = None) -> dict:
     """Stretch YOUR loop: returns your idea untouched, each extended with a short
     continuation that grows out of it and introduces one rare-but-native move — a melodic
     cell, an under-used scale degree, or a rare progression. Unlike suggest_growth (which
@@ -465,18 +502,24 @@ def _stamp_source_for_answer(ans: dict, ref_id: str | None,
     return "catalogue"
 
 
-@mcp.tool()
-def answer_my_loop(seed_notes: list[dict] | None = None, bars: int | None = None,
-                   key: str | None = None, tempo: float | None = None,
-                   transform: str | None = None, humanize: bool = False,
-                   write: bool = False, seed: int = 0, gear: int = 2,
-                   surgery: str | None = None, direction: str | None = None,
-                   axes: dict | None = None,
-                   use_ears: bool | None = None,
-                   moment: dict | None = None,
-                   ref_id: str | None = None,
-                   role: str = "lead",
-                   relax: str | None = None) -> dict:
+@mcp.tool(annotations=_WRITES)
+def answer_my_loop(seed_notes: Annotated[list[dict] | None, Field(description='Your loop to answer. ' + _SEED_FROM_LIVE)] = None,
+                   bars: Annotated[int | None, Field(description="Answer length in bars (gear 2 only). Omit to match the loop's length.")] = None,
+                   key: Annotated[str | None, Field(description=_KEY)] = None,
+                   tempo: Annotated[float | None, Field(description="Tempo in BPM for the answer. Omit to use the source phrase's tempo, else the profile's mean, else 120 (gears 1-3; gear 4 defaults to 120).")] = None,
+                   transform: Annotated[str | None, Field(description="Gear 2 only: one velocity-preserving transform, 'fragment' or 'reharmonize', or 'auto' to pick one by seed.")] = None,
+                   humanize: Annotated[bool, Field(description='Gear 2 only: apply your learned velocity/timing feel to the answer.')] = False,
+                   write: Annotated[bool, Field(description='Also write the answer to the SIDEKICK JAM track (read back and stamped in the ledger). Gears 5-6 never write here; use write_composed_to_jam.')] = False,
+                   seed: Annotated[int, Field(description=_SEED)] = 0,
+                   gear: Annotated[int, Field(description="1 recall (your nearest phrase as is), 2 recontext (transposed, voice-led; default), 3 develop (one motif surgery), 4 grow (composed continuation, role='lead' only), 5 compose / 6 cover (returns a contract for the LLM to compose against).")] = 2,
+                   surgery: Annotated[str | None, Field(description='Gear 3 only: ghost_answer, bass_shadow, broken_rhythm, ending_variation or octave_displacement. Omit to pick one by seed.')] = None,
+                   direction: Annotated[str | None, Field(description=_DIRECTION)] = None,
+                   axes: Annotated[dict | None, Field(description='Gears 5-6 only: aesthetic targets from -1.0 to 1.0 on faithful_alien, sparse_maximal, song_club, human_machine, romantic_brutal, clean_damaged, darker_brighter.')] = None,
+                   use_ears: Annotated[bool | None, Field(description=_USE_EARS)] = None,
+                   moment: Annotated[dict | None, Field(description=_MOMENT)] = None,
+                   ref_id: Annotated[str | None, Field(description='An audio reference id from find_audio_refs. On gear 2 it narrows which of your phrases can answer; on other gears its brief travels with the answer as text.')] = None,
+                   role: Annotated[str, Field(description="'lead' (default) or 'bass': which of your phrase banks and which register the answer uses.")] = "lead",
+                   relax: Annotated[str | None, Field(description=_RELAX)] = None) -> dict:
     """Call-and-response from Ricardo's OWN material, through the GEARBOX:
     1 RECALL (his nearest phrase, verbatim) · 2 RECONTEXT (transposed, voice-led —
     default) · 3 DEVELOP (one named motif surgery: ghost_answer / bass_shadow /
@@ -676,12 +719,15 @@ def answer_my_loop(seed_notes: list[dict] | None = None, bars: int | None = None
     return ans
 
 
-@mcp.tool()
-def develop_my_loop(seed_notes: list[dict] | None = None, move: str | None = None,
-                    key: str | None = None, tempo: float | None = None,
-                    bars: int | None = None, seed: int = 0,
-                    use_ears: bool | None = None,
-                    direction: str | None = None) -> dict:
+@mcp.tool(annotations=_READ_ONLY)
+def develop_my_loop(seed_notes: Annotated[list[dict] | None, Field(description='Your loop. ' + _SEED_FROM_LIVE)] = None,
+                    move: Annotated[str | None, Field(description="One named move: slow-burn:reveal, slow-burn:accent, slow-burn:add, motivic:reharm, motivic:retro, motivic:fragment, motivic:walk, motivic:invert; bare 'slow-burn' means reveal, bare 'motivic' picks one by seed. Omit to return the retrieved phrase untouched.")] = None,
+                    key: Annotated[str | None, Field(description=_KEY)] = None,
+                    tempo: Annotated[float | None, Field(description="Tempo in BPM for the result. Omit to use the source phrase's tempo, else the profile's mean, else 120.")] = None,
+                    bars: Annotated[int | None, Field(description="Result length in bars. Omit to match the loop's length.")] = None,
+                    seed: Annotated[int, Field(description='Random seed; also drives the slow-burn pass and the motivic walk direction.')] = 0,
+                    use_ears: Annotated[bool | None, Field(description=_USE_EARS)] = None,
+                    direction: Annotated[str | None, Field(description=_DIRECTION)] = None) -> dict:
     """Develop HIS loop: retrieve ONE real phrase from his catalog and apply ONE
     named move — slow-burn:reveal, slow-burn:accent, slow-burn:add,
     motivic:reharm, motivic:retro, motivic:fragment, motivic:walk,
@@ -977,16 +1023,18 @@ def _ledger_normalize_notes(notes: list[dict]) -> list[dict]:
     return _ledger_resolve._normalize_answer_notes(notes)
 
 
-@mcp.tool()
-def judge_answer(verdict: str, slot: str | None = None,
-                 source_phrase_id: str | None = None,
-                 answer_notes: list[dict] | None = None,
-                 reason: str | None = None, confirm: bool = False,
-                 seed_notes: list[dict] | None = None,
-                 key: str | None = None,
-                 role: str | None = None,
-                 entry_id: str | None = None,
-                 source: str | None = None) -> dict:
+@mcp.tool(annotations=_MAY_REPLACE)
+def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")],
+                 slot: Annotated[str | None, Field(description="Live slot of the judged clip as 'track/scene', e.g. '3/0'; binds the verdict to the write there.")] = None,
+                 source_phrase_id: Annotated[str | None, Field(description='Catalogue phrase the answer came from (KEEP golds it, DROP suppresses it). Normally taken from the ledger row.')] = None,
+                 answer_notes: Annotated[list[dict] | None, Field(description='The notes that were heard; must match the verified write when a ledger row is bound. ' + _NOTES)] = None,
+                 reason: Annotated[str | None, Field(description="Optional, one word is plenty. 'too static', 'too jumpy' or 'wrong register' demote the matching ears bucket for the session.")] = None,
+                 confirm: Annotated[bool, Field(description='DROP only: True deletes the judged clip from SIDEKICK JAM after checking its verified clip and Set identity; False previews the deletion. KEEP never deletes.')] = False,
+                 seed_notes: Annotated[list[dict] | None, Field(description='The loop the answer responded to; on KEEP it is remembered for hold-my-idea (sticky_develop). ' + _NOTES)] = None,
+                 key: Annotated[str | None, Field(description='Key of the answer; must agree with the ledger row when one is bound.')] = None,
+                 role: Annotated[str | None, Field(description='Role of the answer; must agree with the ledger row when one is bound.')] = None,
+                 entry_id: Annotated[str | None, Field(description='Ledger entry id to judge, naming the row explicitly (needed when the bare judgment is refused). Also judges arrangement experiments.')] = None,
+                 source: Annotated[str | None, Field(description="Stamp source such as 'catalogue' or 'ref:<ref_id>'; must agree with the ledger row when one is bound.")] = None) -> dict:
     """KEEP/DROP with teeth. KEEP golds the answer's source phrase (the crate digs
     itself). DROP logs an explicit negative and suppresses that phrase (and its
     near-duplicates) from future answers — clear_rejects() undoes it. With
@@ -1420,9 +1468,11 @@ def prepare_idea_pack_audition_lanes(
     )
 
 
-@mcp.tool()
-def score_phrase(notes: list[dict], tempo: float | None = None,
-                 role: str | None = None, key: str | None = None) -> dict:
+@mcp.tool(annotations=_READ_ONLY)
+def score_phrase(notes: Annotated[list[dict], Field(description=_NOTES)],
+                 tempo: Annotated[float | None, Field(description='Tempo in BPM of the phrase.')] = None,
+                 role: Annotated[str | None, Field(description="Score under this role's grammar, e.g. 'lead'. Omit to detect it.")] = None,
+                 key: Annotated[str | None, Field(description=_KEY)] = None) -> dict:
     """Score a candidate phrase against Ricardo's style (0–1 + verdict). Pass role
     (e.g. 'lead') and/or key (e.g. 'D minor') to score under that role's grammar and a
     known key instead of self-detecting them."""
@@ -1568,8 +1618,10 @@ def humanize(notes: list[dict], role: str = "lead", strength: float | None = Non
     return res
 
 
-@mcp.tool()
-def export_midi(notes: list[dict], path: str, tempo: float = 120.0) -> dict:
+@mcp.tool(annotations=_MAY_REPLACE)
+def export_midi(notes: Annotated[list[dict], Field(description=_NOTES)],
+                path: Annotated[str, Field(description='File name ending in .mid or .midi. Relative paths land under store/exports; absolute paths only inside store/exports or a SIDEKICK_EXPORT_DIRS directory.')],
+                tempo: Annotated[float, Field(description='Tempo in BPM written into the file.')] = 120.0) -> dict:
     """Export notes to a .mid file under store/exports (relative paths land there).
 
     Absolute paths are accepted only inside store/exports or a directory the
@@ -1609,20 +1661,16 @@ def send_to_ableton(
     )
 
 
-@mcp.tool()
+@mcp.tool(annotations=_MAY_REPLACE)
 def write_midi_clip(
-    track_name: str,
-    scene_index: int,
-    notes: list[dict],
-    name: str = "SIDEKICK MIDI",
-    loop_start: str = "1|1",
-    loop_length: str = "1bar",
-    replace: bool = False,
-    confirm: bool = False,
-    source: str = "catalogue",
-    role: str = "lead",
-    gear: int | None = None,
-    metadata: dict | None = None,
+    track_name: Annotated[str, Field(description="Exact name of an existing MIDI track called 'SIDEKICK' or 'SIDEKICK ...' (not SIDEKICK JAM).")],
+    scene_index: Annotated[int, Field(description='0-based Session scene (slot) index on that track.')],
+    notes: Annotated[list[dict], Field(description=_NOTES)],
+    name: Annotated[str, Field(description='Clip name, 1-120 characters.')] = "SIDEKICK MIDI",
+    loop_start: Annotated[str, Field(description="Loop start as 1-based bar|beat, e.g. '1|1'.")] = "1|1",
+    loop_length: Annotated[str, Field(description="Loop length as a Producer Pal duration, e.g. '1bar', '4bar' or 'n/4'.")] = "1bar",
+    replace: Annotated[bool, Field(description='Allow replacing an occupied MIDI clip in that slot (same SIDEKICK track only).')] = False,
+    confirm: Annotated[bool, Field(description='False previews only; True writes and reads the clip back to verify it.')] = False,
 ) -> dict:
     """Preview or execute a verified MIDI clip write on an exact SIDEKICK track.
 
@@ -1643,25 +1691,20 @@ def write_midi_clip(
             "answer_my_loop(write=True) or write_composed_to_jam so the "
             "ledger can score it; write_midi_clip serves the other "
             "Sidekick-owned tracks")
-    if source != "catalogue" and not str(source).startswith("ref:"):
-        raise ValueError("source must be 'catalogue' or 'ref:<ref_id>'")
-    if not isinstance(role, str) or not role.strip():
-        raise ValueError("role must be a non-empty string")
-    if gear is not None and (isinstance(gear, bool) or not isinstance(gear, int)):
-        raise ValueError("gear must be an integer or None")
-    if metadata is not None and not isinstance(metadata, dict):
-        raise ValueError("metadata must be a dict or None")
-
     result = _run_async(_clip_mutation.write_midi_clip(
         track_name, scene_index, notes, name=name, loop_start=loop_start,
         loop_length=loop_length, replace=replace, confirm=confirm))
     return result
 
 
-@mcp.tool()
-def write_composed_to_jam(notes: list[dict], contract: dict, name: str,
-                          role: str = "lead", source: str = "catalogue",
-                          ears: str | None = None, confirm: bool = False) -> dict:
+@mcp.tool(annotations=_WRITES)
+def write_composed_to_jam(notes: Annotated[list[dict], Field(description='The composed notes. ' + _NOTES)],
+                          contract: Annotated[dict, Field(description='The contract answer_my_loop(gear=5 or 6) returned.')],
+                          name: Annotated[str, Field(description='Clip name, 1-120 characters; made unique within the open session.')],
+                          role: Annotated[str, Field(description="Role the critics validate the notes under, e.g. 'lead'.")] = "lead",
+                          source: Annotated[str, Field(description="Ledger stamp: 'catalogue' or 'ref:<ref_id>'.")] = "catalogue",
+                          ears: Annotated[str | None, Field(description="Ears context stamped in the ledger: 'live', 'blind', 'reference' or 'off'. Omit if unknown.")] = None,
+                          confirm: Annotated[bool, Field(description='False validates and previews only; True writes to SIDEKICK JAM if validation passes.')] = False) -> dict:
     """Land LLM-composed material (gear 5 COMPOSE / gear 6 COVER) on SIDEKICK JAM.
 
     The critics gate it first (gears.validate_composed under ``role``), and a
@@ -2500,9 +2543,10 @@ def _apply_outcome_rating_ops(entry: dict) -> list[dict]:
     return applied
 
 
-@mcp.tool()
-def close_session(session_id: str | None = None, attest: dict | None = None,
-                  confirm: bool = False) -> dict:
+@mcp.tool(annotations=_WRITES)
+def close_session(session_id: Annotated[str | None, Field(description='Ledger session to sweep. Omit to sweep every open session of the Set that is open now.')] = None,
+                  attest: Annotated[dict | None, Field(description='Ledger entry id -> owner-attested fact (present, adopted, absent, not_adopted, retire) for rows no sweep can verify.')] = None,
+                  confirm: Annotated[bool, Field(description='Only used with attest: False previews the attestation without contacting Live; True writes it, then sweeps if rows still need it. Without attest the sweep always runs.')] = False) -> dict:
     """END OF NIGHT — score the session: which suggestions are still in the Set.
 
     Reads the complete current Set inventory once and resolves every clip written this session to a
@@ -2995,8 +3039,9 @@ def register_arrangement_candidates(journal_path: str | None = None,
     return out
 
 
-@mcp.tool()
-def session_report(refresh: bool = False, session_id: str | None = None) -> dict:
+@mcp.tool(annotations=_WRITES)
+def session_report(refresh: Annotated[bool, Field(description='False (default) only reads the ledger. True reads the current Set and records next-session / adoption evidence.')] = False,
+                   session_id: Annotated[str | None, Field(description='Limit the report to one ledger session.')] = None) -> dict:
     """What the judgment ledger holds; optionally refresh from current Set evidence.
 
     The default is read-only. ``refresh=True`` reads a complete inventory and
