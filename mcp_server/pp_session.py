@@ -22,13 +22,12 @@ from typing import Any, AsyncIterator, Callable
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pp_codec  # noqa: E402
 import clip_playback  # noqa: E402
+from config import PP_URL  # noqa: E402,F401  (re-exported: live_write reads pp_session.PP_URL)
 
 # ONE module universe ('pp_session' vs 'mcp_server.pp_session').
 for _alias in ("pp_session", "mcp_server.pp_session"):
     sys.modules.setdefault(_alias, sys.modules[__name__])
 
-
-PP_URL = os.environ.get("PRODUCER_PAL_URL", "http://localhost:3350/mcp")
 
 # PP 2.0+ JSON is the supported wire contract. This explicit compatibility switch
 # is off; only a deliberately marked PP<2.0 fixture shim may temporarily enable it.

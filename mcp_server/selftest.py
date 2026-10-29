@@ -1,16 +1,27 @@
 """Offline selftest for the Composing Sidekick MCP server (registered as "style-sidekick").
 
-Run it the same way as always (it needs the built catalogue, see README ->
+Run it through the server (it needs the built catalogue, see README ->
 Build your catalogue):
 
     .venv/bin/python mcp_server/server.py --selftest
 
-The body below moved here from server.py unchanged. It still calls the tool
-functions as bare names (``hear_the_room(...)``), so ``run_selftest`` binds
-those names from the server module it is handed before running; the server
-passes itself, which also works when server.py runs as ``__main__``. The
-only edits are the two places that read the server module, which now use
-``_server`` instead of ``sys.modules[__name__]``.
+What it covers: first the jam_lifecycle, pp_codec, pp_session,
+capture_support and capture_loop module selftests, then about a hundred
+titled, numbered blocks (``--- title ---`` on stdout) that call the tools
+with sample inputs against the real catalogue artifacts: the profile
+registry and closure checks, style and retrieval, scoring and critique,
+generation and the gears, MIDI export round-trip, ratings and taste, the
+Moment and ears gates, the judgment ledger and session close, references,
+finishing and the mix adviser. Blocks that write must redirect their paths to
+temp dirs. The ears and develop session-state files are fingerprinted
+before the first block and must be unchanged at the end. A failed block
+raises AssertionError; a full pass ends with ``=== all selftests passed ===``.
+
+How it binds the server: the body calls tools as bare names
+(``hear_the_room(...)``), so ``run_selftest(server)`` copies each name in
+``_SERVER_NAMES`` from the server module it is handed into this module's
+globals, and exposes the module itself as ``_server``. The server passes
+itself, which also works when server.py runs as ``__main__``.
 """
 
 from __future__ import annotations
@@ -76,7 +87,6 @@ def _run_selftest() -> int:
     import tempfile
 
     print("=== style-sidekick selftest ===\n")
-    errors = []
 
     # The selftest must never touch HIS live session state. On 2026-09-03 block 81
     # judged through the real path without redirecting these module globals, and
@@ -2720,12 +2730,6 @@ def _run_selftest() -> int:
     # ratings_tmp, its sibling taste-model fixture, and their rolling
     # backups all live under _ratings_tmpdir: one rmtree clears the block.
     shutil.rmtree(_ratings_tmpdir, ignore_errors=True)
-
-    if errors:
-        print("FAILURES:")
-        for e in errors:
-            print(f"  - {e}")
-        return 1
 
     # 42. the Moment: pure room snapshot — synthetic tracks, no Live needed
     print("--- the Moment: tempo worlds, roles, registers, blind mode ---")
@@ -8604,7 +8608,7 @@ def _run_selftest() -> int:
     print("  ownership steers his phrases and the steered write still lands")
     print("  OK\n")
 
-    # 14. determinism regression — identical seed + identical args → identical output
+    # 96. determinism regression — identical seed + identical args → identical output
     print("--- determinism regression (develop_idea) ---")
     import random
 

@@ -1052,7 +1052,9 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
     (transform/surgery) bans only that (source, move) pairing — the untouched
     source stays servable."""
     import gears as _gears
-    import ledger as _ledger_resolve
+    import ledger as _ledger
+
+    verdict_word = str(verdict).strip().lower()
 
     if entry_id is not None:
         # An arrangement experiment / effect trial (register_arrangement_candidates)
@@ -1060,11 +1062,11 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
         # never note-material learning — no gold, no ban, no rating, no tally.
         import experiments as _experiments
         routed = _experiments.judge(entry_id, verdict, reason=reason,
-                                    path=_ledger_resolve.LEDGER_PATH)
+                                    path=_ledger.LEDGER_PATH)
         if routed is not None:
             try:
-                routed["ledger_status"] = _ledger_resolve.ledger_status(
-                    path=_ledger_resolve.LEDGER_PATH)
+                routed["ledger_status"] = _ledger.ledger_status(
+                    path=_ledger.LEDGER_PATH)
             except Exception:  # noqa: BLE001 — loop state is a rider, never the verdict
                 pass
             return routed
@@ -1074,8 +1076,8 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
     # One binder decides which row this verdict belongs to; recency is
     # identity nowhere else, and a refusal names the pending rows instead
     # of guessing (or stamping a three-week-old night).
-    binding = _ledger_resolve.resolve_judgment_target(
-        _ledger_resolve.load(), verdict, entry_id=entry_id, slot=slot,
+    binding = _ledger.resolve_judgment_target(
+        _ledger.load(), verdict, entry_id=entry_id, slot=slot,
         answer_notes=answer_notes, source_phrase_id=source_phrase_id,
         origin="mcp")
     if binding.get("refused"):
@@ -1090,21 +1092,21 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
     if bare_judgment and bound_entry is not None:
         # Persist the cursor before any sink can fail. A retry therefore resolves
         # the same write even when another pending write shares its slot.
-        _ledger_resolve.bind_judgment_target(
-            bound_entry["id"], path=_ledger_resolve.LEDGER_PATH)
+        _ledger.bind_judgment_target(
+            bound_entry["id"], path=_ledger.LEDGER_PATH)
 
     if bound_entry is not None:
         if bound_entry.get("immediate_verdict") is not None and \
-                bound_entry.get("immediate_verdict") != str(verdict).strip().lower():
+                bound_entry.get("immediate_verdict") != verdict_word:
             raise ValueError("judgment verdict contradicts the existing immutable verdict")
         # Roles compare canonically ('drums' IS 'drum') and the honest
         # 'unknown' placeholder compares as no role at all.
         supplied = {"answer_notes": answer_notes,
-                    "role": _ledger_resolve.learning_role(role),
+                    "role": _ledger.learning_role(role),
                     "key": key,
                     "source_phrase_id": source_phrase_id, "source": source}
         authoritative = {"answer_notes": bound_entry.get("answer_notes"),
-                         "role": _ledger_resolve.learning_role(
+                         "role": _ledger.learning_role(
                              bound_entry.get("role")),
                          "key": bound_entry.get("key"),
                          "source_phrase_id": bound_entry.get("source_phrase_id"),
@@ -1119,7 +1121,7 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
                 raise ValueError("judgment answer_notes contradict the verified write")
         for field in ("role", "key", "source_phrase_id", "source"):
             if supplied[field] is not None and authoritative[field] is not None and \
-                    (not _ledger_resolve._same_phrase_id(
+                    (not _ledger._same_phrase_id(
                         supplied[field], authoritative[field])
                      if field == "source_phrase_id"
                      else supplied[field] != authoritative[field]):
@@ -1135,12 +1137,12 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
             role = bound_entry.get("role")
         # the 'unknown' placeholder is bookkeeping: learning sinks get None
         # so the taste model infers from register instead of trusting it
-        role = _ledger_resolve.learning_role(role)
+        role = _ledger.learning_role(role)
         if key is None:
             key = bound_entry.get("key")
         slot = bound_entry.get("slot")
         source = bound_entry.get("source") if source is None else source
-        internal_idempotency_key = f"judge:{entry_id}:{str(verdict).strip().lower()}"
+        internal_idempotency_key = f"judge:{entry_id}:{verdict_word}"
         resolved_from = {"entry_id": entry_id,
                          "clip_name": bound_entry.get("clip_name"),
                          "slot": slot}
@@ -1152,7 +1154,6 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
     # from. Learning sinks are retryable through the judgment journal; a
     # verdict lost to a later crash is not. record_judgment's second stamp
     # below hits the same-verdict branch and marks the journal's ledger step.
-    verdict_word = str(verdict).strip().lower()
     # A row with no material (no answer notes, no source phrase the index
     # can resolve) has nothing to learn from: the verdict lands and learning
     # is skipped with a note — never a retry-forever learning failure.
@@ -1167,9 +1168,9 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
                 "notes and no source phrase the index can resolve")
     if bound_entry is not None:
         try:
-            _ledger_resolve.record_verdict(
+            _ledger.record_verdict(
                 verdict_word, entry_id=bound_entry["id"],
-                path=_ledger_resolve.LEDGER_PATH)
+                path=_ledger.LEDGER_PATH)
         except Exception:  # noqa: BLE001 — record_judgment retries and surfaces
             pass
 
@@ -1186,7 +1187,7 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
                                       seed_notes=seed_notes, key=key, role=role,
                                       idempotency_key=internal_idempotency_key,
                                       entry_id=entry_id,
-                                      ledger_path=_ledger_resolve.LEDGER_PATH,
+                                      ledger_path=_ledger.LEDGER_PATH,
                                       source=source)
         except Exception as exc:  # noqa: BLE001 — a sink crash never undoes the verdict
             # "The ledger verdict stands" is only honest when a verdict actually
@@ -1195,8 +1196,8 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
             verdict_landed = False
             if entry_id:
                 landed_row = next(
-                    (e for e in _ledger_resolve.load(
-                        _ledger_resolve.LEDGER_PATH).get("entries", [])
+                    (e for e in _ledger.load(
+                        _ledger.LEDGER_PATH).get("entries", [])
                      if e.get("id") == entry_id), None)
                 verdict_landed = bool(landed_row and
                                       landed_row.get("immediate_verdict") == verdict_word)
@@ -1204,8 +1205,8 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
                 raise
             stage = "learning"
             if internal_idempotency_key is not None:
-                event = _ledger_resolve.judgment_event(
-                    internal_idempotency_key, path=_ledger_resolve.LEDGER_PATH)
+                event = _ledger.judgment_event(
+                    internal_idempotency_key, path=_ledger.LEDGER_PATH)
                 failed = sorted(name for name, step in (event or {}).get("steps", {}).items()
                                 if step.get("status") == "failed")
                 stage = failed[-1] if failed else stage
@@ -1229,7 +1230,6 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
     if binding_note:
         res["ledger_binding"] = binding_note
     import jam_lifecycle as _jl
-    import ledger as _ledger
     from mcp_server import live_write as _live_write
 
     # An explicit judgment can still be useful when the ledger predates the
@@ -1249,11 +1249,11 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
         set_identity=(bound_entry or {}).get("set_identity"),
         event_id=internal_idempotency_key,
         conflict_fingerprint=None,
-        ledger_path=_ledger_resolve.LEDGER_PATH,
+        ledger_path=_ledger.LEDGER_PATH,
     )
     try:
-        res["ledger_status"] = _ledger_resolve.ledger_status(
-            path=_ledger_resolve.LEDGER_PATH)
+        res["ledger_status"] = _ledger.ledger_status(
+            path=_ledger.LEDGER_PATH)
     except Exception:  # noqa: BLE001 — loop state is a rider, never the verdict
         pass
     _ledger_ref = res.get("ledger") if isinstance(res.get("ledger"), dict) else {}
@@ -1265,10 +1265,9 @@ def judge_answer(verdict: Annotated[str, Field(description="'keep' or 'drop'.")]
         # conflicting verdict (no entry id, or a retryable accounting
         # failure) tallies nothing, and the retry that lands it counts once
         # through the card's tallied_entries.
-        _v = str(verdict).strip().lower()
-        if _v in ("keep", "drop"):
+        if verdict_word in ("keep", "drop"):
             _tally = _record_ref_tally_for_source(
-                source, "kept" if _v == "keep" else "dropped",
+                source, "kept" if verdict_word == "keep" else "dropped",
                 entry_id=_ledger_ref.get("entry_id"))
             if _tally is not None:
                 res["ref_tally"] = _tally

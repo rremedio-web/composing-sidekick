@@ -190,12 +190,7 @@ def _build_agy_cmd(
     target: str,
     model: str,
     timeout_s: int,
-    master_audio: str | None = None,
 ) -> list[str]:
-    if master_audio is None:
-        hits = sorted(Path(audio_dir).glob("master.*"))
-        master_audio = str(hits[0]) if hits else str(
-            Path(audio_dir) / "master.wav")
     staged_paths = [str(Path(audio_dir) / "master.wav")]
     staged_paths.extend(str(path) for path in sorted(Path(audio_dir).glob("group-*.wav")))
     prompt = _listen_directive(staged_paths) + "\n\n"
