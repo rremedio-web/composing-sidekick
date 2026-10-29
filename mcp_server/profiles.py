@@ -1,4 +1,4 @@
-"""MCP server profiles and closure registry for style-sidekick.
+"""MCP server profiles and closure registry for the Composing Sidekick MCP server (registered as "style-sidekick").
 
 Declarative profiles for role-focused MCP server operation:
 - compose: Complete composing core loop (default).

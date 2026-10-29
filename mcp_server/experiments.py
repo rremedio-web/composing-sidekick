@@ -5,7 +5,7 @@ sidekick already put in his Set on SIDEKICK tracks (line variants, a whole
 drum track) and devices it added to his tracks (the two sidechain
 compressors) get a durable row, one explicit verdict, and a verified terminal
 state at close — reported as a **separate subtotal**, never inside the phrase
-KEEP denominator (``ROADMAP.md`` → Current arc).
+KEEP denominator (the phrase rate scores only judged phrase suggestions).
 
 Rows live in ``store/session_ledger.json`` under two top-level lists,
 ``arrangement_experiments`` and ``effect_trials`` — never in ``entries``, so

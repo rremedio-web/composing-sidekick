@@ -3323,9 +3323,8 @@ def _listen_directive(staged_audio_path: str) -> str:
 
 
 def _resolve_model(model: str | None) -> str:
-    """explicit argument → AUDIO_REF_MODEL → default. The env override is
-    documented in HANDOFF.md and was never read (session_ears and mix_witness
-    both honour theirs)."""
+    """explicit argument → AUDIO_REF_MODEL → default (session_ears and
+    mix_witness honour their own env overrides the same way)."""
     return model or os.environ.get("AUDIO_REF_MODEL") or DEFAULT_AGY_MODEL
 
 

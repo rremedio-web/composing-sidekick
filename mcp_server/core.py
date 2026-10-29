@@ -1,4 +1,4 @@
-"""Core tool implementations for the style-sidekick MCP server.
+"""Core tool implementations for the Composing Sidekick MCP server (registered as "style-sidekick").
 
 Deterministic helpers only — no LLM calls. Reuses analyze/build_index.py and
 analyze/style_profile.py metrics. Imported by server.py and --selftest.

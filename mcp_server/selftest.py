@@ -1,4 +1,4 @@
-"""Offline selftest for the style-sidekick MCP server.
+"""Offline selftest for the Composing Sidekick MCP server (registered as "style-sidekick").
 
 Run it the same way as always (it needs the built catalogue, see README ->
 Build your catalogue):

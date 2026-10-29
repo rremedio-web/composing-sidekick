@@ -1,6 +1,6 @@
 """Safe corpus rebuild: scan → materialize → analyze, with fail-closed gates.
 
-Today's pipeline order (HANDOFF.md "artifact regen"): scan_catalog,
+Today's pipeline order (order = STAGES below): scan_catalog,
 materialize, harmony, structure, style_profile (renders harmony+structure),
 build_index, motifs (needs index+profile), directions (reads the profile).
 Phrase curves need the automation harvest (a separate dig, not the .als

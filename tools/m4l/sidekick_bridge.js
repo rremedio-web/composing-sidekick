@@ -1,7 +1,10 @@
 // SIDEKICK BRIDGE — dumb LiveAPI executor for the composing sidekick.
-// v8 object, Live 12.2+ (Max 9). No logic, no clock, no rng: it receives ops,
-// runs them against the Live Object Model, and replies. Delete the device to
-// disable everything.
+// v8 object, Live 12.2+ (Max 9). No musical logic and no rng: it receives ops,
+// runs them against the Live Object Model, and replies. Its one timer is the Task
+// that ends a capture (capture_start / capture_status / capture_finalize /
+// capture_cancel, which record only into a slot on the track named "SIDEKICK EARS").
+// The generic "call" op only allows delete_clip on a SIDEKICK EARS clip slot.
+// Delete the device to disable everything.
 //
 // Patcher wiring (SIDEKICK_BRIDGE.amxd, MIDI effect):
 //   [udpreceive 3351] -> [v8 sidekick_bridge.js] -> [udpsend 127.0.0.1 3352]

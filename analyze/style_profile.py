@@ -1,6 +1,7 @@
 """Build a style profile of Ricardo's MIDI catalog — pure stdlib, full corpus.
 
-Reads the catalog manifest, re-parses every project that has MIDI notes, and
+Reads the materialized corpus (store/projects/_index.json and one JSON per
+project, so run ingest/materialize.py first) and, for every project with MIDI notes,
 computes corpus-wide statistics that describe his compositional voice. Drum /
 percussion tracks are separated out: they inform GROOVE but never the harmonic
 analysis (key, melody, register), since percussion has no harmonic pitch.

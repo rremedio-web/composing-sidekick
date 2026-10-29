@@ -1,4 +1,4 @@
-"""style-sidekick MCP server — Claude's composition toolkit.
+"""Composing Sidekick MCP server (registered as "style-sidekick") — Claude's composition toolkit.
 
 Claude (the MCP client) is the composer. These tools supply Ricardo's style
 context, real phrases, structure templates, scoring, and MIDI export. They do
@@ -6,7 +6,7 @@ NOT generate music with their own model.
 
 Run:
     .venv/bin/python mcp_server/server.py              # stdio MCP server
-    .venv/bin/python mcp_server/server.py --selftest   # verify all tools
+    .venv/bin/python mcp_server/server.py --selftest   # offline selftest; needs the built catalogue
 """
 
 from __future__ import annotations

@@ -2,16 +2,17 @@
 
 Why this exists: `ratings.json` records that he pressed KEEP in the moment. It
 records nothing about whether that clip was still in the Set when he closed Live.
-The 4-6 week score is **session survival of judged suggestions** (`ROADMAP.md` →
-Current arc), and that number is uncomputable without a written record of what
-was written, when, and where it came from.
+The project's score is **session survival of judged suggestions** (a judged
+suggestion still in the Set when the night is closed), and that number is
+uncomputable without a written record of what was written, when, and where it
+came from.
 
 This module owns the write stamp and the end-of-night sweep (`close_session`) that
 assigns terminal states while Live is reachable. The stamp has to exist first,
 because a surviving clip cannot be traced back to the reference or gear that produced
 it after the fact. The clip does not remember.
 
-Terminal states (`ROADMAP.md`): keep | drop | abandoned | unjudged. Nothing here
+Terminal states: keep | drop | abandoned | unjudged. Nothing here
 assigns them except an explicit verdict; the sweep closes the rest. Unjudged must
 never inflate the KEEP rate, so entries start with ``terminal_state: None`` and
 are counted only once something actually resolves them.
