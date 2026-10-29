@@ -1,9 +1,12 @@
 """Unit tests for mcp_server/export_bridge.py (Producer Pal payload builder, no socket)."""
 from __future__ import annotations
 
+import inspect
 import os
 import sys
+import tempfile
 import unittest
+from unittest import mock
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
@@ -91,6 +94,92 @@ class TestSharedHelpers(unittest.TestCase):
     def test_clip_digest_has_one_owner(self):
         self.assertIs(core._clip_digest, core_shared._clip_digest)
         self.assertEqual(len(core_shared._clip_digest(NOTES)), 10)
+
+
+class TestExportMidiPathPolicy(unittest.TestCase):
+    """export_midi writes only inside an operator-configured allowlist."""
+
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.tmp = os.path.realpath(tmp.name)
+        self.exports = os.path.join(self.tmp, "exports")
+        self.outside = os.path.join(self.tmp, "outside")
+        os.makedirs(self.exports)
+        os.makedirs(self.outside)
+        patcher = mock.patch.object(core_shared, "EXPORTS_DIR", self.exports)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        env = mock.patch.dict(os.environ)
+        env.start()
+        self.addCleanup(env.stop)
+        os.environ.pop(export_bridge.EXPORT_DIRS_ENV, None)
+
+    def test_no_model_controlled_escape_hatch(self):
+        from mcp_server import server
+        for fn in (export_bridge.export_midi, server.export_midi,
+                   export_bridge._resolve_export_path):
+            self.assertNotIn("allow_outside_exports", inspect.signature(fn).parameters)
+
+    def test_relative_name_lands_in_exports(self):
+        out = export_bridge.export_midi(NOTES, "sketch.mid", tempo=120)
+        self.assertEqual(out["path"], os.path.join(self.exports, "sketch.mid"))
+        with open(out["path"], "rb") as fh:
+            self.assertEqual(fh.read(4), b"MThd")
+
+    def test_absolute_path_outside_is_refused(self):
+        target = os.path.join(self.outside, "x.mid")
+        with self.assertRaisesRegex(ValueError, "store/exports"):
+            export_bridge.export_midi(NOTES, target)
+        self.assertFalse(os.path.exists(target))
+
+    def test_dotdot_cannot_step_outside(self):
+        with self.assertRaisesRegex(ValueError, "store/exports"):
+            export_bridge._resolve_export_path("../outside/x.mid")
+
+    def test_symlink_out_of_exports_is_refused(self):
+        os.symlink(self.outside, os.path.join(self.exports, "link"))
+        with self.assertRaisesRegex(ValueError, "store/exports"):
+            export_bridge.export_midi(NOTES, "link/x.mid")
+        self.assertFalse(os.path.exists(os.path.join(self.outside, "x.mid")))
+
+    def test_operator_allowlist_admits_a_directory(self):
+        os.environ[export_bridge.EXPORT_DIRS_ENV] = os.pathsep.join(
+            [os.path.join(self.tmp, "missing"), self.outside])
+        out = export_bridge.export_midi(NOTES, os.path.join(self.outside, "x.midi"))
+        self.assertEqual(out["path"], os.path.join(self.outside, "x.midi"))
+
+    def test_sibling_prefix_is_not_inside(self):
+        sibling = self.exports + "-evil"
+        os.makedirs(sibling)
+        with self.assertRaisesRegex(ValueError, "store/exports"):
+            export_bridge._resolve_export_path(os.path.join(sibling, "x.mid"))
+
+    def test_non_midi_suffix_is_refused(self):
+        for name in ("notes.txt", "x.mid.py", "noext", ".bashrc"):
+            with self.subTest(name=name):
+                with self.assertRaisesRegex(ValueError, ".mid"):
+                    export_bridge._resolve_export_path(name)
+
+    def test_existing_non_midi_file_is_not_overwritten(self):
+        target = os.path.join(self.exports, "precious.mid")
+        with open(target, "wb") as fh:
+            fh.write(b"not midi")
+        with self.assertRaisesRegex(ValueError, "not a Standard MIDI file"):
+            export_bridge.export_midi(NOTES, "precious.mid")
+        with open(target, "rb") as fh:
+            self.assertEqual(fh.read(), b"not midi")
+
+    def test_existing_midi_file_is_replaced(self):
+        first = export_bridge.export_midi(NOTES, "again.mid")
+        second = export_bridge.export_midi(NOTES[:1], "again.mid")
+        self.assertEqual(first["path"], second["path"])
+        self.assertEqual(second["n_notes"], 1)
+
+    def test_directory_target_is_refused(self):
+        os.makedirs(os.path.join(self.exports, "dir.mid"))
+        with self.assertRaisesRegex(ValueError, "non-file"):
+            export_bridge._resolve_export_path("dir.mid")
 
 
 if __name__ == "__main__":

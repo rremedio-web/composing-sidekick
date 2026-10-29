@@ -448,8 +448,11 @@ CLI: `.venv/bin/python tools/audio_ref.py <path-or-url> [--start 0:48 --end 1:10
 4. `export_midi(notes=[...], path="sketch.mid", tempo=120)` — writes `store/exports/sketch.mid`
 5. Or `send_to_ableton(notes=[...], track=0, clip_name="sketch")` — live handoff (below)
 
-`export_midi` rejects paths outside `store/exports` by default. Pass
-`allow_outside_exports=true` only when you intentionally want an absolute external path.
+`export_midi` writes only under `store/exports`, plus any directories you list in
+the `SIDEKICK_EXPORT_DIRS` environment variable (separated by `:`) in the server's MCP
+config. The model cannot widen that list: there is no tool argument for it. Paths are
+resolved with `realpath` (symlinks and `..` cannot step outside), the name must end in
+`.mid` or `.midi`, and an existing file is replaced only if it is already a MIDI file.
 
 ## Minimal IdeaPack workflow
 

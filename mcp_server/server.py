@@ -1569,15 +1569,13 @@ def humanize(notes: list[dict], role: str = "lead", strength: float | None = Non
 
 
 @mcp.tool()
-def export_midi(notes: list[dict], path: str, tempo: float = 120.0,
-                allow_outside_exports: bool = False) -> dict:
-    """Export notes to .mid. Relative paths stay under store/exports by default."""
-    return _core.export_midi(
-        notes=notes,
-        path=path,
-        tempo=tempo,
-        allow_outside_exports=allow_outside_exports,
-    )
+def export_midi(notes: list[dict], path: str, tempo: float = 120.0) -> dict:
+    """Export notes to a .mid file under store/exports (relative paths land there).
+
+    Absolute paths are accepted only inside store/exports or a directory the
+    operator listed in SIDEKICK_EXPORT_DIRS. The name must end in .mid/.midi,
+    and an existing file is replaced only if it is already a MIDI file."""
+    return _core.export_midi(notes=notes, path=path, tempo=tempo)
 
 
 @mcp.tool()
@@ -3356,12 +3354,19 @@ def run_selftest() -> int:
 
     _exports_tmp = tempfile.mkdtemp(prefix="sidekick_selftest_exports_")
     out_path = os.path.join(_exports_tmp, "selftest_phrase.mid")
-    assert _core._resolve_export_path("selftest_phrase.mid") == os.path.join(
-        ROOT, "store", "exports", "selftest_phrase.mid")
-    assert _core._resolve_export_path("store/exports/selftest_phrase.mid") == os.path.join(
-        ROOT, "store", "exports", "selftest_phrase.mid")
-    result = _core.export_midi(sample_notes, out_path, tempo=120,
-                               allow_outside_exports=True)
+    assert _core._resolve_export_path("selftest_phrase.mid") == os.path.realpath(
+        os.path.join(ROOT, "store", "exports", "selftest_phrase.mid"))
+    assert _core._resolve_export_path("store/exports/selftest_phrase.mid") == os.path.realpath(
+        os.path.join(ROOT, "store", "exports", "selftest_phrase.mid"))
+    _export_dirs_prev = os.environ.get("SIDEKICK_EXPORT_DIRS")
+    os.environ["SIDEKICK_EXPORT_DIRS"] = _exports_tmp
+    try:
+        result = _core.export_midi(sample_notes, out_path, tempo=120)
+    finally:
+        if _export_dirs_prev is None:
+            os.environ.pop("SIDEKICK_EXPORT_DIRS", None)
+        else:
+            os.environ["SIDEKICK_EXPORT_DIRS"] = _export_dirs_prev
     assert os.path.exists(out_path), "MIDI file not written"
 
     mid = mido.MidiFile(out_path)

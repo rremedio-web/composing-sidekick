@@ -23,47 +23,77 @@ MAX_PP_DURATION_DENOMINATOR = 100_000
 MAX_PP_DURATION_ERROR_BEATS = 1e-6
 
 
-def _resolve_export_path(path: str, *, allow_outside_exports: bool = False) -> str:
-    """Resolve export path to store/exports/ with optional outside-exports override."""
+# Where export_midi may write. store/exports is always allowed; the operator
+# can add directories with SIDEKICK_EXPORT_DIRS (os.pathsep-separated). The
+# allowlist is configuration, never a tool argument: the model cannot widen it.
+EXPORT_DIRS_ENV = "SIDEKICK_EXPORT_DIRS"
+MIDI_SUFFIXES = (".mid", ".midi")
+
+
+def _allowed_export_roots() -> list[str]:
+    """store/exports plus SIDEKICK_EXPORT_DIRS, each resolved with realpath."""
+    roots = [core_shared.EXPORTS_DIR]
+    extra = os.environ.get(EXPORT_DIRS_ENV, "")
+    roots.extend(p.strip() for p in extra.split(os.pathsep) if p.strip())
+    return [os.path.realpath(os.path.expanduser(r)) for r in roots]
+
+
+def _resolve_export_path(path: str) -> str:
+    """Resolve an export path and refuse anything outside the allowlist.
+
+    Relative paths land under store/exports (a leading ``store/exports/`` is
+    accepted). Both the target and every allowed root are resolved with
+    realpath, so a symlink or ``..`` cannot step outside. The name must end in
+    .mid or .midi, and an existing file is only overwritten if it already is a
+    Standard MIDI file (starts with ``MThd``).
+    """
     if not path or not str(path).strip():
         raise ValueError("path is required")
     expanded = os.path.expanduser(str(path).strip())
     if os.path.isabs(expanded):
-        resolved = os.path.abspath(expanded)
+        candidate = expanded
     else:
         normal = os.path.normpath(expanded)
         parts = normal.split(os.sep)
         if len(parts) >= 2 and parts[0] == "store" and parts[1] == "exports":
-            resolved = os.path.abspath(os.path.join(core_shared.ROOT, normal))
+            candidate = os.path.join(core_shared.ROOT, normal)
         else:
-            resolved = os.path.abspath(os.path.join(core_shared.EXPORTS_DIR, normal))
+            candidate = os.path.join(core_shared.EXPORTS_DIR, normal)
+    resolved = os.path.realpath(candidate)
 
-    exports_root = os.path.abspath(core_shared.EXPORTS_DIR)
-    if not allow_outside_exports:
+    if not resolved.lower().endswith(MIDI_SUFFIXES):
+        raise ValueError("export_midi only writes .mid / .midi files")
+
+    def _inside(root: str) -> bool:
         try:
-            inside_exports = os.path.commonpath([exports_root, resolved]) == exports_root
+            return os.path.commonpath([root, resolved]) == root and resolved != root
         except ValueError:
-            inside_exports = False
-        if not inside_exports:
-            raise ValueError(
-                "export_midi paths must stay under store/exports by default; "
-                "pass allow_outside_exports=True to write elsewhere explicitly"
-            )
+            return False
+
+    if not any(_inside(root) for root in _allowed_export_roots()):
+        raise ValueError(
+            "export_midi paths must stay under store/exports (or a directory "
+            "listed in %s, set by the operator)" % EXPORT_DIRS_ENV
+        )
+    if os.path.lexists(resolved):
+        if not os.path.isfile(resolved):
+            raise ValueError("export_midi will not replace a non-file at the target path")
+        with open(resolved, "rb") as fh:
+            if fh.read(4) != b"MThd":
+                raise ValueError(
+                    "export_midi will not overwrite an existing file that is not "
+                    "a Standard MIDI file")
     return resolved
 
 
-def export_midi(notes: list[dict], path: str, tempo: float = 120.0,
-                 allow_outside_exports: bool = False) -> dict:
+def export_midi(notes: list[dict], path: str, tempo: float = 120.0) -> dict:
     """Write notes to a Standard MIDI file using mido."""
     import mido
 
     nd = core_shared._note_dicts(notes)
     if not nd:
         raise ValueError("notes list is empty")
-    out_path = _resolve_export_path(
-        path,
-        allow_outside_exports=allow_outside_exports,
-    )
+    out_path = _resolve_export_path(path)
 
     mid = mido.MidiFile(ticks_per_beat=480)
     track = mido.MidiTrack()
