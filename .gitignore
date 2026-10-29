@@ -23,6 +23,8 @@ store/audio_ref_index.json
 store/lane_auditions.json
 store/mix_checks/
 store/backups/
+store/phrase_id_map.json
+store/ingest_journal.json
 
 # Python
 .venv/
@@ -72,3 +74,12 @@ store/approved_rhythms.json
 store/APPROVED_RHYTHMS.md
 assets/approved_rhythms/
 store/calibration.json
+store/ears_default.json
+
+# Editor, packaging and other tool caches
+node_modules/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+.vscode/
+.idea/
